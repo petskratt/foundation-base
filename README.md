@@ -11,5 +11,7 @@ More Info
 -------------
 
 http://thematictheme.com/
+
 http://foundation.zurb.com/
+
 http://scottnix.com/responsive-base-a-child-theme-for-thematic/
