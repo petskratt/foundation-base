@@ -1,0 +1,320 @@
+/* ==========================================================================
+   content styles
+   ========================================================================== */
+#header {
+    position: relative;
+}
+#branding {
+    margin: 0 auto;
+    padding: 1.625em 0;
+}
+#blog-title { font-size: 2em; }
+#blog-description {
+    margin: 0;
+    font-size: 1em;
+    font-weight: normal;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
+.skip-link { display: none; }
+#access {
+    position:relative;
+    overflow:visible;
+    .menu {
+        margin: 0 auto;
+    }
+}
+.sf-menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+        a {
+            display: block;
+            padding: .5em;
+            &:hover {
+                background: #000;
+                color: #ddd;
+            }
+        }
+        li { display: none; }
+    }
+}
+#main {
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    padding: 1.625em 0;
+    clear: both;
+}
+#container {
+    width: 100%;
+    margin: 0 0 1.625em;
+}
+#content { width: 100%; }
+.page-title {
+    span { font-style: italic; }
+    .meta-nav { font-style: normal; }
+}
+.hentry { margin: 0 0 1.625em; }
+.sticky {
+    padding: 1.625em;
+    background: rgba(0,0,0,.10);
+}
+.entry-meta {
+    margin: 0 0 1.625em;
+    abbr {
+        border: none;
+        cursor: text;
+    }
+}
+.entry-utility {
+    margin: 0 0 1.625em;
+    clear: both;
+}
+.edit-link {
+    display: block;
+    clear: both;
+}
+.content-column {
+    float: left;
+    width: 100%;
+}
+#links-page,
+#archives-page {
+    list-style: none;
+    overflow: hidden;
+}
+#author-info {
+    margin: 0 0 1.625em;
+    overflow: hidden;
+    .avatar {
+        float: left;
+        margin: 0 1em 0;
+    }
+}
+
+/* images
+   ========================================================================== */
+
+.entry-content {
+    .wp-post-image {
+        float: right;
+        margin: 0 0 1.625em 1.625em;
+        padding: 5px;
+    }
+    img { height: auto;
+        max-width: 100%;
+        margin: 0 0 1.625em;
+    }
+}
+.alignleft,
+img.alignleft {
+    float: left;
+    margin-right: 1.625em;
+}
+.alignright,
+img.alignright {
+    float: right;
+    margin-left: 1.625em;
+}
+.aligncenter,
+img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    clear: both;
+}
+.wp-caption {
+    max-width: 96%;
+    margin-bottom: 1.625em;
+    padding: 9px 0 0;
+    text-align: center;
+    img {
+        margin: 0;
+        padding: 0;
+    }
+    p.wp-caption-text {
+        margin: 0;
+        padding: 1.625em 5px;
+    }
+}
+.gallery {
+    display: block;
+    margin: 0 auto;
+    padding: 0 0 1.625em;
+    clear: both;
+    overflow: hidden;
+    .gallery-row {
+        display: block;
+        margin: 0;
+        clear: both;
+        overflow: hidden;
+    }
+    .gallery-item {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        list-style: none;
+        img,
+        img.thumbnail {
+            height: auto;
+            max-width: 89%;
+            margin: 0 auto;
+            padding: 1%;
+            border: none !important;
+        }
+    }
+}
+.gallery-icon {
+    margin: 0 5px;
+    padding-top: 6px;
+}
+.gallery-caption { padding: 6px 6px 0; }
+.wp-smiley {
+    max-height: 12px;
+    margin: 0 !important;
+}
+
+/* comments
+   ========================================================================== */
+
+#comments {
+    clear: both;
+    padding: 1.625em 0 0;
+    ol,
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+}
+#comments-list {
+    ol {
+        margin: 0 0 1.625em;
+        border: 1px solid #ccc;
+        border-bottom: none;
+    }
+    li {
+        position: relative;
+        padding: 1.625em 1.5em 0;
+        border-bottom: 1px solid #ccc;
+        background: #fafafa;
+        &.bypostauthor { background: #ffffcc; }
+        .avatar {
+            position: absolute;
+            top: 1.625em;
+            left: 1.5em;
+            height: 36px;
+            width: 36px;
+        }
+        li {
+        margin: 0 0 1.625em;
+        border: 1px solid #ccc;
+        }
+    }
+    .thread-odd { background: #f1f1f1; }
+
+    .comment-author {
+        padding: 9px 0 0 46px;
+        font-weight: bold;
+    }
+    .comment-meta { padding: 0 0 9px 46px; }
+    #respond {
+        margin: 0 0 1.625em;
+        padding: 1.625em 1.5em;
+        border-bottom: 1px solid #ccc;
+    }
+    ul #respond {
+        margin: 0;
+        border: 1px solid #ccc;
+    }
+}
+.comment-reply-link {
+    padding: 0 0 1.625em;
+    text-align: right;
+}
+#trackbacks-list .comment-content {
+    position: absolute;
+    left: -9999px;
+}
+#respond {
+    position: relative;
+    margin-bottom: 1.625em;
+    padding: 1.625em 0 0;
+}
+#cancel-comment-reply {
+    position: absolute;
+    top: 1.625em;
+    right: 1.5em;
+}
+.form-section {
+    input {
+        width: 98%;
+        margin: 0 0 1.625em;
+    }
+    textarea { width: 98%; }
+}
+.form-section input {
+    width: 98%;
+    margin: 0 0 1.625em;
+}
+#form-allowed-tags {
+    p { margin: 0; }
+    span { font-style: italic; }
+}
+.form-submit {
+    padding: 1.625em 0 0;
+    text-align: right;
+}
+
+/* pagination navigation
+   ========================================================================== */
+
+.page-link,
+.comment-navigation {
+    margin: 0 0 1.625em;
+    padding: 1.625em 0 0;
+    font-weight: bold;
+    word-spacing: 0.5em;
+    a {
+        background: rgba(0,0,0,0.1);
+        padding: 0.4em 0.65em;
+    }
+    a, span { margin-right: 0.5em; }
+}
+
+/* asides, sidebars & widget-ready areas
+   ========================================================================== */
+
+.aside {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    ul {
+        margin-left: 0;
+        padding: 0;
+        list-style: none;
+        ul { margin: 0 0 1.625em 20px;
+            li { padding: 1px 0; }
+            ul { margin-bottom: 0; }
+        }
+    }
+    img { max-width: 100%; }
+    table { border: none; }
+    thead { border: 1px solid #ccc; }
+    tbody { border: 1px solid #ccc; }
+    th,
+    td {
+        padding: .15em .6em;
+        border-right: 1px solid #ccc;
+    }
+    tfoot {
+        tr { border: none; }
+        td { border-color: transparent; }
+    }
+    #searchform input {
+        width: 100%;
+        max-width: 98%;
+    }
+    #content & { margin: 0 0 1.625em; }
+}
+.widget_tag_cloud { margin: 0 0 1.625em; }
+#searchsubmit { display: none; }

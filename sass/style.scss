@@ -1,0 +1,41 @@
+/*
+Theme Name: Foundation Base for Thematic
+Theme URI: http://tehnokratt.net/found-o-matic/
+Description: A child theme for Thematic based on Foundation framework by ZURB and Responsive Base by Scott Nix.
+Author: Peeter Marvet
+Author URI: http://tehnokratt.net/
+Template: thematic
+Version: 0.1.0
+Tags: thematic, child-theme, responsive, zurb, foundation
+*/
+
+@import "foundation/base";
+@import "foundation/globals";
+@import "foundation/typography";
+@import "foundation/grid";
+@import "foundation/ui";
+@import "foundation/buttons";
+@import "foundation/navbar";
+@import "foundation/forms";
+@import "_thematic";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+#branding { @include outerRow(); }
+#access { @include outerRow(); }
+#main { @include outerRow(); }
+#container { @include column(8); }
+
+.page-template-template-page-fullwidth-php {
+	#container { @include column(12); }
+	
+}
+
+#primary { @include column(4); }
+#footer { @include outerRow();
+	#first { @include column(4); }
+	#second { @include column(4); }
+	#third { @include column(4); }
+#siteinfo { 
+			@include column(12, center);
+}
+}
