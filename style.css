@@ -3,12 +3,12 @@
 /*
 Theme Name: Foundation Base for Thematic
 Theme URI: http://tehnokratt.net/found-o-matic/
-Description: A child theme for Thematic based on Foundation framework by ZURB and Responsive Base by Scott Nix.
+Description: A child theme for Thematic based on Foundation 3 framework by ZURB and Responsive Base by Scott Nix. Works rather nicely with Theme Unit Test but needs some tuning + support for Orbit and Reveal modules. Main menu is supported with 1 sub-level (Foundation limit).
 Author: Peeter Marvet
 Author URI: http://tehnokratt.net/
 Template: thematic
 Version: 0.1.0
-Tags: thematic, child-theme, responsive, zurb, foundation
+Tags: thematic, child-theme, responsive, fluid, zurb, foundation, attitude
 */
 /* Requires:
    normalize.css
@@ -29,7 +29,7 @@ html {
 /* line 9, ../../../../../../../Library/Ruby/Gems/1.8/gems/zurb-foundation-3.0.5/stylesheets/foundation/globals.scss */
 body {
   background: white;
-  font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "Open Sans", Arial, "Lucida Grande", sans-serif;
   font-size: 14px;
   font-size: 1.4rem;
   line-height: 1;
@@ -1771,7 +1771,7 @@ p.vevent abbr {
   color: white;
   cursor: pointer;
   display: inline-block;
-  font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "Open Sans", Arial, "Lucida Grande", sans-serif;
   font-size: 14px;
   font-weight: bold;
   line-height: 1;
@@ -3207,147 +3207,76 @@ form.custom .custom.disabled {
 /* ==========================================================================
    content styles
    ========================================================================== */
-/* line 4, sass/_thematic.scss */
-#header {
-  position: relative;
-}
-
-/* line 7, sass/_thematic.scss */
-#branding {
-  margin: 0 auto;
-  padding: 1.625em 0;
-}
-
-/* line 11, sass/_thematic.scss */
+/* line 6, sass/_thematic.scss */
 #blog-title {
-  font-size: 2em;
+  font-size: 44px;
+  text-rendering: optimizeLegibility;
+  line-height: 1.1;
+  margin-bottom: 14px;
+  margin-top: 14px;
 }
 
-/* line 12, sass/_thematic.scss */
+/* line 13, sass/_thematic.scss */
 #blog-description {
-  margin: 0;
   font-size: 1em;
   font-weight: normal;
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
-/* line 17, sass/_thematic.scss */
+/* line 18, sass/_thematic.scss */
 .skip-link {
   display: none;
 }
 
-/* line 18, sass/_thematic.scss */
-#access {
-  position: relative;
-  overflow: visible;
-}
 /* line 21, sass/_thematic.scss */
-#access .menu {
-  margin: 0 auto;
-}
-
-/* line 25, sass/_thematic.scss */
-.sf-menu {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-/* line 30, sass/_thematic.scss */
-.sf-menu li a {
-  display: block;
-  padding: .5em;
-}
-/* line 33, sass/_thematic.scss */
-.sf-menu li a:hover {
-  background: #000;
-  color: #ddd;
-}
-/* line 38, sass/_thematic.scss */
-.sf-menu li li {
-  display: none;
-}
-
-/* line 41, sass/_thematic.scss */
-#main {
-  position: relative;
-  width: 90%;
-  margin: 0 auto;
-  padding: 1.625em 0;
-  clear: both;
-}
-
-/* line 48, sass/_thematic.scss */
-#container {
-  width: 100%;
-  margin: 0 0 1.625em;
-}
-
-/* line 52, sass/_thematic.scss */
-#content {
-  width: 100%;
-}
-
-/* line 54, sass/_thematic.scss */
 .page-title span {
   font-style: italic;
 }
-/* line 55, sass/_thematic.scss */
+/* line 22, sass/_thematic.scss */
 .page-title .meta-nav {
   font-style: normal;
 }
 
-/* line 57, sass/_thematic.scss */
-.hentry {
-  margin: 0 0 1.625em;
-}
-
-/* line 58, sass/_thematic.scss */
+/* line 25, sass/_thematic.scss */
 .sticky {
   padding: 1.625em;
   background: rgba(0, 0, 0, 0.1);
 }
 
-/* line 62, sass/_thematic.scss */
+/* line 29, sass/_thematic.scss */
 .entry-meta {
   margin: 0 0 1.625em;
 }
-/* line 64, sass/_thematic.scss */
+/* line 31, sass/_thematic.scss */
 .entry-meta abbr {
   border: none;
   cursor: text;
 }
 
-/* line 69, sass/_thematic.scss */
+/* line 37, sass/_thematic.scss */
 .entry-utility {
   margin: 0 0 1.625em;
   clear: both;
 }
 
-/* line 73, sass/_thematic.scss */
+/* line 42, sass/_thematic.scss */
 .edit-link {
   display: block;
   clear: both;
 }
 
-/* line 77, sass/_thematic.scss */
-.content-column {
-  float: left;
-  width: 100%;
-}
-
-/* line 82, sass/_thematic.scss */
+/* line 48, sass/_thematic.scss */
 #links-page,
 #archives-page {
   list-style: none;
   overflow: hidden;
 }
 
-/* line 86, sass/_thematic.scss */
+/* line 53, sass/_thematic.scss */
 #author-info {
   margin: 0 0 1.625em;
   overflow: hidden;
 }
-/* line 89, sass/_thematic.scss */
+/* line 56, sass/_thematic.scss */
 #author-info .avatar {
   float: left;
   margin: 0 1em 0;
@@ -3355,34 +3284,24 @@ form.custom .custom.disabled {
 
 /* images
    ========================================================================== */
-/* line 99, sass/_thematic.scss */
+/* line 66, sass/_thematic.scss */
 .entry-content .wp-post-image {
   float: right;
-  margin: 0 0 1.625em 1.625em;
-  padding: 5px;
-}
-/* line 104, sass/_thematic.scss */
-.entry-content img {
-  height: auto;
-  max-width: 100%;
-  margin: 0 0 1.625em;
 }
 
-/* line 110, sass/_thematic.scss */
+/* line 72, sass/_thematic.scss */
 .alignleft,
 img.alignleft {
   float: left;
-  margin-right: 1.625em;
 }
 
-/* line 115, sass/_thematic.scss */
+/* line 77, sass/_thematic.scss */
 .alignright,
 img.alignright {
   float: right;
-  margin-left: 1.625em;
 }
 
-/* line 120, sass/_thematic.scss */
+/* line 82, sass/_thematic.scss */
 .aligncenter,
 img.aligncenter {
   display: block;
@@ -3391,68 +3310,59 @@ img.aligncenter {
   clear: both;
 }
 
-/* line 126, sass/_thematic.scss */
+/* line 89, sass/_thematic.scss */
 .wp-caption {
   max-width: 96%;
   margin-bottom: 1.625em;
   padding: 9px 0 0;
   text-align: center;
 }
-/* line 131, sass/_thematic.scss */
+/* line 94, sass/_thematic.scss */
 .wp-caption img {
   margin: 0;
   padding: 0;
 }
-/* line 135, sass/_thematic.scss */
+/* line 98, sass/_thematic.scss */
 .wp-caption p.wp-caption-text {
   margin: 0;
   padding: 1.625em 5px;
 }
 
-/* line 140, sass/_thematic.scss */
+/* line 104, sass/_thematic.scss */
 .gallery {
   display: block;
-  margin: 0 auto;
-  padding: 0 0 1.625em;
   clear: both;
   overflow: hidden;
 }
-/* line 146, sass/_thematic.scss */
+/* line 108, sass/_thematic.scss */
 .gallery .gallery-row {
   display: block;
-  margin: 0;
   clear: both;
   overflow: hidden;
 }
-/* line 152, sass/_thematic.scss */
+/* line 113, sass/_thematic.scss */
 .gallery .gallery-item {
-  margin: 0;
-  padding: 0;
   overflow: hidden;
   list-style: none;
 }
-/* line 158, sass/_thematic.scss */
+/* line 117, sass/_thematic.scss */
 .gallery .gallery-item img,
 .gallery .gallery-item img.thumbnail {
-  height: auto;
-  max-width: 89%;
-  margin: 0 auto;
-  padding: 1%;
   border: none !important;
 }
 
-/* line 167, sass/_thematic.scss */
+/* line 123, sass/_thematic.scss */
 .gallery-icon {
   margin: 0 5px;
   padding-top: 6px;
 }
 
-/* line 171, sass/_thematic.scss */
+/* line 128, sass/_thematic.scss */
 .gallery-caption {
   padding: 6px 6px 0;
 }
 
-/* line 172, sass/_thematic.scss */
+/* line 130, sass/_thematic.scss */
 .wp-smiley {
   max-height: 12px;
   margin: 0 !important;
@@ -3460,12 +3370,12 @@ img.aligncenter {
 
 /* comments
    ========================================================================== */
-/* line 180, sass/_thematic.scss */
+/* line 138, sass/_thematic.scss */
 #comments {
   clear: both;
   padding: 1.625em 0 0;
 }
-/* line 184, sass/_thematic.scss */
+/* line 142, sass/_thematic.scss */
 #comments ol,
 #comments ul {
   margin: 0;
@@ -3473,24 +3383,24 @@ img.aligncenter {
   list-style: none;
 }
 
-/* line 191, sass/_thematic.scss */
+/* line 150, sass/_thematic.scss */
 #comments-list ol {
   margin: 0 0 1.625em;
   border: 1px solid #ccc;
   border-bottom: none;
 }
-/* line 196, sass/_thematic.scss */
+/* line 155, sass/_thematic.scss */
 #comments-list li {
   position: relative;
   padding: 1.625em 1.5em 0;
   border-bottom: 1px solid #ccc;
   background: #fafafa;
 }
-/* line 201, sass/_thematic.scss */
+/* line 160, sass/_thematic.scss */
 #comments-list li.bypostauthor {
   background: #ffffcc;
 }
-/* line 202, sass/_thematic.scss */
+/* line 161, sass/_thematic.scss */
 #comments-list li .avatar {
   position: absolute;
   top: 1.625em;
@@ -3498,88 +3408,88 @@ img.aligncenter {
   height: 36px;
   width: 36px;
 }
-/* line 209, sass/_thematic.scss */
+/* line 168, sass/_thematic.scss */
 #comments-list li li {
   margin: 0 0 1.625em;
   border: 1px solid #ccc;
 }
-/* line 214, sass/_thematic.scss */
+/* line 173, sass/_thematic.scss */
 #comments-list .thread-odd {
   background: #f1f1f1;
 }
-/* line 216, sass/_thematic.scss */
+/* line 175, sass/_thematic.scss */
 #comments-list .comment-author {
   padding: 9px 0 0 46px;
   font-weight: bold;
 }
-/* line 220, sass/_thematic.scss */
+/* line 179, sass/_thematic.scss */
 #comments-list .comment-meta {
   padding: 0 0 9px 46px;
 }
-/* line 221, sass/_thematic.scss */
+/* line 180, sass/_thematic.scss */
 #comments-list #respond {
   margin: 0 0 1.625em;
   padding: 1.625em 1.5em;
   border-bottom: 1px solid #ccc;
 }
-/* line 226, sass/_thematic.scss */
+/* line 185, sass/_thematic.scss */
 #comments-list ul #respond {
   margin: 0;
   border: 1px solid #ccc;
 }
 
-/* line 231, sass/_thematic.scss */
+/* line 191, sass/_thematic.scss */
 .comment-reply-link {
   padding: 0 0 1.625em;
   text-align: right;
 }
 
-/* line 235, sass/_thematic.scss */
+/* line 196, sass/_thematic.scss */
 #trackbacks-list .comment-content {
   position: absolute;
   left: -9999px;
 }
 
-/* line 239, sass/_thematic.scss */
+/* line 201, sass/_thematic.scss */
 #respond {
   position: relative;
   margin-bottom: 1.625em;
   padding: 1.625em 0 0;
 }
 
-/* line 244, sass/_thematic.scss */
+/* line 207, sass/_thematic.scss */
 #cancel-comment-reply {
   position: absolute;
   top: 1.625em;
   right: 1.5em;
 }
 
-/* line 250, sass/_thematic.scss */
+/* line 214, sass/_thematic.scss */
 .form-section input {
   width: 98%;
   margin: 0 0 1.625em;
 }
-/* line 254, sass/_thematic.scss */
+/* line 218, sass/_thematic.scss */
 .form-section textarea {
   width: 98%;
 }
 
-/* line 256, sass/_thematic.scss */
+/* line 221, sass/_thematic.scss */
 .form-section input {
   width: 98%;
   margin: 0 0 1.625em;
 }
 
-/* line 261, sass/_thematic.scss */
+/* line 227, sass/_thematic.scss */
 #form-allowed-tags p {
   margin: 0;
 }
-/* line 262, sass/_thematic.scss */
+/* line 228, sass/_thematic.scss */
 #form-allowed-tags span {
   font-style: italic;
 }
 
-/* line 264, sass/_thematic.scss */
+/* line 231, sass/_thematic.scss */
 .form-submit {
   padding: 1.625em 0 0;
   text-align: right;
@@ -3587,7 +3497,7 @@ img.aligncenter {
 
 /* pagination navigation
    ========================================================================== */
-/* line 273, sass/_thematic.scss */
+/* line 240, sass/_thematic.scss */
 .page-link,
 .comment-navigation {
   margin: 0 0 1.625em;
@@ -3595,13 +3505,13 @@ img.aligncenter {
   font-weight: bold;
   word-spacing: 0.5em;
 }
-/* line 278, sass/_thematic.scss */
+/* line 245, sass/_thematic.scss */
 .page-link a,
 .comment-navigation a {
   background: rgba(0, 0, 0, 0.1);
   padding: 0.4em 0.65em;
 }
-/* line 282, sass/_thematic.scss */
+/* line 249, sass/_thematic.scss */
 .page-link a, .page-link span,
 .comment-navigation a,
 .comment-navigation span {
@@ -3610,134 +3520,164 @@ img.aligncenter {
 
 /* asides, sidebars & widget-ready areas
    ========================================================================== */
-/* line 288, sass/_thematic.scss */
+/* line 255, sass/_thematic.scss */
 .aside {
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
-/* line 291, sass/_thematic.scss */
+/* line 258, sass/_thematic.scss */
 .aside ul {
-  margin-left: 0;
-  padding: 0;
   list-style: none;
 }
-/* line 295, sass/_thematic.scss */
+/* line 260, sass/_thematic.scss */
 .aside ul ul {
-  margin: 0 0 1.625em 20px;
+  margin: 0 0 1.625em;
 }
-/* line 296, sass/_thematic.scss */
+/* line 261, sass/_thematic.scss */
 .aside ul ul li {
   padding: 1px 0;
 }
-/* line 297, sass/_thematic.scss */
+/* line 262, sass/_thematic.scss */
 .aside ul ul ul {
   margin-bottom: 0;
+  margin-left: 1em;
 }
-/* line 300, sass/_thematic.scss */
-.aside img {
-  max-width: 100%;
-}
-/* line 301, sass/_thematic.scss */
+/* line 266, sass/_thematic.scss */
 .aside table {
   border: none;
 }
-/* line 302, sass/_thematic.scss */
+/* line 267, sass/_thematic.scss */
 .aside thead {
   border: 1px solid #ccc;
 }
-/* line 303, sass/_thematic.scss */
+/* line 268, sass/_thematic.scss */
 .aside tbody {
   border: 1px solid #ccc;
 }
-/* line 305, sass/_thematic.scss */
+/* line 270, sass/_thematic.scss */
 .aside th,
 .aside td {
   padding: .15em .6em;
   border-right: 1px solid #ccc;
 }
-/* line 310, sass/_thematic.scss */
+/* line 275, sass/_thematic.scss */
 .aside tfoot tr {
   border: none;
 }
-/* line 311, sass/_thematic.scss */
+/* line 276, sass/_thematic.scss */
 .aside tfoot td {
   border-color: transparent;
 }
-/* line 313, sass/_thematic.scss */
+/* line 278, sass/_thematic.scss */
 .aside #searchform input {
   width: 100%;
   max-width: 98%;
 }
-/* line 317, sass/_thematic.scss */
+/* line 282, sass/_thematic.scss */
 #content .aside {
   margin: 0 0 1.625em;
 }
 
-/* line 319, sass/_thematic.scss */
+/* line 285, sass/_thematic.scss */
 .widget_tag_cloud {
   margin: 0 0 1.625em;
 }
 
-/* line 320, sass/_thematic.scss */
+/* line 287, sass/_thematic.scss */
 #searchsubmit {
   display: none;
 }
 
-/* line 23, sass/style.scss */
+/* line 28, sass/style.scss */
+#header {
+  width: 1000px;
+  max-width: 100%;
+  min-width: 768px;
+  margin: 0 auto;
+  *zoom: 1;
+}
+/* line 18, ../../../../../../../Library/Ruby/Gems/1.8/gems/zurb-foundation-3.0.5/stylesheets/foundation/_semantic-grid.scss */
+#header:before, #header:after {
+  content: "";
+  display: table;
+}
+/* line 19, ../../../../../../../Library/Ruby/Gems/1.8/gems/zurb-foundation-3.0.5/stylesheets/foundation/_semantic-grid.scss */
+#header:after {
+  clear: both;
+}
+@media only screen and (max-width: 767px) {
+  /* line 28, sass/style.scss */
+  #header {
+    width: auto;
+    min-width: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+/* line 29, sass/style.scss */
 #branding {
-  width: 1000px;
-  max-width: 100%;
-  min-width: 768px;
-  margin: 0 auto;
-  *zoom: 1;
-}
-/* line 18, ../../../../../../../Library/Ruby/Gems/1.8/gems/zurb-foundation-3.0.5/stylesheets/foundation/_semantic-grid.scss */
-#branding:before, #branding:after {
-  content: "";
-  display: table;
-}
-/* line 19, ../../../../../../../Library/Ruby/Gems/1.8/gems/zurb-foundation-3.0.5/stylesheets/foundation/_semantic-grid.scss */
-#branding:after {
-  clear: both;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  padding: 0 15px;
+  width: 100%;
 }
 @media only screen and (max-width: 767px) {
-  /* line 23, sass/style.scss */
+  /* line 29, sass/style.scss */
   #branding {
-    width: auto;
-    min-width: 0;
-    margin-left: 0;
-    margin-right: 0;
+    width: auto !important;
+    float: none;
   }
-}
-
-/* line 24, sass/style.scss */
-#access {
-  width: 1000px;
-  max-width: 100%;
-  min-width: 768px;
-  margin: 0 auto;
-  *zoom: 1;
-}
-/* line 18, ../../../../../../../Library/Ruby/Gems/1.8/gems/zurb-foundation-3.0.5/stylesheets/foundation/_semantic-grid.scss */
-#access:before, #access:after {
-  content: "";
-  display: table;
-}
-/* line 19, ../../../../../../../Library/Ruby/Gems/1.8/gems/zurb-foundation-3.0.5/stylesheets/foundation/_semantic-grid.scss */
-#access:after {
-  clear: both;
 }
 @media only screen and (max-width: 767px) {
-  /* line 24, sass/style.scss */
-  #access {
-    width: auto;
-    min-width: 0;
-    margin-left: 0;
-    margin-right: 0;
+  /* line 22, ../../../../../../../Library/Ruby/Gems/1.8/gems/zurb-foundation-3.0.5/stylesheets/foundation/_semantic-grid.scss */
+  #branding:before, #branding:after {
+    content: "";
+    display: table;
+  }
+  /* line 23, ../../../../../../../Library/Ruby/Gems/1.8/gems/zurb-foundation-3.0.5/stylesheets/foundation/_semantic-grid.scss */
+  #branding:after {
+    clear: both;
+  }
+  /* line 24, ../../../../../../../Library/Ruby/Gems/1.8/gems/zurb-foundation-3.0.5/stylesheets/foundation/_semantic-grid.scss */
+  #branding:last-child {
+    float: none;
   }
 }
 
-/* line 25, sass/style.scss */
+/* line 30, sass/style.scss */
+#access {
+  float: left;
+  position: relative;
+  min-height: 1px;
+  padding: 0 15px;
+  width: 100%;
+}
+@media only screen and (max-width: 767px) {
+  /* line 30, sass/style.scss */
+  #access {
+    width: auto !important;
+    float: none;
+  }
+}
+@media only screen and (max-width: 767px) {
+  /* line 22, ../../../../../../../Library/Ruby/Gems/1.8/gems/zurb-foundation-3.0.5/stylesheets/foundation/_semantic-grid.scss */
+  #access:before, #access:after {
+    content: "";
+    display: table;
+  }
+  /* line 23, ../../../../../../../Library/Ruby/Gems/1.8/gems/zurb-foundation-3.0.5/stylesheets/foundation/_semantic-grid.scss */
+  #access:after {
+    clear: both;
+  }
+  /* line 24, ../../../../../../../Library/Ruby/Gems/1.8/gems/zurb-foundation-3.0.5/stylesheets/foundation/_semantic-grid.scss */
+  #access:last-child {
+    float: none;
+  }
+}
+
+/* line 31, sass/style.scss */
 #main {
   width: 1000px;
   max-width: 100%;
@@ -3755,7 +3695,7 @@ img.aligncenter {
   clear: both;
 }
 @media only screen and (max-width: 767px) {
-  /* line 25, sass/style.scss */
+  /* line 31, sass/style.scss */
   #main {
     width: auto;
     min-width: 0;
@@ -3764,7 +3704,7 @@ img.aligncenter {
   }
 }
 
-/* line 26, sass/style.scss */
+/* line 32, sass/style.scss */
 #container {
   float: left;
   position: relative;
@@ -3773,7 +3713,7 @@ img.aligncenter {
   width: 66.667%;
 }
 @media only screen and (max-width: 767px) {
-  /* line 26, sass/style.scss */
+  /* line 32, sass/style.scss */
   #container {
     width: auto !important;
     float: none;
@@ -3795,7 +3735,7 @@ img.aligncenter {
   }
 }
 
-/* line 29, sass/style.scss */
+/* line 35, sass/style.scss */
 .page-template-template-page-fullwidth-php #container {
   float: left;
   position: relative;
@@ -3804,7 +3744,7 @@ img.aligncenter {
   width: 100%;
 }
 @media only screen and (max-width: 767px) {
-  /* line 29, sass/style.scss */
+  /* line 35, sass/style.scss */
   .page-template-template-page-fullwidth-php #container {
     width: auto !important;
     float: none;
@@ -3826,7 +3766,7 @@ img.aligncenter {
   }
 }
 
-/* line 33, sass/style.scss */
+/* line 39, sass/style.scss */
 #primary {
   float: left;
   position: relative;
@@ -3835,7 +3775,7 @@ img.aligncenter {
   width: 33.333%;
 }
 @media only screen and (max-width: 767px) {
-  /* line 33, sass/style.scss */
+  /* line 39, sass/style.scss */
   #primary {
     width: auto !important;
     float: none;
@@ -3857,7 +3797,38 @@ img.aligncenter {
   }
 }
 
-/* line 34, sass/style.scss */
+/* line 40, sass/style.scss */
+#secondary {
+  float: left;
+  position: relative;
+  min-height: 1px;
+  padding: 0 15px;
+  width: 33.333%;
+}
+@media only screen and (max-width: 767px) {
+  /* line 40, sass/style.scss */
+  #secondary {
+    width: auto !important;
+    float: none;
+  }
+}
+@media only screen and (max-width: 767px) {
+  /* line 22, ../../../../../../../Library/Ruby/Gems/1.8/gems/zurb-foundation-3.0.5/stylesheets/foundation/_semantic-grid.scss */
+  #secondary:before, #secondary:after {
+    content: "";
+    display: table;
+  }
+  /* line 23, ../../../../../../../Library/Ruby/Gems/1.8/gems/zurb-foundation-3.0.5/stylesheets/foundation/_semantic-grid.scss */
+  #secondary:after {
+    clear: both;
+  }
+  /* line 24, ../../../../../../../Library/Ruby/Gems/1.8/gems/zurb-foundation-3.0.5/stylesheets/foundation/_semantic-grid.scss */
+  #secondary:last-child {
+    float: none;
+  }
+}
+
+/* line 41, sass/style.scss */
 #footer {
   width: 1000px;
   max-width: 100%;
@@ -3875,7 +3846,7 @@ img.aligncenter {
   clear: both;
 }
 @media only screen and (max-width: 767px) {
-  /* line 34, sass/style.scss */
+  /* line 41, sass/style.scss */
   #footer {
     width: auto;
     min-width: 0;
@@ -3883,7 +3854,7 @@ img.aligncenter {
     margin-right: 0;
   }
 }
-/* line 35, sass/style.scss */
+/* line 42, sass/style.scss */
 #footer #first {
   float: left;
   position: relative;
@@ -3892,7 +3863,7 @@ img.aligncenter {
   width: 33.333%;
 }
 @media only screen and (max-width: 767px) {
-  /* line 35, sass/style.scss */
+  /* line 42, sass/style.scss */
   #footer #first {
     width: auto !important;
     float: none;
@@ -3913,7 +3884,7 @@ img.aligncenter {
     float: none;
   }
 }
-/* line 36, sass/style.scss */
+/* line 43, sass/style.scss */
 #footer #second {
   float: left;
   position: relative;
@@ -3922,7 +3893,7 @@ img.aligncenter {
   width: 33.333%;
 }
 @media only screen and (max-width: 767px) {
-  /* line 36, sass/style.scss */
+  /* line 43, sass/style.scss */
   #footer #second {
     width: auto !important;
     float: none;
@@ -3943,7 +3914,7 @@ img.aligncenter {
     float: none;
   }
 }
-/* line 37, sass/style.scss */
+/* line 44, sass/style.scss */
 #footer #third {
   float: left;
   position: relative;
@@ -3952,7 +3923,7 @@ img.aligncenter {
   width: 33.333%;
 }
 @media only screen and (max-width: 767px) {
-  /* line 37, sass/style.scss */
+  /* line 44, sass/style.scss */
   #footer #third {
     width: auto !important;
     float: none;
@@ -3973,7 +3944,7 @@ img.aligncenter {
     float: none;
   }
 }
-/* line 38, sass/style.scss */
+/* line 45, sass/style.scss */
 #footer #siteinfo {
   float: none;
   margin: 0 auto;
@@ -3983,7 +3954,7 @@ img.aligncenter {
   width: 100%;
 }
 @media only screen and (max-width: 767px) {
-  /* line 38, sass/style.scss */
+  /* line 45, sass/style.scss */
   #footer #siteinfo {
     width: auto !important;
     float: none;

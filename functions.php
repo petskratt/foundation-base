@@ -23,7 +23,7 @@ function childtheme_head_profile() {
     $content = "<!--<![endif]-->";
     $content .= "\n" . "<head>" . "\n";
     $content .= "<meta charset=\"utf-8\" />" . "\n";
-    $content .= "<meta name=\"viewport\" content=\"width=device-width\" />" . "\n";
+    $content .= "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />" . "\n";
     return $content;
 }
 add_filter('thematic_head_profile', 'childtheme_head_profile');
@@ -112,8 +112,23 @@ add_action('wp_enqueue_scripts', 'childtheme_script_manager');
 
 // add favicon to site, add 16x16 "favicon.ico" image to child themes main folder
 function childtheme_add_favicon() { ?>
-<link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/favicon.ico" />
+  <!-- For third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144"
+  href="<?php bloginfo('stylesheet_directory'); ?>/images/foundation/favicons/apple-touch-icon-144x144-precomposed.png">
+  <!-- For iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114"
+  href="<?php bloginfo('stylesheet_directory'); ?>/images/foundation/favicons/apple-touch-icon-114x114-precomposed.png">
+  <!-- For first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72"
+  href="<?php bloginfo('stylesheet_directory'); ?>/images/foundation/favicons/apple-touch-icon-72x72-precomposed.png">
+  <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed"
+  href="<?php bloginfo('stylesheet_directory'); ?>/images/foundation/favicons/apple-touch-icon-precomposed.png">
+  <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="shortcut icon"
+  href="<?php bloginfo('stylesheet_directory'); ?>/images/foundation/favicons/favicon.ico" type="image/x-icon" />
 <?php }
+
 add_action('wp_head', 'childtheme_add_favicon');
 
 
@@ -231,7 +246,11 @@ add_filter('wp_nav_menu_objects', function ($items) {
 
     foreach ($items as &$item) {
         if ($hasSub($item->ID, &$items)) {
-            $item->classes[] = 'has-flyout'; // all elements of field "classes" of a menu item get join together and render to class attribute of <li> element in HTML
+            $item->classes[] = 'has-flyout';
+        }
+        
+        if (in_array ('current-menu-item', $item->classes) || in_array ('current-menu-ancestor', $item->classes)) {
+            $item->classes[] = 'active';
         }
     }
     return $items;    
@@ -244,7 +263,7 @@ class foundation_Walker_Nav_Menu extends Walker_Nav_Menu {
 		$indent = str_repeat("\t", $depth);
 		$output .= "\n$indent<ul class=\"flyout\">\n";
 	}
-
+	
 }
 
 /*
