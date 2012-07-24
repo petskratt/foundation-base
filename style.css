@@ -919,3 +919,12 @@ form.custom .custom.disabled { background-color: #ddd; }
 #footer #second { float: left; position: relative; min-height: 1px; padding: 0 15px; width: 33.333%; }
 #footer #third { float: left; position: relative; min-height: 1px; padding: 0 15px; width: 33.333%; }
 #footer #siteinfo { float: none; margin: 0 auto; position: relative; min-height: 1px; padding: 0 15px; width: 100%; }
+
+/* Mobile Overrides ---------------------- */
+@media only screen and (max-width: 767px) { /* all outer(?) rows that are generated through mixins */
+  #header, #main, #footer { width: auto; min-width: 0; margin-left: 0; margin-right: 0; }
+  /* all columns that are generated through mixins */
+  #branding, #access, #container, #first, #second, #third, #siteinfo { width: auto !important; float: none; }
+  #branding:last-child, #access:last-child, #container:last-child, #first:last-child, #second:last-child, #third:last-child, #siteinfo:last-child { float: none; }
+  #branding:before, #branding:after, #access:before, #access:after, #container:before, #container:after, #first:before, #first:after, #second:before, #second:after, #third:before, #third:after, #siteinfo:before, #siteinfo:after { content: ""; display: table; }
+  #branding:after, #access:after, #container:after, #first:after, #second:after, #third:after, #siteinfo:after { clear: both; } }
