@@ -1,7 +1,8 @@
 <?php
 
 //
-//  Responsive Base Child Theme Functions
+//  Foundation Base Child Theme Functions
+//  (mostly from Responsive Base)
 //
 
 
@@ -23,7 +24,7 @@ function childtheme_head_profile() {
     $content = "<!--<![endif]-->";
     $content .= "\n" . "<head>" . "\n";
     $content .= "<meta charset=\"utf-8\" />" . "\n";
-    $content .= "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />" . "\n";
+    $content .= "<meta name=\"viewport\" content=\"width=device-width\" />" . "\n";
     return $content;
 }
 add_filter('thematic_head_profile', 'childtheme_head_profile');
@@ -84,6 +85,7 @@ function childtheme_override_head_scripts() {
 
 // script manager template for registering and enqueuing files
 // http://wpcandy.com/teaches/how-to-load-scripts-in-wordpress-themes
+// * changed to use Foundation 3.0.6 JS
 function childtheme_script_manager() {
     // wp_register_script template ( $handle, $src, $deps, $ver, $in_footer );
     
@@ -91,16 +93,14 @@ function childtheme_script_manager() {
     wp_register_script('modernizr-js', get_stylesheet_directory_uri() . '/javascripts/foundation/modernizr.foundation.js', false, false, false);
 	  
     // registers additional scripts, local stylesheet path, yes dependency is jquery, no version, loads in footer
-    wp_register_script('placeholder-js', get_stylesheet_directory_uri() . '/javascripts/foundation/jquery.placeholder.min.js', array('jquery'), false, true);
-    wp_register_script('tooltips-js', get_stylesheet_directory_uri() . '/javascripts/foundation/jquery.tooltips.js', array('jquery'), false, true);
+    wp_register_script('foundation-js', get_stylesheet_directory_uri() . '/javascripts/foundation.min.js', array('jquery'), false, true);
     
     // registers app script, local stylesheet path, yes dependency is jquery, no version, loads in footer
-    wp_register_script('app-js', get_stylesheet_directory_uri() . '/javascripts/app.js', array('jquery'), false, true);
+    wp_register_script('app-js', get_stylesheet_directory_uri() . '/javascripts/app.min.js', array('jquery'), false, true);
 
     // enqueue the scripts for use in theme
     wp_enqueue_script ('modernizr-js');
-    wp_enqueue_script ('placeholder-js');
-    wp_enqueue_script ('tooltips-js');
+    wp_enqueue_script ('foundation-js');
 
     //always enqueue this last, helps with conflicts
     wp_enqueue_script ('app-js');
@@ -111,6 +111,7 @@ add_action('wp_enqueue_scripts', 'childtheme_script_manager');
 
 
 // add favicon to site, add 16x16 "favicon.ico" image to child themes main folder
+// * added Foundation favicon and various sizes
 function childtheme_add_favicon() { ?>
   <!-- For third-generation iPad with high-resolution Retina display: -->
   <link rel="apple-touch-icon-precomposed" sizes="144x144"
@@ -202,13 +203,14 @@ add_filter('thematic_widgetized_areas', 'childtheme_hide_areas');
 
 
 // change the default search box text
+// * todo - this breaks localization !!!
 function childtheme_search_field_value() {
     return "Search";
 }
 add_filter('search_field_value', 'childtheme_search_field_value');
 
 
-// add foundation-specific classes to menu
+// add foundation-specific classes to menu - UL nav-bar
 function childtheme_nav_menu_args() {
 
 		$args = array (
@@ -234,6 +236,7 @@ function childtheme_nav_menu_args() {
 add_filter('thematic_nav_menu_args', 'childtheme_nav_menu_args');
 
 
+// add foundation-specific classes to menu - LI has-flyout and active
 add_filter('wp_nav_menu_objects', function ($items) {
     $hasSub = function ($menu_item_id, &$items) {
         foreach ($items as $item) {
@@ -256,7 +259,7 @@ add_filter('wp_nav_menu_objects', function ($items) {
     return $items;    
 });
 
-
+// add foundation-specific classes to menu - UL sub-menu -> flyout
 class foundation_Walker_Nav_Menu extends Walker_Nav_Menu {
 
 	function start_lvl( &$output, $depth = 0, $args = array() ) {

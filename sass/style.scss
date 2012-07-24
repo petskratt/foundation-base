@@ -5,15 +5,18 @@ Description: A child theme for Thematic based on Foundation 3 framework by ZURB 
 Author: Peeter Marvet
 Author URI: http://tehnokratt.net/
 Template: thematic
-Version: 0.1.0
+Version: 0.1.1
 Tags: thematic, child-theme, responsive, fluid, zurb, foundation, attitude
 */
 
+
+/* import Foundation components and customize variables / mixins if needed */
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
 @import "foundation/base";
 
-@mixin defaultFontFamily {
-    font-family: "Open Sans", Arial, "Lucida Grande", sans-serif;
-}
+@mixin defaultFontFamily { font-family: "Open Sans", Arial, "Lucida Grande", sans-serif; }
 
 @import "foundation/globals";
 @import "foundation/typography";
@@ -22,8 +25,12 @@ Tags: thematic, child-theme, responsive, fluid, zurb, foundation, attitude
 @import "foundation/buttons";
 @import "foundation/navbar";
 @import "foundation/forms";
+
+/* import Thematic-specific SCSS (from Responsive Base) */
+
 @import "_thematic";
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+/* use Foundation mixins on Thematic IDs/classes to produce desired layout */
 
 #header { @include outerRow(); }
 #branding {  @include column(12); }
@@ -38,11 +45,10 @@ Tags: thematic, child-theme, responsive, fluid, zurb, foundation, attitude
 
 #primary { @include column(4); }
 #secondary { @include column(4); }
+
 #footer { @include outerRow();
 	#first { @include column(4); }
 	#second { @include column(4); }
 	#third { @include column(4); }
-#siteinfo { 
-			@include column(12, center);
-}
+	#siteinfo { @include column(12, center); }
 }
