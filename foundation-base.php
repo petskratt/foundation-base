@@ -146,7 +146,7 @@ function childtheme_nav_menu_args() {
 		'after'				=> '',
 		'link_before'		=> '',
 		'link_after'		=> '',
-		'depth'				=> 0,
+		'depth'				=> 2,
 		'walker'			=> new foundation_Walker_Nav_Menu,
 		'echo'				=> false
 	);

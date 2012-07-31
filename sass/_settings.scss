@@ -1,3 +1,5 @@
+@import "foundation/functions/modular-scale";
+
 // Settings file containing Foundation defaults
 
 // Grid Settings
@@ -19,6 +21,15 @@
 // $white: #fff;
 // $shinyEdge: rgba(#fff, .5);
 // $darkEdge: rgba(#000, .2);
+
+// Typography Settings
+
+$headerFontFamily: "Open Sans", Arial, "Lucida Grande", sans-serif;
+// $headerFontWeight: bold;
+// $headerFontColor: #222;
+$bodyFontFamily: "Open Sans", Arial, "Lucida Grande", sans-serif;
+// $bodyFontWeight: normal;
+// $bodyFontColor: #222;
 
 // Button Settings
 
@@ -45,4 +56,3 @@
 // Modular Scale
 // $ratio: $golden;
 // $base-size: 14px 44px;
-
