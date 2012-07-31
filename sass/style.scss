@@ -41,6 +41,8 @@ Tags: thematic, child-theme, responsive, fluid, zurb, foundation, attitude
 
 #container, #primary, #secondary, #footer #first, #footer #second, #footer #third { @include mobileColumn($mobileTotalColumns); }
 
+/* page templates */
+
 .page-template-template-page-fullwidth-php {
 	#container { @include column($totalColumns); }	
 }

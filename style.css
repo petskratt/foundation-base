@@ -1114,4 +1114,5 @@ p.vevent abbr { cursor: default; text-decoration: none; font-weight: bold; borde
 /* mobile column overrides */
 @media only screen and (max-width: 767px) { #container, #primary, #secondary, #footer #first, #footer #second, #footer #third { width: 100%; float: left; padding: 0 15px; } }
 
+/* page templates */
 .page-template-template-page-fullwidth-php #container { float: left; position: relative; min-height: 1px; padding: 0 15px; width: 100%; }
