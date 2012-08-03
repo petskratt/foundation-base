@@ -170,7 +170,7 @@ add_filter('wp_nav_menu_objects', function ($items) {
     };
 
     foreach ($items as &$item) {
-        if ($hasSub($item->ID, &$items)) {
+        if ($hasSub($item->ID, $items)) {
             $item->classes[] = 'has-flyout';
             $item->hasFlyout = true;
         }
@@ -187,7 +187,7 @@ add_filter('walker_nav_menu_start_el', 'flyout_toggle_walker_nav_menu_start_el',
 
 function flyout_toggle_walker_nav_menu_start_el($item_output, $item, $depth, $args)
 {
-	if ($item->hasFlyout) {
+	if (isset($item->hasFlyout)) {
 		return $item_output . '<a href="#" class="flyout-toggle"><span> </span></a>' ;
 	} else {
 		return $item_output;
