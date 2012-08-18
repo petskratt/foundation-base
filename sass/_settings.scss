@@ -1,4 +1,4 @@
-@import "foundation/functions/modular-scale";
+@import "foundation/common/ratios";
 
 // Settings file containing Foundation defaults
 
@@ -24,10 +24,10 @@
 
 // Typography Settings
 
-$headerFontFamily: "Open Sans", Arial, "Lucida Grande", sans-serif;
+// $headerFontFamily: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $headerFontWeight: bold;
 // $headerFontColor: #222;
-$bodyFontFamily: "Open Sans", Arial, "Lucida Grande", sans-serif;
+// $bodyFontFamily: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $bodyFontWeight: normal;
 // $bodyFontColor: #222;
 
@@ -55,4 +55,22 @@ $bodyFontFamily: "Open Sans", Arial, "Lucida Grande", sans-serif;
 
 // Modular Scale
 // $ratio: $golden;
-// $base-size: 14px 44px;
+// $baseFontSize: 14px;
+// $importantModNum: 44px;
+
+// Tooltip Settings
+// $hasTipBorderBottom: dotted 1px #ccc;
+// $hasTipFontWeight: bold;
+// $hasTipFontColor: #333;
+// $hasTipBorderBottomHover: dotted 1px darken($mainColor, 20%);
+// $hasTipFontColorHover: $mainColor;
+// $tooltipBackgroundColor: #000;
+// $tooltipBackgroundOpacity: 0.85;
+// $tooltipFontSize: 12;
+// $tooltipFontWeight: bold;
+// $tooltipFontColor: #fff;
+// $tapToCloseFontSize: 10;
+// $tapToCloseFontWeight: normal;
+// $tapToCloseFontColor: #888;
+// $tooltipFontSizeScreenSmall: 14;
+// $tooltipBackgroundOpacityScreenSmall: 0.85;

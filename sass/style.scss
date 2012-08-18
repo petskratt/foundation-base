@@ -1,22 +1,58 @@
-/*
+/*!
 Theme Name: Foundation Base for Thematic
 Theme URI: https://github.com/petskratt/foundation-base/
-Description: A child theme for Thematic based on Foundation 3 framework by ZURB and Responsive Base by Scott Nix. Works rather nicely with Theme Unit Test but needs some tuning + support for Orbit and Reveal modules. Main menu is supported with 1 sub-level (Foundation limit).
+Description: A child theme for Thematic based on Foundation 3.0.9 framework by ZURB and Responsive Base by Scott Nix. Works rather nicely with Theme Unit Test but needs some tuning + support for Orbit and Reveal modules. Main menu is supported with 1 sub-level (Foundation limit).
 Author: Peeter Marvet
 Author URI: http://tehnokratt.net/
 Template: thematic
-Version: 0.1.2
+Version: 0.1.9
 Tags: thematic, child-theme, responsive, fluid, zurb, foundation, attitude
 */
-
-/* external imports */
-
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
 /* import Foundation custom settings and framework SCSS */
 
 @import "settings";
 @import "foundation";
+
+// ----------------------------------------
+// Import specific parts of Foundation by commenting the import "foundation"
+// and uncommenting what you want below. You must uncomment the following if customizing
+
+// @import "compass/css3";
+// @import "foundation/settings";
+// @import "foundation/functions/all";
+// @import "foundation/common/globals";
+// @import "foundation/mixins/clearfix";
+// @import "modular-scale";
+
+// Control which mixins you have access too
+
+// @import "foundation/mixins/css-triangle";
+// @import "foundation/mixins/font-size";
+
+// Must include next two for semantic grid to work
+
+// @import "foundation/mixins/respond-to";
+// @import "foundation/mixins/semantic-grid";
+
+// Must include the grid for any responsiveness
+
+// @import "foundation/components/grid";
+
+// Control which common styles get compiled
+
+// @import "foundation/common/typography";
+// @import "foundation/common/forms";
+
+// Control which components you get if customizing
+
+// @import "foundation/components/modules/buttons";
+// @import "foundation/components/modules/tabs";
+// @import "foundation/components/modules/ui";
+// @import "foundation/components/modules/navbar";
+// @import "foundation/components/modules/orbit";
+// @import "foundation/components/modules/reveal";
+// @import "foundation/components/modules/offcanvas";
 
 /* import Thematic-specific SCSS (from Responsive Base) */
 

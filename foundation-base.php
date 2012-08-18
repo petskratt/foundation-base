@@ -5,6 +5,7 @@
 //  (mostly from Responsive Base)
 //
 
+
 // recreates the doctype section, html5boilerplate.com style with conditional classes
 // http://scottnix.com/html5-header-with-thematic/
 function childtheme_create_doctype() {
@@ -87,15 +88,15 @@ function childtheme_override_head_scripts() {
 // * changed to use Foundation 3.0.6 JS
 function childtheme_script_manager() {
     // wp_register_script template ( $handle, $src, $deps, $ver, $in_footer );
-    
+
     // registers modernizr script, stylesheet local path, no dependency, no version, loads in header
     wp_register_script('modernizr-js', get_stylesheet_directory_uri() . '/javascripts/foundation/modernizr.foundation.js', false, false, false);
-	  
+
     // registers additional scripts, local stylesheet path, yes dependency is jquery, no version, loads in footer
-    wp_register_script('foundation-js', get_stylesheet_directory_uri() . '/javascripts/foundation.min.js', array('jquery'), false, true);
-    
+    wp_register_script('foundation-js', get_stylesheet_directory_uri() . '/javascripts/foundation/foundation.min.js', array('jquery'), false, true);
+
     // registers app script, local stylesheet path, yes dependency is jquery, no version, loads in footer
-    wp_register_script('app-js', get_stylesheet_directory_uri() . '/javascripts/app.min.js', array('jquery'), false, true);
+    wp_register_script('app-js', get_stylesheet_directory_uri() . '/javascripts/foundation/app.min.js', array('jquery'), false, true);
 
     // enqueue the scripts for use in theme
     wp_enqueue_script ('modernizr-js');
@@ -150,7 +151,7 @@ function childtheme_nav_menu_args() {
 		'walker'			=> new foundation_Walker_Nav_Menu,
 		'echo'				=> false
 	);
-	
+
 	return $args;
 
 }
@@ -174,12 +175,12 @@ add_filter('wp_nav_menu_objects', function ($items) {
             $item->classes[] = 'has-flyout';
             $item->hasFlyout = true;
         }
-        
+
         if (in_array ('current-menu-item', $item->classes) || in_array ('current-menu-ancestor', $item->classes)) {
             $item->classes[] = 'active';
         }
     }
-    return $items;    
+    return $items;
 });
 
 
@@ -202,7 +203,7 @@ class foundation_Walker_Nav_Menu extends Walker_Nav_Menu {
 		$indent = str_repeat("\t", $depth);
 		$output .= "\n$indent<ul class=\"flyout\">\n";
 	}
-	
+
 }
 
 ?>
