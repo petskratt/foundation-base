@@ -1,6 +1,14 @@
-/* Foundation was made by ZURB, an interaction design and design strategy firm in Campbell, CA */
-/* zurb.com */
+/* Foundation Base made possible by Thematic, Foundation and Responsive Base */
 /* humanstxt.org */
+
+/* TEAM */
+
+  Maker: Peeter Marvet / pets@tehnokratt.net
+
+/* THANKS */
+  Thematic community - http://thematictheme.com/
+  Zurb - http://foundation.zurb.com/
+  Scott Nix - http://scottnix.com/
 
 /* SITE */
   Standards: HTML5, CSS3
