@@ -160,18 +160,23 @@ add_filter('thematic_nav_menu_args', 'childtheme_nav_menu_args');
 
 
 // add foundation-specific classes to menu - LI has-flyout and active
-add_filter('wp_nav_menu_objects', function ($items) {
-    $hasSub = function ($menu_item_id, &$items) {
-        foreach ($items as $item) {
-            if ($item->menu_item_parent && $item->menu_item_parent==$menu_item_id) {
-                return true;
-            }
-        }
-        return false;
-    };
+
+add_filter('wp_nav_menu_objects', 'foundation_menu_class');
+
+function foundation_menu_class($items) {
+
+	function has_Sub($menu_item_id, &$items) {
+	    foreach ($items as $item) {
+	        if ($item->menu_item_parent && $item->menu_item_parent==$menu_item_id) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
+
 
     foreach ($items as &$item) {
-        if ($hasSub($item->ID, $items)) {
+        if ( has_Sub($item->ID, $items) ) {
             $item->classes[] = 'has-flyout';
             $item->hasFlyout = true;
         }
@@ -181,7 +186,7 @@ add_filter('wp_nav_menu_objects', function ($items) {
         }
     }
     return $items;
-});
+} 
 
 
 add_filter('walker_nav_menu_start_el', 'flyout_toggle_walker_nav_menu_start_el', 10, 4);
