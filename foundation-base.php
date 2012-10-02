@@ -211,4 +211,127 @@ class foundation_Walker_Nav_Menu extends Walker_Nav_Menu {
 
 }
 
+// based on WP Nice Slug http://wordpress.org/extend/plugins/wp-nice-slug/ by Spectraweb s.r.o. www.spectraweb.cz
+// using translit class (c) YURiQUE (Yuriy Malchenko), 2005 jmalchenko@gmail.com
+
+class Translit {
+	var $cyr=array(
+		"Щ",  "Ш", "Ч", "Ц", "Ю", "Я", "Ж", "А", "Б", "В", "Г", "Д", "Е", "Ё", "З", "И", "Й", "К",
+		"Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ь", "Ы", "Ъ", "Э", "Є", "Ї",
+		"щ",  "ш", "ч", "ц", "ю", "я", "ж", "а", "б", "в", "г", "д", "е", "ё", "з", "и", "й", "к",
+		"л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ь", "ы", "ъ", "э", "є", "ї");
+	var $lat=array(
+		"Shh", "Sh", "Ch", "C", "Ju", "Ja", "Zh", "A", "B", "V", "G", "D", "Je", "Jo", "Z", "I", "J", "K",
+		"L", "M", "N", "O", "P", "R", "S", "T", "U", "F", "Kh", "'", "Y", "`", "E", "Je", "Ji",
+		"shh", "sh", "ch", "c", "ju", "ja", "zh", "a", "b", "v", "g", "d", "je", "jo", "z", "i", "j", "k",
+		"l", "m", "n", "o", "p", "r", "s", "t", "u", "f", "kh", "'", "y", "`", "e", "je", "ji"
+	);
+
+	function Transliterate($str, $encIn, $encOut) {
+		$str = iconv($encIn, "utf-8", $str);
+		for ($i=0; $i<count($this->cyr); $i++) {
+			$c_cyr = $this->cyr[$i];
+			$c_lat = $this->lat[$i];
+			$str = str_replace($c_cyr, $c_lat, $str);
+		}
+		$str = preg_replace("/([qwrtpsdfghklzxcvbnmQWRTPSDFGHKLZXCVBNM]+)[jJ]e/", "\${1}e", $str);
+		$str = preg_replace("/([qwrtpsdfghklzxcvbnmQWRTPSDFGHKLZXCVBNM]+)[jJ]/", "\${1}'", $str);
+		$str = preg_replace("/([eyuioaEYUIOA]+)[Kk]h/", "\${1}h", $str);
+		$str = preg_replace("/^kh/", "h", $str);
+		$str = preg_replace("/^Kh/", "H", $str);
+
+		return iconv("utf-8", $encOut, $str);
+	}
+
+}
+
+function krt_sanitize_title($title, $raw_title, $context) {
+	if ($context == 'save') {
+		$t = new Translit();
+		$slug = $t->Transliterate($title, "utf-8", "utf-8");
+		$slug = strtolower($slug);
+		$slug = preg_replace('/\s+/', ' ', $slug);
+		$slug = str_replace(' ', '-', $slug);
+		$slug = preg_replace('/[^a-z0-9-_]/', '', $slug);
+		$slug = preg_replace('/[-]+/', '-', $slug);
+		$title = trim($slug, '-');
+	}
+	return $title;
+}
+
+add_filter('sanitize_title', 'krt_sanitize_title', 0, 3);
+
+// add child theme version to css, js
+
+function krt_versioned_uri($s) {
+	$my_theme = wp_get_theme();
+	return str_replace( get_bloginfo( 'version' ), $my_theme->Version , $s );
+}
+
+add_filter('style_loader_tag', 'krt_versioned_uri');
+add_filter('script_loader_src', 'krt_versioned_uri');
+
+// shortcodes - row, column, div, accordion & fold
+
+function accordion_shortcode_handler( $atts=null, $content=null, $code="" ) {
+
+	$output = '<ul class="accordion">' . do_shortcode( $content ) . '</ul>';
+
+	return $output;
+
+}
+
+function accordion_fold_shortcode_handler( $atts=null, $content=null, $code="" ) {
+
+	extract( shortcode_atts( array( 'h1' => null, 'h2' => null, 'h3' => null, 'h4' => null  ), $atts ) );
+
+	$output = '<div class="content">' . $content . '</div>';
+	
+	if ( $h1 ) $output = '<div class="title"><h1>' . $h1 . '</h1></div>' . $output;
+	if ( $h2 ) $output = '<div class="title"><h2>' . $h2 . '</h2></div>' . $output;
+	if ( $h3 ) $output = '<div class="title"><h3>' . $h3 . '</h3></div>' . $output;
+	if ( $h4 ) $output = '<div class="title"><h4>' . $h4 . '</h4></div>' . $output;
+
+	$output = '<li>' . $output . '</li>';
+
+	return $output;
+
+}
+
+add_shortcode( 'accordion', 'accordion_shortcode_handler' );
+add_shortcode( 'fold', 'accordion_fold_shortcode_handler' );
+
+
+function classes_shortcode_handler( $atts=null, $content=null, $code="" ) {
+
+	extract( shortcode_atts( array( 'class' => null, 'id' => null ), $atts ) );
+	
+	$classes = "";
+	
+	if ( $code != "div" ) {
+		$classes .= $code . " ";
+	}
+	
+	if ( $class ) {
+		$classes .= $class . " ";
+	}
+	
+	if ( $classes ) {
+		$classes = ' class="'. trim ( $classes ) . '"';
+	}
+	
+	if ( $id ) {
+		$id = ' id="'. $id . '"';
+	}
+	
+	$content = "<div" . $classes . $id . ">" . do_shortcode( $content ) . "</div>";
+	
+	return $content;
+
+}
+
+add_shortcode( 'row', 'classes_shortcode_handler' );
+add_shortcode( 'column', 'classes_shortcode_handler' );
+add_shortcode( 'div', 'classes_shortcode_handler' );
+
 ?>
