@@ -94,5 +94,25 @@ function snix_google_analytics(){ ?>
 add_action('wp_footer', 'snix_google_analytics');
 */
 
+/*
+// Add http://alefeuvre.github.com/foundation-grid-displayer/ classes
+// (must use google-hosted jquery, wp-included loads in no-conflict mode)
+
+function modify_jquery() {
+	if (!is_admin()) {
+		// comment out the next two lines to load the local copy of jQuery
+		wp_deregister_script('jquery');
+		wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js', false, '1.8.2');
+		wp_enqueue_script('jquery');
+	}
+}
+add_action('init', 'modify_jquery');
+
+function childtheme_override_body(){
+    echo '<body ';
+    body_class();
+  	echo ' data-grid-framework="f3" data-grid-color="blue" data-grid-opacity="0.2" data-grid-zindex="10" data-grid-nbcols="12">' . "\n\n";
+}
+*/
 
 ?>
