@@ -228,17 +228,19 @@ class Translit {
 	);
 
 	function Transliterate($str, $encIn, $encOut) {
+	
 		$str = iconv($encIn, "utf-8", $str);
 		for ($i=0; $i<count($this->cyr); $i++) {
 			$c_cyr = $this->cyr[$i];
 			$c_lat = $this->lat[$i];
 			$str = str_replace($c_cyr, $c_lat, $str);
 		}
-		$str = preg_replace("/([qwrtpsdfghklzxcvbnmQWRTPSDFGHKLZXCVBNM]+)[jJ]e/", "\${1}e", $str);
-		$str = preg_replace("/([qwrtpsdfghklzxcvbnmQWRTPSDFGHKLZXCVBNM]+)[jJ]/", "\${1}'", $str);
-		$str = preg_replace("/([eyuioaEYUIOA]+)[Kk]h/", "\${1}h", $str);
-		$str = preg_replace("/^kh/", "h", $str);
-		$str = preg_replace("/^Kh/", "H", $str);
+		
+		/*	$str = preg_replace("/([qwrtpsdfghklzxcvbnmQWRTPSDFGHKLZXCVBNM]+)[jJ]e/", "\${1}e", $str);
+			$str = preg_replace("/([qwrtpsdfghklzxcvbnmQWRTPSDFGHKLZXCVBNM]+)[jJ]/", "\${1}'", $str);
+			$str = preg_replace("/([eyuioaEYUIOA]+)[Kk]h/", "\${1}h", $str);
+			$str = preg_replace("/^kh/", "h", $str);
+			$str = preg_replace("/^Kh/", "H", $str); */
 
 		return iconv("utf-8", $encOut, $str);
 	}
