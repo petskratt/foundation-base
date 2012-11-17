@@ -115,19 +115,19 @@ add_action('wp_enqueue_scripts', 'childtheme_script_manager');
 function childtheme_add_favicon() { ?>
   <!-- For third-generation iPad with high-resolution Retina display: -->
   <link rel="apple-touch-icon-precomposed" sizes="144x144"
-  href="<?php bloginfo('stylesheet_directory'); ?>/favicons/apple-touch-icon-144x144-precomposed.png">
+  href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/apple-touch-icon-144x144-precomposed.png">
   <!-- For iPhone with high-resolution Retina display: -->
   <link rel="apple-touch-icon-precomposed" sizes="114x114"
-  href="<?php bloginfo('stylesheet_directory'); ?>/favicons/apple-touch-icon-114x114-precomposed.png">
+  href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/apple-touch-icon-114x114-precomposed.png">
   <!-- For first- and second-generation iPad: -->
   <link rel="apple-touch-icon-precomposed" sizes="72x72"
-  href="<?php bloginfo('stylesheet_directory'); ?>/favicons/apple-touch-icon-72x72-precomposed.png">
+  href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/apple-touch-icon-72x72-precomposed.png">
   <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
   <link rel="apple-touch-icon-precomposed"
-  href="<?php bloginfo('stylesheet_directory'); ?>/favicons/apple-touch-icon-precomposed.png">
+  href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/apple-touch-icon-precomposed.png">
   <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
   <link rel="shortcut icon"
-  href="<?php bloginfo('stylesheet_directory'); ?>/images/foundation/favicons/favicon.ico" type="image/x-icon" />
+  href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/favicon.ico" type="image/x-icon" />
 <?php }
 
 add_action('wp_head', 'childtheme_add_favicon');
