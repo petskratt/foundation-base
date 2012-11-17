@@ -18,6 +18,7 @@
             '<p class="clearing-caption"></p><a href="#" class="clearing-main-left"></a>' +
             '<a href="#" class="clearing-main-right"></a></div>'
         },
+        initialized : false,
         locked : false
       },
 
@@ -43,7 +44,7 @@
               // if the gallery hasn't been built yet...build it
               methods.assemble($el.find('li'));
 
-              methods.events();
+              if (!defaults.initialized) methods.events();
 
             }
           });
@@ -54,9 +55,14 @@
 
           doc.on('click.fndtn.clearing', 'ul[data-clearing] li', function (e, current, target) {
             var current = current || $(this),
-                target = target || current;
+                target = target || current,
+                settings = current.parent().data('fndtn.clearing.settings');
 
             e.preventDefault();
+
+            if (!settings) {
+              current.parent().foundationClearing();
+            }
 
             // set current and target to the clicked li if not otherwise defined.
             methods.open($(e.target), current, target);
@@ -85,7 +91,7 @@
             methods.go(clearing, 'prev');
           });
 
-          doc.on('click.fndtn.clearing', 'a.clearing-close, div.clearing-blackout', function (e) {
+          doc.on('click.fndtn.clearing', 'a.clearing-close, div.clearing-blackout, div.visible-img', function (e) {
             var root = (function (target) {
               if (/blackout/.test(target.selector)) {
                 return target;
@@ -122,6 +128,10 @@
             if (e.which === 37) {
               methods.go(clearing, 'prev');
             }
+
+            if (e.which === 27) {
+              $('a.clearing-close').trigger('click');
+            }
           });
 
           doc.on('movestart', function(e) {
@@ -144,9 +154,11 @@
             var clearing = $('.clearing-blackout').find('ul[data-clearing]');
             methods.go(clearing, 'prev');
           });
+
+          defaults.initialized = true;
         },
 
-        assemble : function ($li, target) {
+        assemble : function ($li) {
           var $el = $li.parent(),
               settings = $el.data('fndtn.clearing.settings'),
               grid = $el.detach(),

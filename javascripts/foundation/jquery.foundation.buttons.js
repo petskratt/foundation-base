@@ -30,7 +30,11 @@
       var $el = $(this),
         button = $el.closest('.button.dropdown'),
         dropdown = $('> ul', button);
-      e.preventDefault();
+
+        // If the click is registered on an actual link then do not preventDefault which stops the browser from following the link
+        if (e.target.nodeName !== "A"){
+          e.preventDefault();
+        }
 
       // close other dropdowns
       closeDropdowns(config.dropdownAsToggle ? dropdown : '');
@@ -44,6 +48,7 @@
 
     // close all dropdowns and deactivate all buttons
     $doc.on('click.fndtn', 'body, html', function (e) {
+      if (undefined == e.originalEvent) { return; }
       // check original target instead of stopping event propagation to play nice with other events
       if (!$(e.originalEvent.target).is('.button.dropdown:not(.split), .button.dropdown.split span')) {
         closeDropdowns();
