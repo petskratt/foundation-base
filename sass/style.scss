@@ -1,17 +1,18 @@
 /*!
 Theme Name: Foundation Base for Thematic
 Theme URI: https://github.com/petskratt/foundation-base/
-Description: A child theme for Thematic based on Foundation 3.2 framework by ZURB and Responsive Base by Scott Nix. Works rather nicely with Theme Unit Test but needs some tuning + support for Orbit and Reveal modules. Main menu is supported with 1 sub-level (Foundation limit).
+Description: A child theme for Thematic based on Foundation 3.2.2 framework by ZURB and Responsive Base by Scott Nix. Works rather nicely with Theme Unit Test but needs some tuning + support for Orbit and Reveal modules. Main menu is supported with 1 sub-level (Foundation limit).
 Author: Peeter Marvet
 Author URI: http://tehnokratt.net/
 Template: thematic
-Version: 0.3.2
+Version: 0.3.2.2
 Tags: flexible-width, two-columns, left-sidebar, translation-ready
 */
 
-/* import Foundation custom settings and framework SCSS */
-
+// You custom settings file to override Foundation defaults
 @import "settings";
+
+// Comment out this import if you are customizing you imports below
 @import "foundation";
 
 // ----------------------------------------
@@ -55,6 +56,10 @@ Tags: flexible-width, two-columns, left-sidebar, translation-ready
 // @import "foundation/components/modules/orbit";
 // @import "foundation/components/modules/reveal";
 // @import "foundation/components/modules/offcanvas";
+
+// Media Queries Overrides
+// @import "foundation/components/modules/mqueries";
+
 
 /* import Thematic-specific SCSS (from Responsive Base) */
 
