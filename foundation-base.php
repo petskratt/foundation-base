@@ -75,6 +75,8 @@ remove_action('wp_head', 'start_post_rel_link');
 remove_action('wp_head', 'adjacent_posts_rel_link_wp_head');
 
 
+add_editor_style('editor-style.css');
+
 
 // kills the 4 scripts for the drop downs, combined and reloaded by the script manager (dropdowns-js)
 function childtheme_override_head_scripts() {
