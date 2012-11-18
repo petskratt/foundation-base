@@ -188,7 +188,7 @@ function foundation_menu_class($items) {
         }
     }
     return $items;
-} 
+}
 
 
 add_filter('walker_nav_menu_start_el', 'flyout_toggle_walker_nav_menu_start_el', 10, 4);
@@ -230,14 +230,14 @@ class Translit {
 	);
 
 	function Transliterate($str, $encIn, $encOut) {
-	
+
 		$str = iconv($encIn, "utf-8", $str);
 		for ($i=0; $i<count($this->cyr); $i++) {
 			$c_cyr = $this->cyr[$i];
 			$c_lat = $this->lat[$i];
 			$str = str_replace($c_cyr, $c_lat, $str);
 		}
-		
+
 		/*	$str = preg_replace("/([qwrtpsdfghklzxcvbnmQWRTPSDFGHKLZXCVBNM]+)[jJ]e/", "\${1}e", $str);
 			$str = preg_replace("/([qwrtpsdfghklzxcvbnmQWRTPSDFGHKLZXCVBNM]+)[jJ]/", "\${1}'", $str);
 			$str = preg_replace("/([eyuioaEYUIOA]+)[Kk]h/", "\${1}h", $str);
@@ -290,7 +290,7 @@ function accordion_fold_shortcode_handler( $atts=null, $content=null, $code="" )
 	extract( shortcode_atts( array( 'h1' => null, 'h2' => null, 'h3' => null, 'h4' => null  ), $atts ) );
 
 	$output = '<div class="content">' . $content . '</div>';
-	
+
 	if ( $h1 ) $output = '<div class="title"><h1>' . $h1 . '</h1></div>' . $output;
 	if ( $h2 ) $output = '<div class="title"><h2>' . $h2 . '</h2></div>' . $output;
 	if ( $h3 ) $output = '<div class="title"><h3>' . $h3 . '</h3></div>' . $output;
@@ -309,27 +309,27 @@ add_shortcode( 'fold', 'accordion_fold_shortcode_handler' );
 function classes_shortcode_handler( $atts=null, $content=null, $code="" ) {
 
 	extract( shortcode_atts( array( 'class' => null, 'id' => null ), $atts ) );
-	
+
 	$classes = "";
-	
+
 	if ( $code != "div" ) {
 		$classes .= $code . " ";
 	}
-	
+
 	if ( $class ) {
 		$classes .= $class . " ";
 	}
-	
+
 	if ( $classes ) {
 		$classes = ' class="'. trim ( $classes ) . '"';
 	}
-	
+
 	if ( $id ) {
 		$id = ' id="'. $id . '"';
 	}
-	
+
 	$content = "<div" . $classes . $id . ">" . do_shortcode( $content ) . "</div>";
-	
+
 	return $content;
 
 }
@@ -337,5 +337,16 @@ function classes_shortcode_handler( $atts=null, $content=null, $code="" ) {
 add_shortcode( 'row', 'classes_shortcode_handler' );
 add_shortcode( 'column', 'classes_shortcode_handler' );
 add_shortcode( 'div', 'classes_shortcode_handler' );
+
+// add Orbit slider support to NextGEN Gallery
+
+add_filter('ngg_render_template', 'ngg_orbit_template', 10, 2);
+
+function ngg_orbit_template( $path, $template_name = false) {
+	if ($template_name == 'gallery-orbit')
+		$path = dirname( __FILE__ ) . '/addons/gallery-orbit.php';
+	return $path;
+}
+
 
 ?>

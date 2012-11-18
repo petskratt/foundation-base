@@ -36,14 +36,14 @@
   }
 
 // sample code for orbit
-/*  
+/*
 	$(window).load(function() {
 		$('#orbit').orbit({
 			animation: 'fade',					// fade, horizontal-slide, vertical-slide, horizontal-push
 			animationSpeed: 800,				// how fast animtions are
 			timer: false,						// true or false to have the timer
 			resetTimerOnClick: false,			// true resets the timer instead of pausing slideshow progress
-			advanceSpeed: 16000,				// if timer is enabled, time between transitions 
+			advanceSpeed: 16000,				// if timer is enabled, time between transitions
 			pauseOnHover: true,					// if you hover pauses the slider
 			startClockOnMouseOut: true,			// if clock should start on MouseOut
 			startClockOnMouseOutAfter: 16000,	// how long after MouseOut should the timer start again
@@ -54,7 +54,7 @@
 			bulletThumbLocation: '',			// location from this file where thumbs will be
 			fluid: '16x6'
 		});
-	});   
+	});
 */
 
 })(jQuery, this);
