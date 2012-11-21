@@ -1,6 +1,6 @@
 {
   "CodeKitInfo" : "This is a CodeKit project configuration file. It is designed to sync project settings across multiple machines. Modifying the contents of this file can be a poor life decision if you don't know what you're doing. This file is not useful unless accompanied by the project that created it in CodeKit. For more information, see: http:\/\/incident57.com\/codekit",
-  "creatorBuild" : "7839",
+  "creatorBuild" : "7978",
   "files" : {
     "\/images\/foundation\/orbit\/mask-black.png" : {
       "ignoreWasSetByUser" : 0,
@@ -13,16 +13,14 @@
       "initialSize" : 526,
       "fileType" : 8192
     },
-    "\/javascripts\/foundation\/jquery.foundation.alerts.js" : {
+    "\/foundation-base.php" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.alerts.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.alerts.min.js",
-      "fileType" : 64
+      "inputAbbreviatedPath" : "\/foundation-base.php",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 2048
     },
     "\/images\/foundation\/orbit\/right-arrow-small.png" : {
       "ignoreWasSetByUser" : 0,
@@ -35,15 +33,6 @@
       "initialSize" : 3169,
       "fileType" : 8192
     },
-    "\/functions.php" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/functions.php",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 2048
-    },
     "\/images\/foundation\/orbit\/bullets.jpg" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -54,35 +43,6 @@
       "outputAbbreviatedPath" : "\/images\/foundation\/orbit\/bullets.jpg",
       "initialSize" : 657,
       "fileType" : 4096
-    },
-    "\/javascripts\/foundation\/app.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/javascripts\/foundation\/app.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/javascripts\/foundation\/app.min.js",
-      "fileType" : 64
-    },
-    "\/foundation-base.php" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/foundation-base.php",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 2048
-    },
-    "\/editor-style.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/editor-style.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
     },
     "\/sass\/_thematic.scss" : {
       "ignoreWasSetByUser" : 0,
@@ -96,15 +56,55 @@
       "fileType" : 4,
       "debugStyle" : 0
     },
-    "\/javascripts\/foundation\/jquery.min.js" : {
+    "\/javascripts\/foundation\/app.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/javascripts\/foundation\/app.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/javascripts\/foundation\/app.min.js",
+      "fileType" : 64
+    },
+    "\/javascripts\/foundation\/jquery.foundation.alerts.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.min.js",
+      "inputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.alerts.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.min.min.js",
+      "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.alerts.min.js",
+      "fileType" : 64
+    },
+    "\/editor-style.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/editor-style.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
+    },
+    "\/functions.php" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/functions.php",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 2048
+    },
+    "\/javascripts\/foundation\/jquery.foundation.clearing.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.clearing.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.clearing.min.js",
       "fileType" : 64
     },
     "\/javascripts\/foundation\/jquery.foundation.accordion.js" : {
@@ -118,16 +118,16 @@
       "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.accordion.min.js",
       "fileType" : 64
     },
-    "\/images\/foundation\/orbit\/right-arrow.png" : {
+    "\/javascripts\/foundation\/jquery.foundation.orbit.js" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
+      "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/foundation\/orbit\/right-arrow.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/foundation\/orbit\/right-arrow.png",
-      "initialSize" : 3242,
-      "fileType" : 8192
+      "inputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.orbit.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.orbit.min.js",
+      "fileType" : 64
     },
     "\/javascripts\/foundation\/jquery.event.move.js" : {
       "ignoreWasSetByUser" : 0,
@@ -140,6 +140,17 @@
       "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.event.move.min.js",
       "fileType" : 64
     },
+    "\/images\/foundation\/orbit\/right-arrow.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/images\/foundation\/orbit\/right-arrow.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/foundation\/orbit\/right-arrow.png",
+      "initialSize" : 3242,
+      "fileType" : 8192
+    },
     "\/javascripts\/foundation\/jquery.foundation.tooltips.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -149,17 +160,6 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.tooltips.min.js",
-      "fileType" : 64
-    },
-    "\/javascripts\/foundation\/jquery.foundation.orbit.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.orbit.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.orbit.min.js",
       "fileType" : 64
     },
     "\/images\/foundation\/orbit\/left-arrow.png" : {
@@ -184,14 +184,16 @@
       "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.placeholder.min.js",
       "fileType" : 64
     },
-    "\/style.css" : {
-      "ignoreWasSetByUser" : 0,
+    "\/javascripts\/foundation\/jquery.js" : {
+      "ignoreWasSetByUser" : 1,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/style.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
+      "inputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.min.js",
+      "fileType" : 64
     },
     "\/favicons\/apple-touch-icon-144x144-precomposed.png" : {
       "ignoreWasSetByUser" : 0,
@@ -226,17 +228,6 @@
       "outputAbbreviatedPath" : "\/javascripts\/foundation\/app.min.min.js",
       "fileType" : 64
     },
-    "\/javascripts\/foundation\/jquery.js" : {
-      "ignoreWasSetByUser" : 1,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.min.js",
-      "fileType" : 64
-    },
     "\/javascripts\/foundation\/jquery.foundation.mediaQueryToggle.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -247,6 +238,15 @@
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.mediaQueryToggle.min.js",
       "fileType" : 64
+    },
+    "\/style.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/style.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
     },
     "\/sass\/_settings.scss" : {
       "ignoreWasSetByUser" : 0,
@@ -411,17 +411,16 @@
       "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.joyride.min.js",
       "fileType" : 64
     },
-    "\/sass\/editor-style.scss" : {
+    "\/javascripts\/foundation\/jquery.cookie.js" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
+      "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sass\/editor-style.scss",
-      "outputStyle" : 0,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/editor-style.css",
-      "fileType" : 4,
-      "debugStyle" : 0
+      "inputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.cookie.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.cookie.min.js",
+      "fileType" : 64
     },
     "\/javascripts\/foundation\/jquery.offcanvas.js" : {
       "ignoreWasSetByUser" : 0,
@@ -434,16 +433,17 @@
       "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.offcanvas.min.js",
       "fileType" : 64
     },
-    "\/javascripts\/foundation\/jquery.cookie.js" : {
+    "\/sass\/editor-style.scss" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.cookie.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.cookie.min.js",
-      "fileType" : 64
+      "inputAbbreviatedPath" : "\/sass\/editor-style.scss",
+      "outputStyle" : 0,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/editor-style.css",
+      "fileType" : 4,
+      "debugStyle" : 0
     },
     "\/favicons\/apple-touch-icon-72x72-precomposed.png" : {
       "ignoreWasSetByUser" : 0,
@@ -467,17 +467,6 @@
       "initialSize" : 5526,
       "fileType" : 8192
     },
-    "\/javascripts\/foundation\/jquery.foundation.navigation.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.navigation.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.navigation.min.js",
-      "fileType" : 64
-    },
     "\/javascripts\/foundation\/jquery.foundation.buttons.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -487,6 +476,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.buttons.min.js",
+      "fileType" : 64
+    },
+    "\/javascripts\/foundation\/jquery.foundation.navigation.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.navigation.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.navigation.min.js",
       "fileType" : 64
     },
     "\/javascripts\/foundation\/modernizr.foundation.js" : {
@@ -500,15 +500,15 @@
       "outputAbbreviatedPath" : "\/javascripts\/foundation\/modernizr.foundation.min.js",
       "fileType" : 64
     },
-    "\/javascripts\/foundation\/jquery.foundation.clearing.js" : {
+    "\/javascripts\/foundation\/jquery.foundation.topbar.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.clearing.js",
+      "inputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.topbar.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.clearing.min.js",
+      "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.topbar.min.js",
       "fileType" : 64
     },
     "\/screenshot.png" : {
@@ -522,15 +522,15 @@
       "initialSize" : 38231,
       "fileType" : 8192
     },
-    "\/javascripts\/foundation\/jquery.foundation.topbar.js" : {
+    "\/javascripts\/foundation\/jquery.min.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.topbar.js",
+      "inputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.min.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.foundation.topbar.min.js",
+      "outputAbbreviatedPath" : "\/javascripts\/foundation\/jquery.min.min.js",
       "fileType" : 64
     },
     "\/favicons\/apple-touch-icon-precomposed.png" : {
@@ -720,5 +720,11 @@
     "lessDebugStyle" : 0,
     "javascriptAutoOutputPathRelativePath" : "",
     "slimAutoOutputPathStyle" : 0
+  },
+  "projectAttributes" : {
+    "bourbonEnabled" : 0,
+    "displayValue" : "foundationbase",
+    "displayValueWasSetByUser" : 0,
+    "compassEnabled" : 1
   }
 }
