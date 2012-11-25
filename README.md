@@ -9,7 +9,7 @@ Installation:
 
 * install Thematic theme framework from http://wordpress.org/extend/themes/thematic
 * download & unzip Foundation Base into /wp-content/themes
-* activate Foundation Base, create & assign primary menu
+* activate Foundation Base
 * enjoy, with attitude
 
 Features:
@@ -19,6 +19,7 @@ Features:
 * usually updated to latest Foundation version within a week of release
 * javascripts nicely joined and minified with @codekit-append's
 * NextGEN gallery integration with Orbit (use template=orbit)
+* now supporting also wp_page_menu (if custom menu is not defined builds nav-bar from page hierarchy)
 
 pets@tehnokratt.net / skype: petskratt
 
