@@ -213,6 +213,101 @@ class foundation_Walker_Nav_Menu extends Walker_Nav_Menu {
 
 }
 
+// alternative walker for wp_list_pages - and related stuff
+
+function childtheme_override_access() { 
+    ?>
+    
+    <div id="access">
+    
+    	<div class="skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip navigation to the content', 'thematic' ); ?>"><?php _e('Skip to content', 'thematic'); ?></a></div><!-- .skip-link -->
+    	
+    	<?php 
+    	if ( ( function_exists("has_nav_menu") ) && ( has_nav_menu( apply_filters('thematic_primary_menu_id', 'primary-menu') ) ) ) {
+    	    echo  wp_nav_menu(thematic_nav_menu_args());
+    	} else {
+    	    echo  childtheme_add_menuclass(wp_page_menu(thematic_page_menu_args()));	
+    	}
+    	?>
+    	
+    </div><!-- #access -->
+    <?php 
+}
+
+function childtheme_add_menuclass($ulclass) {
+	return preg_replace( '/<ul>/', '<ul class="nav-bar">', $ulclass, 1 );
+}
+
+
+function childtheme_wp_page_menu_args($args) {
+
+	$menuWalker = new foundation_Walker_Page();
+	$args['walker'] = $menuWalker;
+	return $args;
+
+}
+
+add_filter( 'wp_page_menu_args', 'childtheme_wp_page_menu_args');
+
+
+
+class foundation_Walker_Page extends Walker_Page {
+
+	function start_lvl( &$output, $depth = 0, $args = array() ) {
+		$indent = str_repeat("\t", $depth);
+		$output .= "\n$indent<a href='#' class='flyout-toggle'></a>\n$indent<ul class='flyout'>\n";
+	}
+
+	function start_el( &$output, $page, $depth, $args, $current_page = 0 ) {
+		if ( $depth )
+			$indent = str_repeat("\t", $depth);
+		else
+			$indent = '';
+
+		extract($args, EXTR_SKIP);
+		$css_class = array('page_item', 'page-item-'.$page->ID);
+		if ( !empty($current_page) ) {
+			$_current_page = get_post( $current_page );
+			if ( in_array( $page->ID, $_current_page->ancestors ) ) {
+				$css_class[] = 'current_page_ancestor';
+				$css_class[] = 'active';
+			}
+			if ( $page->ID == $current_page ) {
+				$css_class[] = 'current_page_item';
+				$css_class[] = 'active';
+			}
+			elseif ( $_current_page && $page->ID == $_current_page->post_parent )
+				$css_class[] = 'current_page_parent';
+		} elseif ( $page->ID == get_option('page_for_posts') ) {
+			$css_class[] = 'current_page_parent';
+			$css_class[] = 'active';
+		}
+
+		if ( $args['has_children'] ) {
+			$css_class[] = 'has-flyout';
+		}
+
+		$css_class = implode( ' ', apply_filters( 'page_css_class', $css_class, $page, $depth, $args, $current_page ) );
+
+		$output .= $indent . '<li class="' . $css_class . '"><a href="' . get_permalink($page->ID) . '">' . $link_before . apply_filters( 'the_title', $page->post_title, $page->ID ) . $link_after . '</a>';
+
+		if ( !empty($show_date) ) {
+			if ( 'modified' == $show_date )
+				$time = $page->post_modified;
+			else
+				$time = $page->post_date;
+
+			$output .= " " . mysql2date($date_format, $time);
+		}
+	}
+
+
+}
+
+
+
+
+
 // based on WP Nice Slug http://wordpress.org/extend/plugins/wp-nice-slug/ by Spectraweb s.r.o. www.spectraweb.cz
 // using translit class (c) YURiQUE (Yuriy Malchenko), 2005 jmalchenko@gmail.com
 
