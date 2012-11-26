@@ -20,6 +20,7 @@ Features:
 * javascripts nicely joined and minified with @codekit-append's
 * NextGEN gallery integration with Orbit (use template=orbit)
 * now supporting also wp_page_menu (if custom menu is not defined builds nav-bar from page hierarchy)
+* ... and a Foundation sidenav widget that creates nav-bar vertical, listing pages from current page's topmost ancestor (unless on home page)
 
 pets@tehnokratt.net / skype: petskratt
 
