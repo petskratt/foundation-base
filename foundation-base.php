@@ -238,11 +238,9 @@ function childtheme_add_menuclass($ulclass) {
 	return preg_replace( '/<ul>/', '<ul class="nav-bar">', $ulclass, 1 );
 }
 
-
 function childtheme_wp_page_menu_args($args) {
 
-	$menuWalker = new foundation_Walker_Page();
-	$args['walker'] = $menuWalker;
+	$args['walker'] = new foundation_Walker_Page();
 	return $args;
 
 }
@@ -304,8 +302,108 @@ class foundation_Walker_Page extends Walker_Page {
 
 }
 
+class Foundation_Widget_Sidenav extends WP_Widget {
 
+	function __construct() {
+		$widget_ops = array('classname' => 'foundation_widget_sidenav', 'description' => __( 'Lists pages from current page ancestor down.') );
+		parent::__construct('foundation_sidenav', __('Foundation Sidebar Navigation', 'foundation'), $widget_ops);
+	}
 
+	function widget( $args, $instance ) {
+	
+		if(!is_page() && !is_home()) return;
+		
+		global $post;
+		
+		if($post == null) {
+            return;
+        }
+        
+        if(is_home() || !$post->ancestors){
+                $pid = $post->ID;
+            }else{
+                $pid = end(array_values($post->ancestors));
+        } 
+
+		
+		extract( $args );
+
+		$title = '<a href="' . get_permalink ($pid) . '">' . apply_filters('widget_title', get_the_title($pid), $instance, $this->id_base) . '</a>';
+		$sortby = empty( $instance['sortby'] ) ? 'menu_order' : $instance['sortby'];
+		$exclude = empty( $instance['exclude'] ) ? '' : $instance['exclude'];
+
+		if ( $sortby == 'menu_order' )
+			$sortby = 'menu_order, post_title';
+			
+		$args = array (
+			'title_li' => '',
+			'child_of' => $pid,
+			'depth' => 2,
+			'echo' => 0,
+			'sort_column' => $sortby,
+			'exclude' => $exclude,
+			'walker' => new foundation_Walker_Page()
+		);
+
+		$out =  wp_list_pages(  $args ) ;
+
+		if ( !empty( $out ) ) {
+			echo $before_widget;
+			if ( $title)
+				echo $before_title . $title . $after_title ;
+		?>
+		<ul class="nav-bar vertical">
+			<?php echo $out; ?>
+		</ul>
+		<?php
+			echo $after_widget;
+		}
+	}
+
+	function update( $new_instance, $old_instance ) {
+		$instance = $old_instance;
+		$instance['title'] = strip_tags($new_instance['title']);
+		if ( in_array( $new_instance['sortby'], array( 'post_title', 'menu_order', 'ID' ) ) ) {
+			$instance['sortby'] = $new_instance['sortby'];
+		} else {
+			$instance['sortby'] = 'menu_order';
+		}
+
+		$instance['exclude'] = strip_tags( $new_instance['exclude'] );
+
+		return $instance;
+	}
+
+	function form( $instance ) {
+		//Defaults
+		$instance = wp_parse_args( (array) $instance, array( 'sortby' => 'post_title', 'title' => '', 'exclude' => '') );
+		$title = esc_attr( $instance['title'] );
+		$exclude = esc_attr( $instance['exclude'] );
+	?>
+		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></p>
+		<p>
+			<label for="<?php echo $this->get_field_id('sortby'); ?>"><?php _e( 'Sort by:' ); ?></label>
+			<select name="<?php echo $this->get_field_name('sortby'); ?>" id="<?php echo $this->get_field_id('sortby'); ?>" class="widefat">
+				<option value="post_title"<?php selected( $instance['sortby'], 'post_title' ); ?>><?php _e('Page title'); ?></option>
+				<option value="menu_order"<?php selected( $instance['sortby'], 'menu_order' ); ?>><?php _e('Page order'); ?></option>
+				<option value="ID"<?php selected( $instance['sortby'], 'ID' ); ?>><?php _e( 'Page ID' ); ?></option>
+			</select>
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id('exclude'); ?>"><?php _e( 'Exclude:' ); ?></label> <input type="text" value="<?php echo $exclude; ?>" name="<?php echo $this->get_field_name('exclude'); ?>" id="<?php echo $this->get_field_id('exclude'); ?>" class="widefat" />
+			<br />
+			<small><?php _e( 'Page IDs, separated by commas.' ); ?></small>
+		</p>
+<?php
+	}
+
+}
+
+function foundation_register_widgets() {
+	register_widget( 'Foundation_Widget_Sidenav' );
+}
+
+add_action( 'widgets_init', 'foundation_register_widgets' );
 
 
 // based on WP Nice Slug http://wordpress.org/extend/plugins/wp-nice-slug/ by Spectraweb s.r.o. www.spectraweb.cz

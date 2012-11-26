@@ -259,7 +259,10 @@ img.aligncenter {
 		list-style: none;
 		ul { margin: 0 0 1.625em;
 			li { padding: 1px 0; }
-			ul { margin-bottom: 0; margin-left: 1em;}
+			ul { margin-bottom: 0; margin-left: 1em;
+				&.flyout { margin-left: 0; }
+			}
+
 		}
 	}
 
