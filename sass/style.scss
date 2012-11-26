@@ -93,5 +93,5 @@ Tags: flexible-width, two-columns, left-sidebar, translation-ready
 /* page templates */
 
 .page-template-template-page-fullwidth-php {
-	#container { @include column($totalColumns); push(0); @include mobilePush(0); }	
+	#container { @include column($totalColumns); @include push(0); @include mobilePush(0); }	
 }
