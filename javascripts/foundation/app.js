@@ -30,31 +30,12 @@
   if (Modernizr.touch && !window.location.hash) {
     $(window).load(function () {
       setTimeout(function () {
-        window.scrollTo(0, 1);
+        // At load, if user hasn't scrolled more than 20px or so...
+  			if( $(window).scrollTop() < 20 ) {
+          window.scrollTo(0, 1);
+        }
       }, 0);
     });
   }
-
-// sample code for orbit
-/*
-	$(window).load(function() {
-		$('#orbit').orbit({
-			animation: 'fade',					// fade, horizontal-slide, vertical-slide, horizontal-push
-			animationSpeed: 800,				// how fast animtions are
-			timer: false,						// true or false to have the timer
-			resetTimerOnClick: false,			// true resets the timer instead of pausing slideshow progress
-			advanceSpeed: 16000,				// if timer is enabled, time between transitions
-			pauseOnHover: true,					// if you hover pauses the slider
-			startClockOnMouseOut: true,			// if clock should start on MouseOut
-			startClockOnMouseOutAfter: 16000,	// how long after MouseOut should the timer start again
-			directionalNav: false,				// manual advancing directional navs
-			captions: false,					// do you want captions?
-			bullets: true,						// true or false to activate the bullet navigation
-			bulletThumbs: false,				// thumbnails for the bullets
-			bulletThumbLocation: '',			// location from this file where thumbs will be
-			fluid: '16x6'
-		});
-	});
-*/
 
 })(jQuery, this);
