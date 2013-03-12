@@ -1,13 +1,16 @@
 /*!
 Theme Name: Foundation Base for Thematic
 Theme URI: https://github.com/petskratt/foundation-base/
-Description: A child theme for Thematic based on Foundation 3.2.5 framework by ZURB and Responsive Base by Scott Nix. Works rather nicely with Theme Unit Test but needs some tuning + support for Orbit and Reveal modules. Main menu is supported with 1 sub-level (Foundation limit).
+Description: A child theme for Thematic based on Foundation 4.0.5 framework by ZURB and Responsive Base by Scott Nix. Works rather nicely with Theme Unit Test but needs some tuning + support for Orbit and Reveal modules. Main menu is supported with 1 sub-level (Foundation limit).
 Author: Peeter Marvet
 Author URI: http://tehnokratt.net/
 Template: thematic
-Version: 0.3.2.5.1
+Version: 0.4.0.5.1
 Tags: flexible-width, two-columns, left-sidebar, translation-ready
 */
+
+// You custom settings file to override Foundation defaults
+@import "normalize";
 
 // You custom settings file to override Foundation defaults
 @import "settings";
@@ -15,83 +18,68 @@ Tags: flexible-width, two-columns, left-sidebar, translation-ready
 // Comment out this import if you are customizing you imports below
 @import "foundation";
 
-// ----------------------------------------
 // Import specific parts of Foundation by commenting the import "foundation"
 // and uncommenting what you want below. You must uncomment the following if customizing
 
-// @import "compass/css3";
-// @import "foundation/settings";
-// @import "foundation/functions/all";
-
-// Control which mixins you have access too
-
-// @import "foundation/mixins/clearfix";
-// @import "foundation/mixins/css-triangle";
-// @import "foundation/mixins/font-size";
-
-// Must include next two for semantic grid to work
-
-// @import "foundation/mixins/respond-to";
-// @import "foundation/mixins/semantic-grid";
-
-// @import "modular-scale";
-// @import "foundation/common/globals";
-
-// Must include the grid for any responsiveness
-
+// @import "foundation/foundation-global";
+// @import "foundation/components/global";
 // @import "foundation/components/grid";
-
-// Control which common styles get compiled
-
-// @import "foundation/common/typography";
-// @import "foundation/common/forms";
-
-// Control which components you get if customizing
-
-// @import "foundation/components/modules/buttons";
-// @import "foundation/components/modules/tabs";
-// @import "foundation/components/modules/ui";
-// @import "foundation/components/modules/topbar";
-// @import "foundation/components/modules/navbar";
-// @import "foundation/components/modules/orbit";
-// @import "foundation/components/modules/reveal";
-// @import "foundation/components/modules/offcanvas";
-
-// Media Queries Overrides
-// @import "foundation/components/modules/mqueries";
+// @import "foundation/components/visibility";
+// @import "foundation/components/block-grid";
+// @import "foundation/components/type";
+// @import "foundation/components/buttons";
+// @import "foundation/components/forms";
+// @import "foundation/components/custom-forms";
+// @import "foundation/components/button-groups";
+// @import "foundation/components/dropdown-buttons";
+// @import "foundation/components/split-buttons";
+// @import "foundation/components/flex-video";
+// @import "foundation/components/section";
+// @import "foundation/components/top-bar";
+// @import "foundation/components/orbit";
+// @import "foundation/components/reveal";
+// @import "foundation/components/joyride";
+// @import "foundation/components/clearing";
+// @import "foundation/components/alert-boxes";
+// @import "foundation/components/breadcrumbs";
+// @import "foundation/components/keystrokes";
+// @import "foundation/components/labels";
+// @import "foundation/components/inline-lists";
+// @import "foundation/components/pagination";
+// @import "foundation/components/panels";
+// @import "foundation/components/pricing-tables";
+// @import "foundation/components/progress-bars";
+// @import "foundation/components/side-nav";
+// @import "foundation/components/sub-nav";
+// @import "foundation/components/switch";
+// @import "foundation/components/magellan";
+// @import "foundation/components/tables";
+// @import "foundation/components/thumbs";
+// @import "foundation/components/tooltips";
+// @import "foundation/components/dropdown";
 
 
 /* import Thematic-specific SCSS (from Responsive Base) */
 
-@import "_thematic";
+@import "thematic";
 
 /* use Foundation mixins on Thematic IDs/classes to produce desired layout */
 
-// myOuterRow() works with nested .row-s
+#header, #main, #footer { @include grid-row(); }
 
-@mixin myOuterRow() { width: $rowWidth; max-width: 100%; min-width: $screenSmall; margin: 0 auto; @extend %clearfix; 
-    .row { width: auto; max-width: none; min-width: 0; margin: 0 (-($columnGutter/2)); }
-}
+#branding, #access {  @include grid-column( $total-columns ); }
 
-#header, #main, #footer { @include outerRow(); @include mobileRow(); }
+#container { @include grid-column( 8, $push: 4, $float: left ); }
 
-#branding, #access {  @include column($totalColumns); }
-
-#container { @include column(8); @include push(4); @include mobilePush(0); }
-
-#primary, #secondary { @include column(4); @include pull(8); @include mobilePull(0); }
+#primary, #secondary { @include grid-column( 4, $pull: 8, $float: left ); }
 
 #footer {
-	#first, #second, #third { @include column(4); }
-	#siteinfo { @include column($totalColumns, center); }
+	#first, #second, #third { @include grid-column( 4 ); }
+	#siteinfo { @include grid-column( $total-columns, $center: true ); }
 }
-
-/* mobile column overrides */
-
-#container, #primary, #secondary, #footer #first, #footer #second, #footer #third { @include mobileColumn($mobileTotalColumns); }
 
 /* page templates */
 
 .page-template-template-page-fullwidth-php {
-	#container { @include column($totalColumns); @include push(0); @include mobilePush(0); }	
+	#container { @include grid-column( $total-columns, $push: 0, $float: false );  }	
 }

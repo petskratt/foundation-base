@@ -10,11 +10,9 @@
 // http://scottnix.com/html5-header-with-thematic/
 function childtheme_create_doctype() {
     $content = "<!doctype html>" . "\n";
-    $content .= '<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" dir="' . get_bloginfo ('text_direction') . '" lang="'. get_bloginfo ('language') . '"> <![endif]-->' . "\n";
-    $content .= '<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" dir="' . get_bloginfo ('text_direction') . '" lang="'. get_bloginfo ('language') . '"> <![endif]-->'. "\n";
     $content .= '<!--[if IE 8]> <html class="no-js lt-ie9" dir="' . get_bloginfo ('text_direction') . '" lang="'. get_bloginfo ('language') . '"> <![endif]-->' . "\n";
     $content .= "<!--[if gt IE 8]><!-->" . "\n";
-    $content .= "<html class=\"no-js\"";
+    $content .= "<html class=\"no-js\" lang=\"" . get_bloginfo ('language') . "\"";
     return $content;
 }
 add_filter('thematic_create_doctype', 'childtheme_create_doctype');
@@ -92,20 +90,20 @@ function childtheme_script_manager() {
     // wp_register_script template ( $handle, $src, $deps, $ver, $in_footer );
 
     // registers modernizr script, stylesheet local path, no dependency, no version, loads in header
-    wp_register_script('modernizr-js', get_stylesheet_directory_uri() . '/javascripts/foundation/modernizr.foundation.js', false, false, false);
+    wp_register_script('modernizr-js', get_stylesheet_directory_uri() . '/javascripts/vendor/custom.modernizr.js', false, false, false);
 
     // registers additional scripts, local stylesheet path, yes dependency is jquery, no version, loads in footer
-    wp_register_script('foundation-js', get_stylesheet_directory_uri() . '/javascripts/foundation/foundation.min.js', array('jquery'), false, true);
+    // wp_register_script('foundation-js', get_stylesheet_directory_uri() . '/javascripts/foundation/foundation.min.js', array('jquery'), false, true);
 
     // registers app script, local stylesheet path, yes dependency is jquery, no version, loads in footer
-    wp_register_script('app-js', get_stylesheet_directory_uri() . '/javascripts/foundation/app.min.js', array('jquery'), false, true);
+    // wp_register_script('app-js', get_stylesheet_directory_uri() . '/javascripts/foundation/app.min.js', array('jquery'), false, true);
 
     // enqueue the scripts for use in theme
     wp_enqueue_script ('modernizr-js');
-    wp_enqueue_script ('foundation-js');
+    // wp_enqueue_script ('foundation-js');
 
     //always enqueue this last, helps with conflicts
-    wp_enqueue_script ('app-js');
+    // wp_enqueue_script ('app-js');
 
 }
 add_action('wp_enqueue_scripts', 'childtheme_script_manager');
@@ -134,6 +132,51 @@ function childtheme_add_favicon() { ?>
 
 add_action('wp_head', 'childtheme_add_favicon');
 
+function childtheme_add_footerscripts() { ?>
+ <script>
+  document.write('<script src=' +
+  ('__proto__' in {} ? '<?php echo get_stylesheet_directory_uri() ?>/javascripts/vendor/zepto' : '<?php echo get_stylesheet_directory_uri() ?>/javascripts/vendor/jquery') +
+  '.js><\/script>')
+  </script>
+  
+    <script src="<?php echo get_stylesheet_directory_uri() ?>/javascripts/foundation/foundation.js"></script>
+	
+	<script src="<?php echo get_stylesheet_directory_uri() ?>/javascripts/foundation/foundation.alerts.js"></script>
+	
+	<script src="<?php echo get_stylesheet_directory_uri() ?>/javascripts/foundation/foundation.clearing.js"></script>
+	
+	<script src="<?php echo get_stylesheet_directory_uri() ?>/javascripts/foundation/foundation.cookie.js"></script>
+	
+	<script src="<?php echo get_stylesheet_directory_uri() ?>/javascripts/foundation/foundation.dropdown.js"></script>
+	
+	<script src="<?php echo get_stylesheet_directory_uri() ?>/javascripts/foundation/foundation.forms.js"></script>
+	
+	<script src="<?php echo get_stylesheet_directory_uri() ?>/javascripts/foundation/foundation.joyride.js"></script>
+	
+	<script src="<?php echo get_stylesheet_directory_uri() ?>/javascripts/foundation/foundation.magellan.js"></script>
+	
+	<script src="<?php echo get_stylesheet_directory_uri() ?>/javascripts/foundation/foundation.orbit.js"></script>
+	
+	<script src="<?php echo get_stylesheet_directory_uri() ?>/javascripts/foundation/foundation.placeholder.js"></script>
+	
+	<script src="<?php echo get_stylesheet_directory_uri() ?>/javascripts/foundation/foundation.reveal.js"></script>
+	
+	<script src="<?php echo get_stylesheet_directory_uri() ?>/javascripts/foundation/foundation.section.js"></script>
+	
+	<script src="<?php echo get_stylesheet_directory_uri() ?>/javascripts/foundation/foundation.tooltips.js"></script>
+	
+	<script src="<?php echo get_stylesheet_directory_uri() ?>/javascripts/foundation/foundation.topbar.js"></script>
+	
+  
+  <script>
+    $(document).foundation();
+  </script>  
+  
+  
+  
+<?php }
+  
+add_action('wp_footer', 'childtheme_add_footerscripts');
 
 // add foundation-specific classes to menu - UL nav-bar
 function childtheme_nav_menu_args() {
@@ -142,8 +185,8 @@ function childtheme_nav_menu_args() {
 		'theme_location'	=> apply_filters('thematic_primary_menu_id', 'primary-menu'),
 		'menu'				=> '',
 		'container'			=> 'div',
-		'container_class'	=> 'menu',
-		'menu_class'		=> 'nav-bar',
+		'container_class'	=> 'button-bar',
+		'menu_class'		=> 'button-group',
 		'fallback_cb'		=> 'wp_page_menu',
 		'before'			=> '',
 		'after'				=> '',
@@ -211,6 +254,40 @@ class foundation_Walker_Nav_Menu extends Walker_Nav_Menu {
 		$output .= "\n$indent<ul class=\"flyout\">\n";
 	}
 
+	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+
+		$class_names = $value = '';
+
+		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
+		$classes[] = 'menu-item-' . $item->ID;
+
+		$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
+		$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
+
+		$id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args );
+		$id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
+
+		$output .= $indent . '<li' . $id . $value . $class_names .'>';
+
+		$attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
+		$attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
+		$attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
+		$attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
+
+		$item_output = $args->before;
+		$item_output .= '<a'. $attributes .' class="button small">';
+		$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+		$item_output .= '</a>';
+		$item_output .= $args->after;
+
+		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+	}
+
+
+
+
+
 }
 
 // alternative walker for wp_list_pages - and related stuff
@@ -235,7 +312,7 @@ function childtheme_override_access() {
 }
 
 function childtheme_add_menuclass($ulclass) {
-	return preg_replace( '/<ul>/', '<ul class="nav-bar">', $ulclass, 1 );
+	return preg_replace( '/<ul>/', '<ul class="button-group">', $ulclass, 1 );
 }
 
 function childtheme_wp_page_menu_args($args) {
