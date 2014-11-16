@@ -5,7 +5,7 @@ Description: A child theme for Thematic based on Foundation 3.2.5 framework by Z
 Author: Peeter Marvet
 Author URI: http://tehnokratt.net/
 Template: thematic
-Version: 0.3.2.5.1
+Version: 0.3.2.5.2
 Tags: flexible-width, two-columns, left-sidebar, translation-ready
 */
 
@@ -69,8 +69,8 @@ Tags: flexible-width, two-columns, left-sidebar, translation-ready
 
 // myOuterRow() works with nested .row-s
 
-@mixin myOuterRow() { width: $rowWidth; max-width: 100%; min-width: $screenSmall; margin: 0 auto; @extend %clearfix; 
-    .row { width: auto; max-width: none; min-width: 0; margin: 0 (-($columnGutter/2)); }
+@mixin myOuterRow() { width: $rowWidth; max-width: 100%; min-width: $screenSmall; margin: 0 auto; @extend %clearfix;
+	.row { width: auto; max-width: none; min-width: 0; margin: 0 (-($columnGutter/2)); }
 }
 
 #header, #main, #footer { @include outerRow(); @include mobileRow(); }
@@ -93,5 +93,18 @@ Tags: flexible-width, two-columns, left-sidebar, translation-ready
 /* page templates */
 
 .page-template-template-page-fullwidth-php {
-	#container { @include column($totalColumns); @include push(0); @include mobilePush(0); }	
+	#container { @include column($totalColumns); @include push(0); @include mobilePush(0); }
+}
+
+
+/* misc tuning */
+
+#content {
+	ul {
+		margin-left: ms(1);
+	}
+
+	ol {
+		margin-left: ms(2);
+	}
 }
