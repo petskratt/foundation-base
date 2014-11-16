@@ -208,9 +208,7 @@ add_filter('thematic_nav_menu_args', 'childtheme_nav_menu_args');
 
 add_filter('wp_nav_menu_objects', 'foundation_menu_class');
 
-function foundation_menu_class($items) {
-
-	function has_Sub($menu_item_id, &$items) {
+function has_Sub($menu_item_id, &$items) {
 	    foreach ($items as $item) {
 	        if ($item->menu_item_parent && $item->menu_item_parent==$menu_item_id) {
 	            return true;
@@ -219,6 +217,7 @@ function foundation_menu_class($items) {
 	    return false;
 	}
 
+function foundation_menu_class($items) {
 
     foreach ($items as &$item) {
         if ( has_Sub($item->ID, $items) ) {
@@ -292,23 +291,23 @@ class foundation_Walker_Nav_Menu extends Walker_Nav_Menu {
 
 // alternative walker for wp_list_pages - and related stuff
 
-function childtheme_override_access() { 
+function childtheme_override_access() {
     ?>
-    
+
     <div id="access">
-    
+
     	<div class="skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip navigation to the content', 'thematic' ); ?>"><?php _e('Skip to content', 'thematic'); ?></a></div><!-- .skip-link -->
-    	
-    	<?php 
+
+    	<?php
     	if ( ( function_exists("has_nav_menu") ) && ( has_nav_menu( apply_filters('thematic_primary_menu_id', 'primary-menu') ) ) ) {
     	    echo  wp_nav_menu(thematic_nav_menu_args());
     	} else {
-    	    echo  childtheme_add_menuclass(wp_page_menu(thematic_page_menu_args()));	
+    	    echo  childtheme_add_menuclass(wp_page_menu(thematic_page_menu_args()));
     	}
     	?>
-    	
+
     </div><!-- #access -->
-    <?php 
+    <?php
 }
 
 function childtheme_add_menuclass($ulclass) {
@@ -333,7 +332,7 @@ class foundation_Walker_Page extends Walker_Page {
 		$output .= "\n$indent<a href='#' class='flyout-toggle'></a>\n$indent<ul class='flyout'>\n";
 	}
 
-	function start_el( &$output, $page, $depth, $args, $current_page = 0 ) {
+	function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 ) {
 		if ( $depth )
 			$indent = str_repeat("\t", $depth);
 		else
@@ -387,22 +386,22 @@ class Foundation_Widget_Sidenav extends WP_Widget {
 	}
 
 	function widget( $args, $instance ) {
-	
+
 		if(!is_page() && !is_home()) return;
-		
+
 		global $post;
-		
+
 		if($post == null) {
             return;
         }
-        
+
         if(is_home() || !$post->ancestors){
                 $pid = $post->ID;
             }else{
                 $pid = end(array_values($post->ancestors));
-        } 
+        }
 
-		
+
 		extract( $args );
 
 		$title = '<a href="' . get_permalink ($pid) . '">' . apply_filters('widget_title', get_the_title($pid), $instance, $this->id_base) . '</a>';
@@ -411,7 +410,7 @@ class Foundation_Widget_Sidenav extends WP_Widget {
 
 		if ( $sortby == 'menu_order' )
 			$sortby = 'menu_order, post_title';
-			
+
 		$args = array (
 			'title_li' => '',
 			'child_of' => $pid,
@@ -515,7 +514,7 @@ class Translit {
 			$str = preg_replace("/^kh/", "h", $str);
 			$str = preg_replace("/^Kh/", "H", $str);
 		}
-		
+
 		return iconv("utf-8", $encOut, $str);
 	}
 
@@ -619,6 +618,3 @@ function ngg_orbit_template( $path, $template_name = false) {
 		$path = dirname( __FILE__ ) . '/addons/gallery-orbit.php';
 	return $path;
 }
-
-
-?>
