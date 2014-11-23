@@ -2,65 +2,15 @@
 
 //
 //  Foundation Base Child Theme Functions
-//  (mostly from Responsive Base)
 //
 
-
-// recreates the doctype section, html5boilerplate.com style with conditional classes
-// http://scottnix.com/html5-header-with-thematic/
-function childtheme_create_doctype() {
-    $content = "<!doctype html>" . "\n";
-    $content .= '<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" dir="' . get_bloginfo ('text_direction') . '" lang="'. get_bloginfo ('language') . '"> <![endif]-->' . "\n";
-    $content .= '<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" dir="' . get_bloginfo ('text_direction') . '" lang="'. get_bloginfo ('language') . '"> <![endif]-->'. "\n";
-    $content .= '<!--[if IE 8]> <html class="no-js lt-ie9" dir="' . get_bloginfo ('text_direction') . '" lang="'. get_bloginfo ('language') . '"> <![endif]-->' . "\n";
-    $content .= "<!--[if gt IE 8]><!-->" . "\n";
-    $content .= "<html class=\"no-js\"";
-    return $content;
-}
-add_filter('thematic_create_doctype', 'childtheme_create_doctype');
-
-// creates the head, meta charset, and viewport tags
-function childtheme_head_profile() {
-    $content = "<!--<![endif]-->";
-    $content .= "\n" . "<head>" . "\n";
-    $content .= "<meta charset=\"utf-8\" />" . "\n";
-    $content .= "<meta name=\"viewport\" content=\"width=device-width\" />" . "\n";
-    return $content;
-}
-add_filter('thematic_head_profile', 'childtheme_head_profile');
-
-// remove meta charset tag, now in the above function
-function childtheme_create_contenttype() {
-    // silence
-}
-add_filter('thematic_create_contenttype', 'childtheme_create_contenttype');
-
-
-// remove the index and follow tags from header since it is browser default.
-// http://scottnix.com/polishing-thematics-head/
-function childtheme_create_robots($content) {
-    global $paged;
-    if (thematic_seo()) {
-        if((is_home() && ($paged < 2 )) || is_front_page() || is_single() || is_page() || is_attachment()) {
-            $content = "";
-        } elseif (is_search()) {
-            $content = "\t";
-            $content .= "<meta name=\"robots\" content=\"noindex,nofollow\" />";
-            $content .= "\n\n";
-        } else {
-            $content = "\t";
-            $content .= "<meta name=\"robots\" content=\"noindex,follow\" />";
-            $content .= "\n\n";
-        }
-    return $content;
-    }
-}
-add_filter('thematic_create_robots', 'childtheme_create_robots');
-
-
+/* ============================
+	MISC TUNING
+   ============================ */
 
 
 // clear useless garbage for a polished head
+
 // remove really simple discovery
 remove_action('wp_head', 'rsd_link');
 // remove windows live writer xml
@@ -77,332 +27,70 @@ remove_action('wp_head', 'adjacent_posts_rel_link_wp_head');
 
 add_editor_style('editor-style.css');
 
+// remove recent comments inline-style
 
-// kills the 4 scripts for the drop downs, combined and reloaded by the script manager (dropdowns-js)
-function childtheme_override_head_scripts() {
-    // silence
+add_action('widgets_init', 'krt_remove_recent_comments_style');
+
+function krt_remove_recent_comments_style() {
+	global $wp_widget_factory;
+	remove_action('wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'));
 }
 
+// add no-js class to html
 
+add_filter('thematic_html_class', 'krt_add_html_class_nojs');
+
+function krt_add_html_class_nojs($classes) {
+	if ( $classes ) {
+		$classes .= " ";
+	}
+	$classes .= 'no-js';
+	return $classes;
+}
+
+// kill scripts for Thematic drop downs, combined and reloaded by the script manager (dropdowns-js)
+
+function childtheme_override_head_scripts() {
+	// silence
+}
 
 // script manager template for registering and enqueuing files
-// http://wpcandy.com/teaches/how-to-load-scripts-in-wordpress-themes
-// * changed to use Foundation 3.0.6 JS
+
 function childtheme_script_manager() {
-    // wp_register_script template ( $handle, $src, $deps, $ver, $in_footer );
+	// wp_register_script template ( $handle, $src, $deps, $ver, $in_footer );
 
-    // registers modernizr script, stylesheet local path, no dependency, no version, loads in header
-    wp_register_script('modernizr-js', get_stylesheet_directory_uri() . '/javascripts/foundation/modernizr.foundation.js', false, false, false);
+	// registers modernizr script, stylesheet local path, no dependency, no version, loads in header
+	wp_register_script('modernizr-js', get_stylesheet_directory_uri() . '/js/modernizr.js', false, false, false);
 
-    // registers additional scripts, local stylesheet path, yes dependency is jquery, no version, loads in footer
-    wp_register_script('foundation-js', get_stylesheet_directory_uri() . '/javascripts/foundation/foundation.min.js', array('jquery'), false, true);
+	// registers app script, local stylesheet path, yes dependency is jquery, no version, loads in footer
+	wp_register_script('app-js', get_stylesheet_directory_uri() . '/js/app.min.js', array('jquery'), false, true);
 
-    // registers app script, local stylesheet path, yes dependency is jquery, no version, loads in footer
-    wp_register_script('app-js', get_stylesheet_directory_uri() . '/javascripts/foundation/app.min.js', array('jquery'), false, true);
+	// enqueue the scripts for use in theme
+	wp_enqueue_script ('modernizr-js');
 
-    // enqueue the scripts for use in theme
-    wp_enqueue_script ('modernizr-js');
-    wp_enqueue_script ('foundation-js');
-
-    //always enqueue this last, helps with conflicts
-    wp_enqueue_script ('app-js');
+	//always enqueue this last, helps with conflicts
+	wp_enqueue_script ('app-js');
 
 }
 add_action('wp_enqueue_scripts', 'childtheme_script_manager');
 
 
-
 // add favicon to site, add 16x16 "favicon.ico" image to child themes main folder
-// * added Foundation favicon and various sizes
+
 function childtheme_add_favicon() { ?>
-  <!-- For third-generation iPad with high-resolution Retina display: -->
   <link rel="apple-touch-icon-precomposed" sizes="144x144"
   href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/apple-touch-icon-144x144-precomposed.png">
-  <!-- For iPhone with high-resolution Retina display: -->
   <link rel="apple-touch-icon-precomposed" sizes="114x114"
   href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/apple-touch-icon-114x114-precomposed.png">
-  <!-- For first- and second-generation iPad: -->
   <link rel="apple-touch-icon-precomposed" sizes="72x72"
   href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/apple-touch-icon-72x72-precomposed.png">
-  <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
   <link rel="apple-touch-icon-precomposed"
   href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/apple-touch-icon-precomposed.png">
-  <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
   <link rel="shortcut icon"
   href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/favicon.ico" type="image/x-icon" />
 <?php }
 
 add_action('wp_head', 'childtheme_add_favicon');
-
-
-// add foundation-specific classes to menu - UL nav-bar
-function childtheme_nav_menu_args() {
-
-		$args = array (
-		'theme_location'	=> apply_filters('thematic_primary_menu_id', 'primary-menu'),
-		'menu'				=> '',
-		'container'			=> 'div',
-		'container_class'	=> 'menu',
-		'menu_class'		=> 'nav-bar',
-		'fallback_cb'		=> 'wp_page_menu',
-		'before'			=> '',
-		'after'				=> '',
-		'link_before'		=> '',
-		'link_after'		=> '',
-		'depth'				=> 2,
-		'walker'			=> new foundation_Walker_Nav_Menu,
-		'echo'				=> false
-	);
-
-	return $args;
-
-}
-
-add_filter('thematic_nav_menu_args', 'childtheme_nav_menu_args');
-
-
-// add foundation-specific classes to menu - LI has-flyout and active
-
-add_filter('wp_nav_menu_objects', 'foundation_menu_class');
-
-function has_Sub($menu_item_id, &$items) {
-	    foreach ($items as $item) {
-	        if ($item->menu_item_parent && $item->menu_item_parent==$menu_item_id) {
-	            return true;
-	        }
-	    }
-	    return false;
-	}
-
-function foundation_menu_class($items) {
-
-    foreach ($items as &$item) {
-        if ( has_Sub($item->ID, $items) ) {
-            $item->classes[] = 'has-flyout';
-            $item->hasFlyout = true;
-        }
-
-        if (in_array ('current-menu-item', $item->classes) || in_array ('current-menu-ancestor', $item->classes)) {
-            $item->classes[] = 'active';
-        }
-    }
-    return $items;
-}
-
-
-add_filter('walker_nav_menu_start_el', 'flyout_toggle_walker_nav_menu_start_el', 10, 4);
-
-function flyout_toggle_walker_nav_menu_start_el($item_output, $item, $depth, $args)
-{
-	if (isset($item->hasFlyout)) {
-		return $item_output . '<a href="#" class="flyout-toggle"><span> </span></a>' ;
-	} else {
-		return $item_output;
-	}
-}
-
-
-// add foundation-specific classes to menu - UL sub-menu -> flyout
-class foundation_Walker_Nav_Menu extends Walker_Nav_Menu {
-
-	function start_lvl( &$output, $depth = 0, $args = array() ) {
-		$indent = str_repeat("\t", $depth);
-		$output .= "\n$indent<ul class=\"flyout\">\n";
-	}
-
-}
-
-// alternative walker for wp_list_pages - and related stuff
-
-function childtheme_override_access() {
-    ?>
-
-    <div id="access">
-
-    	<div class="skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip navigation to the content', 'thematic' ); ?>"><?php _e('Skip to content', 'thematic'); ?></a></div><!-- .skip-link -->
-
-    	<?php
-    	if ( ( function_exists("has_nav_menu") ) && ( has_nav_menu( apply_filters('thematic_primary_menu_id', 'primary-menu') ) ) ) {
-    	    echo  wp_nav_menu(thematic_nav_menu_args());
-    	} else {
-    	    echo  childtheme_add_menuclass(wp_page_menu(thematic_page_menu_args()));
-    	}
-    	?>
-
-    </div><!-- #access -->
-    <?php
-}
-
-function childtheme_add_menuclass($ulclass) {
-	return preg_replace( '/<ul>/', '<ul class="nav-bar">', $ulclass, 1 );
-}
-
-function childtheme_wp_page_menu_args($args) {
-
-	$args['walker'] = new foundation_Walker_Page();
-	return $args;
-
-}
-
-add_filter( 'wp_page_menu_args', 'childtheme_wp_page_menu_args');
-
-
-
-class foundation_Walker_Page extends Walker_Page {
-
-	function start_lvl( &$output, $depth = 0, $args = array() ) {
-		$indent = str_repeat("\t", $depth);
-		$output .= "\n$indent<a href='#' class='flyout-toggle'></a>\n$indent<ul class='flyout'>\n";
-	}
-
-	function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 ) {
-		if ( $depth )
-			$indent = str_repeat("\t", $depth);
-		else
-			$indent = '';
-
-		extract($args, EXTR_SKIP);
-		$css_class = array('page_item', 'page-item-'.$page->ID);
-		if ( !empty($current_page) ) {
-			$_current_page = get_post( $current_page );
-			if ( in_array( $page->ID, $_current_page->ancestors ) ) {
-				$css_class[] = 'current_page_ancestor';
-				$css_class[] = 'active';
-			}
-			if ( $page->ID == $current_page ) {
-				$css_class[] = 'current_page_item';
-				$css_class[] = 'active';
-			}
-			elseif ( $_current_page && $page->ID == $_current_page->post_parent )
-				$css_class[] = 'current_page_parent';
-		} elseif ( $page->ID == get_option('page_for_posts') ) {
-			$css_class[] = 'current_page_parent';
-			$css_class[] = 'active';
-		}
-
-		if ( $args['has_children'] ) {
-			$css_class[] = 'has-flyout';
-		}
-
-		$css_class = implode( ' ', apply_filters( 'page_css_class', $css_class, $page, $depth, $args, $current_page ) );
-
-		$output .= $indent . '<li class="' . $css_class . '"><a href="' . get_permalink($page->ID) . '">' . $link_before . apply_filters( 'the_title', $page->post_title, $page->ID ) . $link_after . '</a>';
-
-		if ( !empty($show_date) ) {
-			if ( 'modified' == $show_date )
-				$time = $page->post_modified;
-			else
-				$time = $page->post_date;
-
-			$output .= " " . mysql2date($date_format, $time);
-		}
-	}
-
-
-}
-
-class Foundation_Widget_Sidenav extends WP_Widget {
-
-	function __construct() {
-		$widget_ops = array('classname' => 'foundation_widget_sidenav', 'description' => __( 'Lists pages from current page ancestor down.') );
-		parent::__construct('foundation_sidenav', __('Foundation Sidebar Navigation', 'foundation'), $widget_ops);
-	}
-
-	function widget( $args, $instance ) {
-
-		if(!is_page() && !is_home()) return;
-
-		global $post;
-
-		if($post == null) {
-            return;
-        }
-
-        if(is_home() || !$post->ancestors){
-                $pid = $post->ID;
-            }else{
-                $pid = end(array_values($post->ancestors));
-        }
-
-
-		extract( $args );
-
-		$title = '<a href="' . get_permalink ($pid) . '">' . apply_filters('widget_title', get_the_title($pid), $instance, $this->id_base) . '</a>';
-		$sortby = empty( $instance['sortby'] ) ? 'menu_order' : $instance['sortby'];
-		$exclude = empty( $instance['exclude'] ) ? '' : $instance['exclude'];
-
-		if ( $sortby == 'menu_order' )
-			$sortby = 'menu_order, post_title';
-
-		$args = array (
-			'title_li' => '',
-			'child_of' => $pid,
-			'depth' => 2,
-			'echo' => 0,
-			'sort_column' => $sortby,
-			'exclude' => $exclude,
-			'walker' => new foundation_Walker_Page()
-		);
-
-		$out =  wp_list_pages(  $args ) ;
-
-		if ( !empty( $out ) ) {
-			echo $before_widget;
-			if ( $title)
-				echo $before_title . $title . $after_title ;
-		?>
-		<ul class="nav-bar vertical">
-			<?php echo $out; ?>
-		</ul>
-		<?php
-			echo $after_widget;
-		}
-	}
-
-	function update( $new_instance, $old_instance ) {
-		$instance = $old_instance;
-		$instance['title'] = strip_tags($new_instance['title']);
-		if ( in_array( $new_instance['sortby'], array( 'post_title', 'menu_order', 'ID' ) ) ) {
-			$instance['sortby'] = $new_instance['sortby'];
-		} else {
-			$instance['sortby'] = 'menu_order';
-		}
-
-		$instance['exclude'] = strip_tags( $new_instance['exclude'] );
-
-		return $instance;
-	}
-
-	function form( $instance ) {
-		//Defaults
-		$instance = wp_parse_args( (array) $instance, array( 'sortby' => 'post_title', 'title' => '', 'exclude' => '') );
-		$title = esc_attr( $instance['title'] );
-		$exclude = esc_attr( $instance['exclude'] );
-	?>
-		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></p>
-		<p>
-			<label for="<?php echo $this->get_field_id('sortby'); ?>"><?php _e( 'Sort by:' ); ?></label>
-			<select name="<?php echo $this->get_field_name('sortby'); ?>" id="<?php echo $this->get_field_id('sortby'); ?>" class="widefat">
-				<option value="post_title"<?php selected( $instance['sortby'], 'post_title' ); ?>><?php _e('Page title'); ?></option>
-				<option value="menu_order"<?php selected( $instance['sortby'], 'menu_order' ); ?>><?php _e('Page order'); ?></option>
-				<option value="ID"<?php selected( $instance['sortby'], 'ID' ); ?>><?php _e( 'Page ID' ); ?></option>
-			</select>
-		</p>
-		<p>
-			<label for="<?php echo $this->get_field_id('exclude'); ?>"><?php _e( 'Exclude:' ); ?></label> <input type="text" value="<?php echo $exclude; ?>" name="<?php echo $this->get_field_name('exclude'); ?>" id="<?php echo $this->get_field_id('exclude'); ?>" class="widefat" />
-			<br />
-			<small><?php _e( 'Page IDs, separated by commas.' ); ?></small>
-		</p>
-<?php
-	}
-
-}
-
-function foundation_register_widgets() {
-	register_widget( 'Foundation_Widget_Sidenav' );
-}
-
-add_action( 'widgets_init', 'foundation_register_widgets' );
 
 
 // based on WP Nice Slug http://wordpress.org/extend/plugins/wp-nice-slug/ by Spectraweb s.r.o. www.spectraweb.cz
@@ -431,7 +119,7 @@ class Translit {
 			$str = str_replace($c_cyr, $c_lat, $str);
 		}
 		if ($original != $str) {
-		  	$str = preg_replace("/([qwrtpsdfghklzxcvbnmQWRTPSDFGHKLZXCVBNM]+)[jJ]e/", "\${1}e", $str);
+			$str = preg_replace("/([qwrtpsdfghklzxcvbnmQWRTPSDFGHKLZXCVBNM]+)[jJ]e/", "\${1}e", $str);
 			$str = preg_replace("/([qwrtpsdfghklzxcvbnmQWRTPSDFGHKLZXCVBNM]+)[jJ]/", "\${1}'", $str);
 			$str = preg_replace("/([eyuioaEYUIOA]+)[Kk]h/", "\${1}h", $str);
 			$str = preg_replace("/^kh/", "h", $str);
@@ -463,13 +151,438 @@ add_filter('sanitize_title', 'krt_sanitize_title', 0, 3);
 
 function krt_versioned_uri($s) {
 	$my_theme = wp_get_theme();
-	return str_replace( get_bloginfo( 'version' ), $my_theme->Version , $s );
+	return str_replace( get_bloginfo( 'version' ), $my_theme->get( 'Version' ) , $s );
 }
 
 add_filter('style_loader_tag', 'krt_versioned_uri');
 add_filter('script_loader_src', 'krt_versioned_uri');
 
-// shortcodes - row, column, div, accordion & fold
+
+// remove vcard from elements - to avoid Foundation vcard styling
+
+add_filter('thematic_postmeta_authorlink', 'krt_remove_vcard');
+add_filter('thematic_list_comments_arg', 'foundationbase_list_comments_arg');
+
+function krt_remove_vcard($s) {
+	return str_replace( 'vcard', '' , $s );
+}
+
+function foundationbase_list_comments_arg() {
+	$content = array(
+		'type' => 'comment',
+		'callback' => 'foundationbase_comments'
+	);
+	return $content;
+}
+
+function foundationbase_comments($comment, $args, $depth) {
+	$GLOBALS['comment'] = $comment;
+	$GLOBALS['comment_depth'] = $depth;
+?>
+
+	   	<li id="comment-<?php comment_ID() ?>" <?php comment_class() ?>>
+
+			<?php
+	// action hook for inserting content above #comment
+	thematic_abovecomment();
+?>
+
+			<article id="comment-body-<?php comment_ID() ?>" class="comment-body">
+				<footer class="comment-utility">
+					<div class="comment-author"><?php thematic_commenter_link() ?></div><!-- .comment-author -->
+
+						<?php thematic_commentmeta( true ); ?>
+
+						<?php
+	if ( $comment->comment_approved == '0' ) {
+		echo "\t\t\t\t\t" . '<span class="unapproved">';
+		_e( 'Your comment is awaiting moderation', 'thematic' );
+		echo ".</span>\n";
+	}
+?>
+				</footer><!-- .comment-utility -->
+
+		        <div class="comment-content">
+		    		<?php comment_text() ?>
+				</div><!-- .comment-content -->
+
+				<?php // echo the comment reply link with help from Justin Tadlock http://justintadlock.com/ and Will Norris http://willnorris.com/
+
+	if( $args['type'] == 'all' || get_comment_type() == 'comment' ) {
+		comment_reply_link( array_merge( $args, array(
+					'add_below'  => 'comment-body',
+					'reply_text' => __( 'Reply','thematic' ),
+					'login_text' => __( 'Log in to reply.','thematic' ),
+					'depth'      => $depth,
+					'before'     => '<div class="comment-replylink">',
+					'after'      => '</div>'
+				)));
+	}
+?>
+
+			</article><!-- .comment-body -->
+
+			<?php
+	// action hook for inserting content above #comment
+	thematic_belowcomment()
+?>
+
+<?php }
+
+// add Orbit slider support to NextGEN Gallery
+
+add_filter('ngg_render_template', 'ngg_orbit_template', 10, 2);
+
+function ngg_orbit_template( $path, $template_name = false) {
+	if ($template_name == 'gallery-orbit')
+		$path = dirname( __FILE__ ) . '/addons/gallery-orbit.php';
+	return $path;
+}
+
+
+/* ============================
+	TOP MENU
+   ============================ */
+
+
+function childtheme_override_access() {
+?>
+
+    <div id="access">
+
+    	<div class="skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip navigation to the content', 'thematic' ); ?>"><?php _e('Skip to content', 'thematic'); ?></a></div><!-- .skip-link -->
+
+    	<?php
+	if ( ( function_exists("has_nav_menu") ) && ( has_nav_menu( apply_filters('thematic_primary_menu_id', 'primary-menu') ) ) ) {
+		echo  wp_nav_menu(thematic_nav_menu_args());
+	} else {
+		echo  foundationbase_access_page_menu(foundationbase_access_page_menu_args());
+	}
+?>
+
+    </div><!-- #access -->
+    <?php
+}
+
+function foundationbase_access_page_menu_args() {
+	$args = array (
+		'depth'    => 2,
+		'sort_column' => 'menu_order',
+		'menu_class'  => 'menu',
+		'include'     => '',
+		'exclude'     => '',
+		'echo'        => FALSE,
+		'show_home'   => true,
+		'link_before' => '',
+		'link_after'  => ''
+	);
+	return $args;
+}
+
+function foundationbase_access_page_menu( $args = array() ) {
+
+	// based on wp 4.0 wp_page_menu
+	// (added button-group class to ul and button class to homepage a)
+
+	$defaults = array('sort_column' => 'menu_order, post_title', 'menu_class' => 'menu', 'echo' => true, 'link_before' => '', 'link_after' => '');
+	$args = wp_parse_args( $args, $defaults );
+
+	$args = apply_filters( 'wp_page_menu_args', $args );
+
+	$menu = '';
+
+	$list_args = $args;
+
+	// Show Home in the menu
+	if ( ! empty($args['show_home']) ) {
+		if ( true === $args['show_home'] || '1' === $args['show_home'] || 1 === $args['show_home'] )
+			$text = __('Home');
+		else
+			$text = $args['show_home'];
+		$class = '';
+		if ( is_front_page() && !is_paged() )
+			$class = 'class="current_page_item"';
+		$menu .= '<li ' . $class . '><a href="' . home_url( '/' ) . '" class="button">' . $args['link_before'] . $text . $args['link_after'] . '</a></li>';
+		// If the front page is a page, add it to the exclude list
+		if (get_option('show_on_front') == 'page') {
+			if ( !empty( $list_args['exclude'] ) ) {
+				$list_args['exclude'] .= ',';
+			} else {
+				$list_args['exclude'] = '';
+			}
+			$list_args['exclude'] .= get_option('page_on_front');
+		}
+	}
+
+	$list_args['echo'] = false;
+	$list_args['title_li'] = '';
+	$list_args['walker'] = new foundation_access_Walker_Page();
+	$menu .= str_replace( array( "\r", "\n", "\t" ), '', wp_list_pages($list_args) );
+
+	if ( $menu )
+		$menu = '<ul class="button-group">' . $menu . '</ul>';
+
+	$menu = '<div class="' . esc_attr($args['menu_class']) . '">' . $menu . "</div>\n";
+
+	$menu = apply_filters( 'wp_page_menu', $menu, $args );
+	if ( $args['echo'] )
+		echo $menu;
+	else
+		return $menu;
+}
+
+
+class foundation_access_Walker_Page extends Walker_Page {
+
+	/**
+	 * @see Walker::start_lvl()
+	 * @since 2.1.0
+	 *
+	 * @param string $output Passed by reference. Used to append additional content.
+	 * @param int $depth Depth of page. Used for padding.
+	 * @param array $args
+	 */
+	public function start_lvl( &$output, $depth = 0, $args = array() ) {
+		// <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
+		var_dump($args);
+		$indent = str_repeat("\t", $depth);
+		$output .= "\n$indent<ul class=\"f-dropdown\" id=\"drop2\" data-dropdown-content aria-hidden=\"true\" tabindex=\"-1\" >\n";
+	}
+
+	/**
+	 * @see Walker::end_lvl()
+	 * @since 2.1.0
+	 *
+	 * @param string $output Passed by reference. Used to append additional content.
+	 * @param int $depth Depth of page. Used for padding.
+	 * @param array $args
+	 */
+	public function end_lvl( &$output, $depth = 0, $args = array() ) {
+		$indent = str_repeat("\t", $depth);
+		$output .= "$indent</ul>\n";
+	}
+
+	/**
+	 * @see Walker::start_el()
+	 * @since 2.1.0
+	 *
+	 * @param string $output Passed by reference. Used to append additional content.
+	 * @param object $page Page data object.
+	 * @param int $depth Depth of page. Used for padding.
+	 * @param int $current_page Page ID.
+	 * @param array $args
+	 */
+	public function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 ) {
+		if ( $depth ) {
+			$indent = str_repeat( "\t", $depth );
+		} else {
+			$indent = '';
+		}
+
+		$css_class = array( 'page_item', 'page-item-' . $page->ID );
+
+		$button_class = array( 'button');
+		$button_data = "";
+
+		if ( isset( $args['pages_with_children'][ $page->ID ] ) ) {
+			$css_class[] = 'page_item_has_children';
+			if ( $depth <= 1) {
+				$button_class[] = 'dropdown';
+				$button_data = "data-dropdown=\"drop{$page->ID}\" aria-controls=\"drop{$page->ID}\" aria-expanded=\"false\"";
+			}
+		}
+
+		if ( ! empty( $current_page ) ) {
+			$_current_page = get_post( $current_page );
+			if ( in_array( $page->ID, $_current_page->ancestors ) ) {
+				$css_class[] = 'current_page_ancestor';
+			}
+			if ( $page->ID == $current_page ) {
+				$css_class[] = 'current_page_item';
+			} elseif ( $_current_page && $page->ID == $_current_page->post_parent ) {
+				$css_class[] = 'current_page_parent';
+			}
+		} elseif ( $page->ID == get_option('page_for_posts') ) {
+			$css_class[] = 'current_page_parent';
+		}
+
+		/**
+		 * Filter the list of CSS classes to include with each page item in the list.
+		 *
+		 * @since 2.8.0
+		 *
+		 * @see wp_list_pages()
+		 *
+		 * @param array   $css_class    An array of CSS classes to be applied
+		 *                             to each list item.
+		 * @param WP_Post $page         Page data object.
+		 * @param int     $depth        Depth of page, used for padding.
+		 * @param array   $args         An array of arguments.
+		 * @param int     $current_page ID of the current page.
+		 */
+
+
+
+		$css_classes = implode( ' ', apply_filters( 'page_css_class', $css_class, $page, $depth, $args, $current_page ) );
+		$button_classes = implode ( ' ', $button_class );
+
+		if ( '' === $page->post_title ) {
+			$page->post_title = sprintf( __( '#%d (no title)' ), $page->ID );
+		}
+
+		$args['link_before'] = empty( $args['link_before'] ) ? '' : $args['link_before'];
+		$args['link_after'] = empty( $args['link_after'] ) ? '' : $args['link_after'];
+
+		/** This filter is documented in wp-includes/post-template.php */
+		$output .= $indent . sprintf(
+			'<li class="%s"><a href="%s" class="%s" %s>%s%s%s</a>',
+			$css_classes,
+			get_permalink( $page->ID ),
+			$button_classes,
+			$button_data,
+			$args['link_before'],
+			apply_filters( 'the_title', $page->post_title, $page->ID ),
+			$args['link_after']
+		);
+
+	}
+
+	/**
+	 * @see Walker::end_el()
+	 * @since 2.1.0
+	 *
+	 * @param string $output Passed by reference. Used to append additional content.
+	 * @param object $page Page data object. Not used.
+	 * @param int $depth Depth of page. Not Used.
+	 * @param array $args
+	 */
+	public function end_el( &$output, $page, $depth = 0, $args = array() ) {
+		$output .= "</li>\n";
+	}
+
+}
+
+
+
+/* ============================
+	SIDE MENU
+   ============================ */
+
+
+class Foundation_Widget_Sidenav extends WP_Widget {
+
+	function __construct() {
+		$widget_ops = array('classname' => 'foundation_widget_sidenav', 'description' => __( 'Lists pages from current page ancestor down.') );
+		parent::__construct('foundation_sidenav', __('Foundation Sidebar Navigation', 'foundation'), $widget_ops);
+	}
+
+	function widget( $args, $instance ) {
+
+		if(!is_page() && !is_home()) return;
+
+		global $post;
+
+		if($post == null) {
+			return;
+		}
+
+		if(is_home() || !$post->ancestors){
+			$pid = $post->ID;
+		}else{
+			$pid = end(array_values($post->ancestors));
+		}
+
+
+		extract( $args );
+
+		$title = '<a href="' . get_permalink ($pid) . '">' . apply_filters('widget_title', get_the_title($pid), $instance, $this->id_base) . '</a>';
+		$sortby = empty( $instance['sortby'] ) ? 'menu_order' : $instance['sortby'];
+		$exclude = empty( $instance['exclude'] ) ? '' : $instance['exclude'];
+
+		if ( $sortby == 'menu_order' )
+			$sortby = 'menu_order, post_title';
+
+		$args = array (
+			'title_li' => '',
+			'child_of' => $pid,
+			'depth' => 2,
+			'echo' => 0,
+			'sort_column' => $sortby,
+			'exclude' => $exclude,
+			'walker' => new foundation_Walker_Page()
+		);
+
+		$out =  wp_list_pages(  $args ) ;
+
+		if ( !empty( $out ) ) {
+			echo $before_widget;
+			if ( $title)
+				echo $before_title . $title . $after_title ;
+?>
+		<ul class="nav-bar vertical">
+			<?php echo $out; ?>
+		</ul>
+		<?php
+			echo $after_widget;
+		}
+	}
+
+	function update( $new_instance, $old_instance ) {
+		$instance = $old_instance;
+		$instance['title'] = strip_tags($new_instance['title']);
+		if ( in_array( $new_instance['sortby'], array( 'post_title', 'menu_order', 'ID' ) ) ) {
+			$instance['sortby'] = $new_instance['sortby'];
+		} else {
+			$instance['sortby'] = 'menu_order';
+		}
+
+		$instance['exclude'] = strip_tags( $new_instance['exclude'] );
+
+		return $instance;
+	}
+
+	function form( $instance ) {
+		//Defaults
+		$instance = wp_parse_args( (array) $instance, array( 'sortby' => 'post_title', 'title' => '', 'exclude' => '') );
+		$title = esc_attr( $instance['title'] );
+		$exclude = esc_attr( $instance['exclude'] );
+?>
+		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></p>
+		<p>
+			<label for="<?php echo $this->get_field_id('sortby'); ?>"><?php _e( 'Sort by:' ); ?></label>
+			<select name="<?php echo $this->get_field_name('sortby'); ?>" id="<?php echo $this->get_field_id('sortby'); ?>" class="widefat">
+				<option value="post_title"<?php selected( $instance['sortby'], 'post_title' ); ?>><?php _e('Page title'); ?></option>
+				<option value="menu_order"<?php selected( $instance['sortby'], 'menu_order' ); ?>><?php _e('Page order'); ?></option>
+				<option value="ID"<?php selected( $instance['sortby'], 'ID' ); ?>><?php _e( 'Page ID' ); ?></option>
+			</select>
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id('exclude'); ?>"><?php _e( 'Exclude:' ); ?></label> <input type="text" value="<?php echo $exclude; ?>" name="<?php echo $this->get_field_name('exclude'); ?>" id="<?php echo $this->get_field_id('exclude'); ?>" class="widefat" />
+			<br />
+			<small><?php _e( 'Page IDs, separated by commas.' ); ?></small>
+		</p>
+<?php
+	}
+
+}
+
+function foundation_register_widgets() {
+	register_widget( 'Foundation_Widget_Sidenav' );
+}
+
+add_action( 'widgets_init', 'foundation_register_widgets' );
+
+
+/* ============================
+	SHORTCODES
+   ============================ */
+
+add_shortcode( 'accordion', 'accordion_shortcode_handler' );
+add_shortcode( 'fold', 'accordion_fold_shortcode_handler' );
+
+add_shortcode( 'row', 'classes_shortcode_handler' );
+add_shortcode( 'column', 'classes_shortcode_handler' );
+add_shortcode( 'div', 'classes_shortcode_handler' );
 
 function accordion_shortcode_handler( $atts=null, $content=null, $code="" ) {
 
@@ -496,10 +609,6 @@ function accordion_fold_shortcode_handler( $atts=null, $content=null, $code="" )
 
 }
 
-add_shortcode( 'accordion', 'accordion_shortcode_handler' );
-add_shortcode( 'fold', 'accordion_fold_shortcode_handler' );
-
-
 function classes_shortcode_handler( $atts=null, $content=null, $code="" ) {
 
 	extract( shortcode_atts( array( 'class' => null, 'id' => null ), $atts ) );
@@ -515,7 +624,7 @@ function classes_shortcode_handler( $atts=null, $content=null, $code="" ) {
 	}
 
 	if ( $classes ) {
-		$classes = ' class="'. trim ( $classes ) . '"';
+		$classes = ' class="'. trim( $classes ) . '"';
 	}
 
 	if ( $id ) {
@@ -526,18 +635,4 @@ function classes_shortcode_handler( $atts=null, $content=null, $code="" ) {
 
 	return $content;
 
-}
-
-add_shortcode( 'row', 'classes_shortcode_handler' );
-add_shortcode( 'column', 'classes_shortcode_handler' );
-add_shortcode( 'div', 'classes_shortcode_handler' );
-
-// add Orbit slider support to NextGEN Gallery
-
-add_filter('ngg_render_template', 'ngg_orbit_template', 10, 2);
-
-function ngg_orbit_template( $path, $template_name = false) {
-	if ($template_name == 'gallery-orbit')
-		$path = dirname( __FILE__ ) . '/addons/gallery-orbit.php';
-	return $path;
 }

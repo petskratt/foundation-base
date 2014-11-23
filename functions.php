@@ -8,6 +8,35 @@
 require "foundation-base.php";
 
 /*
+// remove rss feeds from header - Thematic version
+
+add_filter ('thematic_show_rss', '__return_false');
+add_filter ('thematic_show_commentsrss', '__return_false');
+
+*/
+
+// remove rss feeds from header - WordPress version
+
+remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds
+remove_action( 'wp_head', 'feed_links', 2 ); // Display the links to the general feeds: Post and Comment Feed
+
+add_filter ('thematic_show_pingback', '__return_false');
+
+// Making jQuery Google API
+
+add_action('init', 'krt_google_jquery');
+
+function krt_google_jquery() {
+	if (!is_admin()) {
+		wp_deregister_script('jquery-migrate');
+		wp_deregister_script('jquery');
+		wp_register_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js', false, '2.1.1', true);
+		wp_enqueue_script('jquery');
+	}
+}
+
+
+/*
 // add language class to body
 
 add_filter('body_class', 'krt_add_body_class_language');

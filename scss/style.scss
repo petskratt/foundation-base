@@ -1,0 +1,99 @@
+/*!
+Theme Name: Foundation Base for Thematic
+Theme URI: https://github.com/petskratt/foundation-base/
+Description: A child theme for Thematic 2 based on Foundation 5.4.7 framework by ZURB.
+Author: Peeter Marvet
+Author URI: http://tehnokratt.net/
+Template: thematic
+Version: 0.5.4.7.0
+Tags: flexible-width, two-columns, left-sidebar, translation-ready
+*/
+
+@import "settings";
+@import "foundation";
+
+// Or selectively include components
+// @import
+//   "foundation/components/accordion",
+//   "foundation/components/alert-boxes",
+//   "foundation/components/block-grid",
+//   "foundation/components/breadcrumbs",
+//   "foundation/components/button-groups",
+//   "foundation/components/buttons",
+//   "foundation/components/clearing",
+//   "foundation/components/dropdown",
+//   "foundation/components/dropdown-buttons",
+//   "foundation/components/flex-video",
+//   "foundation/components/forms",
+//   "foundation/components/grid",
+//   "foundation/components/inline-lists",
+//   "foundation/components/joyride",
+//   "foundation/components/keystrokes",
+//   "foundation/components/labels",
+//   "foundation/components/magellan",
+//   "foundation/components/orbit",
+//   "foundation/components/pagination",
+//   "foundation/components/panels",
+//   "foundation/components/pricing-tables",
+//   "foundation/components/progress-bars",
+//   "foundation/components/reveal",
+//   "foundation/components/side-nav",
+//   "foundation/components/split-buttons",
+//   "foundation/components/sub-nav",
+//   "foundation/components/switch",
+//   "foundation/components/tables",
+//   "foundation/components/tabs",
+//   "foundation/components/thumbs",
+//   "foundation/components/tooltips",
+//   "foundation/components/top-bar",
+//   "foundation/components/type",
+//   "foundation/components/offcanvas",
+//   "foundation/components/visibility";
+
+/* import Thematic-specific SCSS (from Responsive Base) */
+
+@import "_thematic";
+
+/* use Foundation mixins on Thematic IDs/classes to produce desired layout */
+
+#header, #main, #footer { @include grid-row(); }
+
+#branding, #access {  @include grid-column($columns:$total-columns); }
+
+#footer {
+	#first, #second, #third { @include grid-column($columns:$total-columns); }
+	#siteinfo { @include grid-column($columns:$total-columns, $center:true); }
+}
+
+/* mobile column overrides */
+
+#container, #primary, #secondary, #footer #first, #footer #second, #footer #third { @include grid-column($columns:$total-columns); }
+
+/* page templates */
+
+.page-template-template-page-fullwidth-php {
+	#container { @include grid-column($columns:$total-columns); }
+}
+
+@media #{$medium-up} {
+	#container { @include grid-column($columns:8, $push:4); }
+	#primary, #secondary { @include grid-column($columns:4, $pull:8);}
+
+	#footer {
+		#first, #second, #third { @include grid-column($columns:4); }
+		#siteinfo { @include grid-column($columns:$total-columns, $center:true); }
+	}
+}
+
+
+/* misc tuning */
+
+#content {
+	ul {
+		margin-left: ms(1);
+	}
+
+	ol {
+		margin-left: ms(2);
+	}
+}
