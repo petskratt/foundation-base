@@ -318,7 +318,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 0,
@@ -334,7 +334,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/_functions.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -350,7 +350,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/_settings.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -366,7 +366,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_accordion.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -382,7 +382,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_alert-boxes.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -398,7 +398,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_block-grid.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -414,7 +414,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_breadcrumbs.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -430,7 +430,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_button-groups.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -446,7 +446,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_buttons.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -462,7 +462,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_clearing.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -478,7 +478,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_dropdown-buttons.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -494,7 +494,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_dropdown.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -510,7 +510,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_flex-video.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -526,7 +526,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_forms.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -542,7 +542,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_global.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -558,7 +558,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_grid.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -574,7 +574,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_icon-bar.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -590,7 +590,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_inline-lists.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -606,7 +606,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_joyride.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -622,7 +622,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_keystrokes.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -638,7 +638,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_labels.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -654,7 +654,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_magellan.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -670,7 +670,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_offcanvas.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -686,7 +686,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_orbit.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -702,7 +702,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_pagination.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -718,7 +718,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_panels.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -734,7 +734,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_pricing-tables.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -750,7 +750,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_progress-bars.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -766,7 +766,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_range-slider.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -782,7 +782,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_reveal.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -798,7 +798,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_side-nav.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -814,7 +814,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_split-buttons.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -830,7 +830,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_sub-nav.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -846,7 +846,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_switches.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -862,7 +862,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_tables.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -878,7 +878,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_tabs.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -894,7 +894,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_thumbs.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -910,7 +910,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_toolbar.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -926,7 +926,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_tooltips.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -942,7 +942,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_top-bar.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -958,7 +958,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_type.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -974,7 +974,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/foundation\/components\/_visibility.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -990,7 +990,7 @@
 		},
 	"\/bower_components\/foundation\/scss\/normalize.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 0,
@@ -3587,24 +3587,6 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/css\/app.css": {
-		"fileType": 16,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/css\/app.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/foundation-base.php": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/foundation-base.php",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
 	"\/functions.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -3647,6 +3629,24 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/library\/foundation-base.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/library\/foundation-base.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/library\/top-bar.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/library\/top-bar.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/screenshot.png": {
 		"fileType": 32768,
 		"ignore": 0,
@@ -3660,7 +3660,7 @@
 		},
 	"\/scss\/_settings.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -3676,7 +3676,7 @@
 		},
 	"\/scss\/_thematic.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 1,
@@ -3690,9 +3690,41 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
+	"\/scss\/_thematic_new_unedited.scss": {
+		"createSourceMap": 0,
+		"debugStyle": 1,
+		"decimalPrecision": 10,
+		"fileType": 4,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/scss\/_thematic_new_unedited.scss",
+		"outputAbbreviatedPath": "\/_thematic_new_unedited.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"useLibsass": 0
+		},
+	"\/scss\/_thematic_old.scss": {
+		"createSourceMap": 0,
+		"debugStyle": 1,
+		"decimalPrecision": 10,
+		"fileType": 4,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/scss\/_thematic_old.scss",
+		"outputAbbreviatedPath": "\/_thematic_old.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"useLibsass": 0
+		},
 	"\/scss\/style.scss": {
 		"createSourceMap": 0,
-		"debugStyle": 0,
+		"debugStyle": 1,
 		"decimalPrecision": 10,
 		"fileType": 4,
 		"ignore": 0,
@@ -3711,6 +3743,15 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/style.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/unused.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/unused.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -4310,7 +4351,7 @@
 	"sassAutoOutputPathReplace2": "css",
 	"sassAutoOutputPathStyle": 1,
 	"sassCreateSourceMap": 0,
-	"sassDebugStyle": 0,
+	"sassDebugStyle": 1,
 	"sassDecimalPrecision": 10,
 	"sassOutputStyle": 0,
 	"sassUseLibsass": 0,

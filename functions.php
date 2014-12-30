@@ -5,7 +5,8 @@
 //  all Foundation Base code kept in foundation-base.php for easy upgrades
 //
 
-require "foundation-base.php";
+require_once "library/foundation-base.php";
+require_once "library/top-bar.php";
 
 /*
 // remove rss feeds from header - Thematic version

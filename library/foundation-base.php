@@ -244,48 +244,100 @@ function ngg_orbit_template( $path, $template_name = false) {
 	TOP MENU
    ============================ */
 
+function foundationbase_topbar ( $has_name = true, $align = "right", $has_search = true) {
+
+	if ( $has_search ) {
+	$search = '
+				<li class="has-form">
+				  <form id="searchform" method="get" action="' . home_url() . '">
+					  <div class="row collapse">
+					    <div class="large-8 small-9 columns">
+					      <input type="text" id="s" name="s" placeholder="'.__( 'To search, type and hit enter', 'thematic' ).'" value="'.get_search_query().'">
+					    </div>
+					    <div class="large-4 small-3 columns">
+							<input id="searchsubmit" type="submit" value="'. __( 'Search', 'thematic' ) .'" tabindex="2" class="alert button expand">
+					    </div>
+					  </div>
+				  </form>
+				</li>';
+	} else $search = '';
+
+	if ( $has_name ) {
+		$name = '<a href="' . get_bloginfo( 'url' ) . '" title="' . get_bloginfo( 'description' ) . '">' . get_bloginfo( 'name' ) . '</a>';
+	} else $name = '';
+
+	$args = array (
+	        'container' => false,
+	        'container_class' => '',
+	        'menu' => '',
+	        'menu_class' => 'top-bar-menu ' . $align,
+	        'theme_location' => 'primary-menu',
+	        'before' => '',
+	        'after' => '',
+	        'link_before' => '',
+	        'link_after' => '',
+	        'depth' => 5,
+	        'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s' . $search . '</ul>',
+	        'fallback_cb' => false,
+	        'walker' => new top_bar_walker()
+	);
+
+
+?>
+	<nav class="top-bar" data-topbar role="navigation">
+	  <ul class="title-area">
+	    <li class="name">
+	      <?php echo $name; ?>
+	    </li>
+	    <li class="toggle-topbar menu-icon"><a href="#"><span><?php _ex( 'Menu', 'Mobile navigation button', 'thematic' ); ?></span></a></li>
+	  </ul>
+	  <section class="top-bar-section">
+<?php
+	if ( ( function_exists( 'has_nav_menu' ) ) && ( has_nav_menu( apply_filters( 'thematic_primary_menu_id', 'primary-menu' ) ) ) ) {
+		echo  wp_nav_menu( $args );
+	} else {
+		echo  foundationbase_page_menu( $args );
+	}
+
+?>
+	  </section>
+	</nav>
+<?php
+}
+
 
 function childtheme_override_access() {
 ?>
 
-    <div id="access">
-
-    	<div class="skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip navigation to the content', 'thematic' ); ?>"><?php _e('Skip to content', 'thematic'); ?></a></div><!-- .skip-link -->
-
+    <div id="access" role="navigation">
+    	<div class=""><a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'thematic' ); ?></a></div><!-- .skip-link -->
     	<?php
-	if ( ( function_exists("has_nav_menu") ) && ( has_nav_menu( apply_filters('thematic_primary_menu_id', 'primary-menu') ) ) ) {
-		echo  wp_nav_menu(thematic_nav_menu_args());
-	} else {
-		echo  foundationbase_access_page_menu(foundationbase_access_page_menu_args());
-	}
-?>
+  	    foundationbase_topbar();
+    	?>
 
     </div><!-- #access -->
+
     <?php
 }
 
-function foundationbase_access_page_menu_args() {
-	$args = array (
-		'depth'    => 2,
-		'sort_column' => 'menu_order',
-		'menu_class'  => 'menu',
-		'include'     => '',
-		'exclude'     => '',
-		'echo'        => FALSE,
-		'show_home'   => true,
-		'link_before' => '',
-		'link_after'  => ''
-	);
-	return $args;
-}
 
-function foundationbase_access_page_menu( $args = array() ) {
+function foundationbase_page_menu( ) {
 
 	// based on wp 4.0 wp_page_menu
 	// (added button-group class to ul and button class to homepage a)
 
-	$defaults = array('sort_column' => 'menu_order, post_title', 'menu_class' => 'menu', 'echo' => true, 'link_before' => '', 'link_after' => '');
-	$args = wp_parse_args( $args, $defaults );
+	$args = array (
+		'depth'    => 3,
+		'sort_column' => 'menu_order',
+		'menu_class'  => 'top-bar-menu right',
+		'include'     => '',
+		'exclude'     => '',
+		'echo'        => FALSE,
+		'show_home'   => false,
+		'link_before' => '',
+		'link_after'  => '',
+		'walker' => new top_bar_pagemenu_walker()
+	);
 
 	$args = apply_filters( 'wp_page_menu_args', $args );
 
@@ -302,7 +354,7 @@ function foundationbase_access_page_menu( $args = array() ) {
 		$class = '';
 		if ( is_front_page() && !is_paged() )
 			$class = 'class="current_page_item"';
-		$menu .= '<li ' . $class . '><a href="' . home_url( '/' ) . '" class="button">' . $args['link_before'] . $text . $args['link_after'] . '</a></li>';
+		$menu .= '<li ' . $class . '><a href="' . home_url( '/' ) . '">' . $args['link_before'] . $text . $args['link_after'] . '</a></li>';
 		// If the front page is a page, add it to the exclude list
 		if (get_option('show_on_front') == 'page') {
 			if ( !empty( $list_args['exclude'] ) ) {
@@ -316,13 +368,12 @@ function foundationbase_access_page_menu( $args = array() ) {
 
 	$list_args['echo'] = false;
 	$list_args['title_li'] = '';
-	$list_args['walker'] = new foundation_access_Walker_Page();
 	$menu .= str_replace( array( "\r", "\n", "\t" ), '', wp_list_pages($list_args) );
 
 	if ( $menu )
-		$menu = '<ul class="button-group">' . $menu . '</ul>';
+		$menu = '<ul id="menu-testmenuu" class="' . esc_attr($args['menu_class']) . '">' . $menu . '</ul>';
 
-	$menu = '<div class="' . esc_attr($args['menu_class']) . '">' . $menu . "</div>\n";
+	// $menu = '<div class="' . esc_attr($args['menu_class']) . '">' . $menu . "</div>\n";
 
 	$menu = apply_filters( 'wp_page_menu', $menu, $args );
 	if ( $args['echo'] )
@@ -332,245 +383,37 @@ function foundationbase_access_page_menu( $args = array() ) {
 }
 
 
-class foundation_access_Walker_Page extends Walker_Page {
+class top_bar_pagemenu_walker extends Walker_Page {
 
-	/**
-	 * @see Walker::start_lvl()
-	 * @since 2.1.0
-	 *
-	 * @param string $output Passed by reference. Used to append additional content.
-	 * @param int $depth Depth of page. Used for padding.
-	 * @param array $args
-	 */
-	public function start_lvl( &$output, $depth = 0, $args = array() ) {
-		// <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
-		var_dump($args);
-		$indent = str_repeat("\t", $depth);
-		$output .= "\n$indent<ul class=\"f-dropdown\" id=\"drop2\" data-dropdown-content aria-hidden=\"true\" tabindex=\"-1\" >\n";
-	}
-
-	/**
-	 * @see Walker::end_lvl()
-	 * @since 2.1.0
-	 *
-	 * @param string $output Passed by reference. Used to append additional content.
-	 * @param int $depth Depth of page. Used for padding.
-	 * @param array $args
-	 */
-	public function end_lvl( &$output, $depth = 0, $args = array() ) {
-		$indent = str_repeat("\t", $depth);
-		$output .= "$indent</ul>\n";
-	}
-
-	/**
-	 * @see Walker::start_el()
-	 * @since 2.1.0
-	 *
-	 * @param string $output Passed by reference. Used to append additional content.
-	 * @param object $page Page data object.
-	 * @param int $depth Depth of page. Used for padding.
-	 * @param int $current_page Page ID.
-	 * @param array $args
-	 */
-	public function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 ) {
-		if ( $depth ) {
-			$indent = str_repeat( "\t", $depth );
-		} else {
-			$indent = '';
-		}
-
-		$css_class = array( 'page_item', 'page-item-' . $page->ID );
-
-		$button_class = array( 'button');
-		$button_data = "";
-
-		if ( isset( $args['pages_with_children'][ $page->ID ] ) ) {
-			$css_class[] = 'page_item_has_children';
-			if ( $depth <= 1) {
-				$button_class[] = 'dropdown';
-				$button_data = "data-dropdown=\"drop{$page->ID}\" aria-controls=\"drop{$page->ID}\" aria-expanded=\"false\"";
-			}
-		}
-
-		if ( ! empty( $current_page ) ) {
-			$_current_page = get_post( $current_page );
-			if ( in_array( $page->ID, $_current_page->ancestors ) ) {
-				$css_class[] = 'current_page_ancestor';
-			}
-			if ( $page->ID == $current_page ) {
-				$css_class[] = 'current_page_item';
-			} elseif ( $_current_page && $page->ID == $_current_page->post_parent ) {
-				$css_class[] = 'current_page_parent';
-			}
-		} elseif ( $page->ID == get_option('page_for_posts') ) {
-			$css_class[] = 'current_page_parent';
-		}
-
-		/**
-		 * Filter the list of CSS classes to include with each page item in the list.
-		 *
-		 * @since 2.8.0
-		 *
-		 * @see wp_list_pages()
-		 *
-		 * @param array   $css_class    An array of CSS classes to be applied
-		 *                             to each list item.
-		 * @param WP_Post $page         Page data object.
-		 * @param int     $depth        Depth of page, used for padding.
-		 * @param array   $args         An array of arguments.
-		 * @param int     $current_page ID of the current page.
-		 */
+    function display_element( $element, &$children_elements, $max_depth, $depth=0, $args, &$output ) {
+        $element->has_children = !empty( $children_elements[$element->ID] );
+        $element->classes[] = ( $element->current || $element->current_item_ancestor ) ? 'active' : '';
+        $element->classes[] = ( $element->has_children && $max_depth !== 1 ) ? 'has-dropdown' : '';
+        parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
+    }
 
 
 
-		$css_classes = implode( ' ', apply_filters( 'page_css_class', $css_class, $page, $depth, $args, $current_page ) );
-		$button_classes = implode ( ' ', $button_class );
 
-		if ( '' === $page->post_title ) {
-			$page->post_title = sprintf( __( '#%d (no title)' ), $page->ID );
-		}
 
-		$args['link_before'] = empty( $args['link_before'] ) ? '' : $args['link_before'];
-		$args['link_after'] = empty( $args['link_after'] ) ? '' : $args['link_after'];
 
-		/** This filter is documented in wp-includes/post-template.php */
-		$output .= $indent . sprintf(
-			'<li class="%s"><a href="%s" class="%s" %s>%s%s%s</a>',
-			$css_classes,
-			get_permalink( $page->ID ),
-			$button_classes,
-			$button_data,
-			$args['link_before'],
-			apply_filters( 'the_title', $page->post_title, $page->ID ),
-			$args['link_after']
-		);
+    function start_el( &$output, $object, $depth = 0, $args = array(), $current_object_id = 0 ) {
+        $item_html = '';
+        parent::start_el( $item_html, $object, $depth, $args );
+        $item_html = str_replace('page_item_has_children', 'page_item_has_children has-dropdown', $item_html);
+		// add divider
+        $output .= ( $depth == 0 ) ? '<li class="divider"></li>' : '';
 
-	}
+        $output .= $item_html;
 
-	/**
-	 * @see Walker::end_el()
-	 * @since 2.1.0
-	 *
-	 * @param string $output Passed by reference. Used to append additional content.
-	 * @param object $page Page data object. Not used.
-	 * @param int $depth Depth of page. Not Used.
-	 * @param array $args
-	 */
-	public function end_el( &$output, $page, $depth = 0, $args = array() ) {
-		$output .= "</li>\n";
-	}
+    }
+
+    function start_lvl( &$output, $depth = 0, $args = array() ) {
+        $output .= "\n<ul class=\"sub-menu dropdown\">\n";
+    }
 
 }
 
-
-
-/* ============================
-	SIDE MENU
-   ============================ */
-
-
-class Foundation_Widget_Sidenav extends WP_Widget {
-
-	function __construct() {
-		$widget_ops = array('classname' => 'foundation_widget_sidenav', 'description' => __( 'Lists pages from current page ancestor down.') );
-		parent::__construct('foundation_sidenav', __('Foundation Sidebar Navigation', 'foundation'), $widget_ops);
-	}
-
-	function widget( $args, $instance ) {
-
-		if(!is_page() && !is_home()) return;
-
-		global $post;
-
-		if($post == null) {
-			return;
-		}
-
-		if(is_home() || !$post->ancestors){
-			$pid = $post->ID;
-		}else{
-			$pid = end(array_values($post->ancestors));
-		}
-
-
-		extract( $args );
-
-		$title = '<a href="' . get_permalink ($pid) . '">' . apply_filters('widget_title', get_the_title($pid), $instance, $this->id_base) . '</a>';
-		$sortby = empty( $instance['sortby'] ) ? 'menu_order' : $instance['sortby'];
-		$exclude = empty( $instance['exclude'] ) ? '' : $instance['exclude'];
-
-		if ( $sortby == 'menu_order' )
-			$sortby = 'menu_order, post_title';
-
-		$args = array (
-			'title_li' => '',
-			'child_of' => $pid,
-			'depth' => 2,
-			'echo' => 0,
-			'sort_column' => $sortby,
-			'exclude' => $exclude,
-			'walker' => new foundation_Walker_Page()
-		);
-
-		$out =  wp_list_pages(  $args ) ;
-
-		if ( !empty( $out ) ) {
-			echo $before_widget;
-			if ( $title)
-				echo $before_title . $title . $after_title ;
-?>
-		<ul class="nav-bar vertical">
-			<?php echo $out; ?>
-		</ul>
-		<?php
-			echo $after_widget;
-		}
-	}
-
-	function update( $new_instance, $old_instance ) {
-		$instance = $old_instance;
-		$instance['title'] = strip_tags($new_instance['title']);
-		if ( in_array( $new_instance['sortby'], array( 'post_title', 'menu_order', 'ID' ) ) ) {
-			$instance['sortby'] = $new_instance['sortby'];
-		} else {
-			$instance['sortby'] = 'menu_order';
-		}
-
-		$instance['exclude'] = strip_tags( $new_instance['exclude'] );
-
-		return $instance;
-	}
-
-	function form( $instance ) {
-		//Defaults
-		$instance = wp_parse_args( (array) $instance, array( 'sortby' => 'post_title', 'title' => '', 'exclude' => '') );
-		$title = esc_attr( $instance['title'] );
-		$exclude = esc_attr( $instance['exclude'] );
-?>
-		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></p>
-		<p>
-			<label for="<?php echo $this->get_field_id('sortby'); ?>"><?php _e( 'Sort by:' ); ?></label>
-			<select name="<?php echo $this->get_field_name('sortby'); ?>" id="<?php echo $this->get_field_id('sortby'); ?>" class="widefat">
-				<option value="post_title"<?php selected( $instance['sortby'], 'post_title' ); ?>><?php _e('Page title'); ?></option>
-				<option value="menu_order"<?php selected( $instance['sortby'], 'menu_order' ); ?>><?php _e('Page order'); ?></option>
-				<option value="ID"<?php selected( $instance['sortby'], 'ID' ); ?>><?php _e( 'Page ID' ); ?></option>
-			</select>
-		</p>
-		<p>
-			<label for="<?php echo $this->get_field_id('exclude'); ?>"><?php _e( 'Exclude:' ); ?></label> <input type="text" value="<?php echo $exclude; ?>" name="<?php echo $this->get_field_name('exclude'); ?>" id="<?php echo $this->get_field_id('exclude'); ?>" class="widefat" />
-			<br />
-			<small><?php _e( 'Page IDs, separated by commas.' ); ?></small>
-		</p>
-<?php
-	}
-
-}
-
-function foundation_register_widgets() {
-	register_widget( 'Foundation_Widget_Sidenav' );
-}
-
-add_action( 'widgets_init', 'foundation_register_widgets' );
 
 
 /* ============================
