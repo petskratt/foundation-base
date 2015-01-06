@@ -115,6 +115,8 @@ class Foundationbase_Sidenav_Pagemenu_Walker extends Walker_Page {
 
 		$current_page = get_post( $args[1] );
 
+		$args[0]['had_children'] = false;
+
 		if ( $depth === 0 && !empty( $children_elements[$element->ID] ) && ( ( $args[1] !== $element->ID ) && ( !in_array( $element->ID, $current_page->ancestors ) )  ) )  {
 			$this->unset_children( $element, $children_elements );
 			$args[0]['had_children'] = true;
