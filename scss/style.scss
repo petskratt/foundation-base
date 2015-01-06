@@ -1,11 +1,11 @@
 /*!
 Theme Name: Foundation Base for Thematic
 Theme URI: https://github.com/petskratt/foundation-base/
-Description: A child theme for Thematic 2 based on Foundation 5.4.7 framework by ZURB.
+Description: A child theme for Thematic 2 based on Foundation 5.5.0 framework by ZURB.
 Author: Peeter Marvet
 Author URI: http://tehnokratt.net/
 Template: thematic
-Version: 0.5.4.7.0
+Version: 0.5.5.0.1
 Tags: flexible-width, two-columns, left-sidebar, translation-ready
 */
 
@@ -50,11 +50,14 @@ Tags: flexible-width, two-columns, left-sidebar, translation-ready
 //   "foundation/components/offcanvas",
 //   "foundation/components/visibility";
 
-/* import Thematic-specific SCSS (from Responsive Base) */
+/* === import Thematic-specific SCSS (from Responsive Base) */
 
 @import "_thematic";
+@import "_side-nav";
 
-/* use Foundation mixins on Thematic IDs/classes to produce desired layout */
+/* === use Foundation mixins on Thematic IDs/classes to produce desired layout === */
+
+// Keep in mind: Foundation 5 is mobile-first - without media-query we declare small-up, the rest with specific media-queries!
 
 #header, #main, #footer { @include grid-row(); }
 
@@ -65,15 +68,14 @@ Tags: flexible-width, two-columns, left-sidebar, translation-ready
 	#siteinfo { @include grid-column($columns:$total-columns, $center:true); }
 }
 
-/* mobile column overrides */
+// columns
 
 #container, #primary, #secondary, #footer #first, #footer #second, #footer #third { @include grid-column($columns:$total-columns); }
 
-/* page templates */
+// layout changes for different sizes
+// use: $landscape, $portrait, $small-only, $medium-up, $medium-only, $large-up, $large-only, $xlarge-up, $xlarge-only, $xxlarge-up, $xxlarge-only
+// (see _settings.scss for definitions; if using xl and xxl classes in html - enable $include-xl-html-grid-classes=true in _settings.scss)
 
-.page-template-template-page-fullwidth-php {
-	#container { @include grid-column($columns:$total-columns); }
-}
 
 @media #{$medium-up} {
 	#container { @include grid-column($columns:8, $push:4); }
@@ -83,6 +85,26 @@ Tags: flexible-width, two-columns, left-sidebar, translation-ready
 		#first, #second, #third { @include grid-column($columns:4); }
 		#siteinfo { @include grid-column($columns:$total-columns, $center:true); }
 	}
+
+	.page-template-template-page-fullwidth-php {
+		#container { @include grid-column($columns:$total-columns, $pull:0, $push:0); }
+	}
+
 }
 
+.lt-ie9 .top-bar .search {
+	display: none;
+}
+
+@media #{$medium-only} {
+	.top-bar .title-area {
+		display: none; // avoid possible collision of menu and site title
+	}
+}
+
+@media #{$small-only} {
+	#branding {
+		display: none;
+	}
+}
 

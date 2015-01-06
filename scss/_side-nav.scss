@@ -1,0 +1,73 @@
+// styling for (optional) Foundationbase Sidebar Navigation widget
+
+$toggle-size: 5px !default;
+
+ul.sidebar-nav {
+	margin-left: 0;
+	list-style: none;
+	ul {
+		list-style: none;
+	}
+
+	li {
+		font-family: $body-font-family;
+		font-size: rem-calc(13);
+		font-weight: $font-weight-normal;
+		ul {
+			margin-left: rem-calc(45) / 3;
+			li a {
+				width: 100%;
+				display: block;
+				border-bottom: 1px solid $secondary-color;
+			}
+			li.current_page_item > a {
+				font-weight: $font-weight-bold;
+			}
+		}
+	}
+	&>li {
+
+		&>a {
+			background: $secondary-color;
+			width: 100%;
+			margin-bottom: 1px;
+			display: block;
+			padding: 12px 0 12px 0;
+			padding-#{$default-float}: rem-calc(45) / 3;
+
+
+			&:hover {
+				background: $primary-color;
+				color: white;
+			}
+
+		}
+		&.has-pages {
+			> a {
+				position: relative;
+				&:after {
+					@include css-triangle($toggle-size, white, $default-float);
+		            margin-#{$opposite-direction}: rem-calc(45) / 3;
+		            margin-top: -($toggle-size / 2) - 2;
+		            position: absolute;
+		            top: 50%;
+		            #{$opposite-direction}: 0;
+
+				}
+			}
+			&.current_page_item, &.current_page_parent, &.current_page_ancestor {
+				font-weight: $font-weight-bold;
+				& > a:after {
+					@include css-triangle($toggle-size, $white, top);
+				}
+			}
+		}
+		&.current_page_item > a, &.current_page_parent > a, &.current_page_ancestor > a {
+			background: $primary-color;
+			color: white;
+		}
+
+	}
+
+
+}
