@@ -1,0 +1,110 @@
+/*!
+Theme Name: Foundation Base for Thematic 2.0
+Theme URI: https://github.com/petskratt/foundation-base/
+Description: A child theme for Thematic 2.0 based on Zurb Foundation 5.5.0
+Author: Peeter Marvet
+Author URI: http://tehnokratt.net/
+Template: thematic
+Version: 0.5.5.0.1
+Tags: flexible-width, two-columns, left-sidebar, translation-ready
+*/
+
+@import "settings";
+@import "foundation";
+
+// Or selectively include components
+// @import
+//   "foundation/components/accordion",
+//   "foundation/components/alert-boxes",
+//   "foundation/components/block-grid",
+//   "foundation/components/breadcrumbs",
+//   "foundation/components/button-groups",
+//   "foundation/components/buttons",
+//   "foundation/components/clearing",
+//   "foundation/components/dropdown",
+//   "foundation/components/dropdown-buttons",
+//   "foundation/components/flex-video",
+//   "foundation/components/forms",
+//   "foundation/components/grid",
+//   "foundation/components/inline-lists",
+//   "foundation/components/joyride",
+//   "foundation/components/keystrokes",
+//   "foundation/components/labels",
+//   "foundation/components/magellan",
+//   "foundation/components/orbit",
+//   "foundation/components/pagination",
+//   "foundation/components/panels",
+//   "foundation/components/pricing-tables",
+//   "foundation/components/progress-bars",
+//   "foundation/components/reveal",
+//   "foundation/components/side-nav",
+//   "foundation/components/split-buttons",
+//   "foundation/components/sub-nav",
+//   "foundation/components/switch",
+//   "foundation/components/tables",
+//   "foundation/components/tabs",
+//   "foundation/components/thumbs",
+//   "foundation/components/tooltips",
+//   "foundation/components/top-bar",
+//   "foundation/components/type",
+//   "foundation/components/offcanvas",
+//   "foundation/components/visibility";
+
+/* === import Thematic-specific SCSS (from Responsive Base) */
+
+@import "_thematic";
+@import "_side-nav";
+
+/* === use Foundation mixins on Thematic IDs/classes to produce desired layout === */
+
+// Keep in mind: Foundation 5 is mobile-first - without media-query we declare small-up, the rest with specific media-queries!
+
+#header, #main, #footer { @include grid-row(); }
+
+#branding, #access {  @include grid-column($columns:$total-columns); }
+
+#footer {
+	#first, #second, #third { @include grid-column($columns:$total-columns); }
+	#siteinfo { @include grid-column($columns:$total-columns, $center:true); }
+}
+
+// columns
+
+#container, #primary, #secondary, #footer #first, #footer #second, #footer #third { @include grid-column($columns:$total-columns); }
+
+// layout changes for different sizes
+// use: $landscape, $portrait, $small-only, $medium-up, $medium-only, $large-up, $large-only, $xlarge-up, $xlarge-only, $xxlarge-up, $xxlarge-only
+// (see _settings.scss for definitions; if using xl and xxl classes in html - enable $include-xl-html-grid-classes=true in _settings.scss)
+
+
+@media #{$medium-up} {
+	#container { @include grid-column($columns:8, $push:4); }
+	#primary, #secondary { @include grid-column($columns:4, $pull:8);}
+
+	#footer {
+		#first, #second, #third { @include grid-column($columns:4); }
+		#siteinfo { @include grid-column($columns:$total-columns, $center:true); }
+	}
+
+	.page-template-template-page-fullwidth-php {
+		#container { @include grid-column($columns:$total-columns, $pull:0, $push:0); }
+	}
+
+}
+
+.lt-ie9 .top-bar .search {
+	display: none;
+}
+
+@media #{$medium-only} {
+	.top-bar .title-area {
+		display: none; // avoid possible collision of menu and site title
+	}
+}
+
+@media #{$small-only} {
+	#branding {
+		display: none;
+	}
+}
+
