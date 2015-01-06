@@ -1,0 +1,16 @@
+/* Foundation Base made possible by Thematic 2.0 and Zurb Foundation */
+/* humanstxt.org */
+
+/* TEAM */
+
+  Maker: Peeter Marvet / pets@tehnokratt.net
+
+/* THANKS */
+  Thematic community - http://thematictheme.com/
+  Specially - Karin Taliga https://github.com/middlesister
+  Zurb - http://foundation.zurb.com/
+
+/* SITE */
+  Standards: HTML5, CSS3
+  Components: jQuery, Orbit, Reveal
+  Software: Coda, Textmate, Git, Tower, Codekit
