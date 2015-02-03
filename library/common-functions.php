@@ -59,6 +59,16 @@ function krt_sanitize_title($title, $raw_title, $context) {
 	return $title;
 }
 
+// sanitize filenames to avoid case, umlaut and cyrillic issues
+
+add_filter('sanitize_file_name', 'krt_sanitize_filename', 10, 2);
+
+function krt_sanitize_filename ($filename, $filename_raw) {
+    $t = new Translit();
+    return $t->Transliterate(remove_accents(mb_strtolower($filename)), "utf-8", "utf-8");
+}
+
+
 // add child theme version to css, js
 
 add_filter('style_loader_tag', 'krt_versioned_uri');
