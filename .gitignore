@@ -1,7 +1,7 @@
 .DS_Store
 .sass-cache
-/fastclick
-/jquery
-/jquery-placeholder
-/jsquery.cookie
-/modernizr
+/lib/fastclick
+/lib/jquery
+/lib/jquery-placeholder
+/lib/jquery.cookie
+/lib/modernizr
