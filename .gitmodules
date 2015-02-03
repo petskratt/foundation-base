@@ -1,0 +1,3 @@
+[submodule "lib/foundation-base-lib"]
+	path = lib/foundation-base-lib
+	url = git@github.com:petskratt/foundation-base-lib.git

@@ -13,12 +13,14 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 define( 'IE8_F5_SUPPORT', true );
 define( 'GOOGLE_JQUERY', true );
 
-require_once "library/foundation-base.php";
-require_once "library/foundation-top-bar.php";
-require_once "library/foundation-sidenav.php";
+require_once "bower_components/foundation-base-lib/foundation-base.php";        // integration of Thematic 2 and Foundation
+require_once "bower_components/foundation-base-lib/foundation-top-bar.php";     // main menu as top-bar
+require_once "bower_components/foundation-base-lib/foundation-sidenav.php";     // simple second-level navigation in sidebar widget
+require_once "bower_components/foundation-base-lib/common-functions.php";		// functions always used in our WP implementations
+require_once "bower_components/foundation-base-lib/foundation-shortcodes.php";	// shortcodes for Foundation elements
+// (todo? switch shortcodes to code from https://wordpress.org/plugins/easy-foundation-shortcodes/)
 
 // main menu (top bar) settings
-
 
 add_filter('foundationbase_topbar_args', 'krt_foundationbase_topbar_args');
 

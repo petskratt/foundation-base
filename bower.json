@@ -1,7 +1,7 @@
 {
-  "name": "foundation-libsass-template",
+  "name": "foundationbase-template",
   "dependencies": {
-    "foundation": "zurb/bower-foundation"
+    "foundation-base-lib": "petskratt/foundation-base-lib"
   },
   "resolutions": {
     "jquery-placeholder": "~2.1.0"

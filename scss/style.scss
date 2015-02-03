@@ -52,7 +52,7 @@ Tags: flexible-width, two-columns, left-sidebar, translation-ready
 
 /* === import Thematic-specific SCSS (from Responsive Base) */
 
-@import "_thematic";
+@import "../bower_components/foundation-base-lib/scss/_thematic";
 @import "_side-nav";
 
 /* === use Foundation mixins on Thematic IDs/classes to produce desired layout === */

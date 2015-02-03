@@ -7654,11 +7654,11 @@ th.hide-for-touch {
  * ----------------------------------------------------------------------------
  */
 /* Assistive text */
-/* line 36, scss/_thematic.scss */
+/* line 36, bower_components/foundation-base-lib/scss/_thematic.scss */
 .screen-reader-text {
   clip: rect(1px, 1px, 1px, 1px);
   position: absolute !important; }
-  /* line 39, scss/_thematic.scss */
+  /* line 39, bower_components/foundation-base-lib/scss/_thematic.scss */
   .screen-reader-text:focus {
     /* this has no equivalent in legacy thematic
     @todo chech styles for consistency with current design */
@@ -7687,67 +7687,67 @@ th.hide-for-touch {
  *
  * Fluid images for posts, comments, and widgets
  */
-/* line 70, scss/_thematic.scss */
+/* line 70, bower_components/foundation-base-lib/scss/_thematic.scss */
 .entry-content img, .entry-summary img, .comment-content img, .widget img, .wp-caption {
   max-width: 100%; }
 
 /* Make sure images with WordPress-added height and width attributes are scaled correctly. */
-/* line 76, scss/_thematic.scss */
+/* line 76, bower_components/foundation-base-lib/scss/_thematic.scss */
 .entry-content img, .entry-summary img, .comment-content img[height] {
   height: auto; }
 
-/* line 81, scss/_thematic.scss */
+/* line 81, bower_components/foundation-base-lib/scss/_thematic.scss */
 img[class*="align"], img[class*="wp-image-"], img[class*="attachment-"] {
   height: auto; }
-/* line 84, scss/_thematic.scss */
+/* line 84, bower_components/foundation-base-lib/scss/_thematic.scss */
 img.size-full, img.size-large, img.wp-post-image {
   height: auto;
   max-width: 100%; }
 
 /* Override the Twitter embed fixed width. */
-/* line 92, scss/_thematic.scss */
+/* line 92, bower_components/foundation-base-lib/scss/_thematic.scss */
 .entry-content .twitter-tweet-rendered {
   max-width: 100% !important; }
 
 /* Images */
-/* line 98, scss/_thematic.scss */
+/* line 98, bower_components/foundation-base-lib/scss/_thematic.scss */
 .alignleft {
   float: left; }
 
-/* line 102, scss/_thematic.scss */
+/* line 102, bower_components/foundation-base-lib/scss/_thematic.scss */
 .alignright {
   float: right; }
 
-/* line 106, scss/_thematic.scss */
+/* line 106, bower_components/foundation-base-lib/scss/_thematic.scss */
 .aligncenter {
   display: block;
   margin-left: auto;
   margin-right: auto; }
 
-/* line 112, scss/_thematic.scss */
+/* line 112, bower_components/foundation-base-lib/scss/_thematic.scss */
 img.alignleft {
   margin: 5px 20px 5px 0; }
 
-/* line 116, scss/_thematic.scss */
+/* line 116, bower_components/foundation-base-lib/scss/_thematic.scss */
 .wp-caption.alignleft {
   margin: 5px 10px 5px 0; }
 
-/* line 120, scss/_thematic.scss */
+/* line 120, bower_components/foundation-base-lib/scss/_thematic.scss */
 img.alignright {
   margin: 5px 0 5px 20px; }
 
-/* line 124, scss/_thematic.scss */
+/* line 124, bower_components/foundation-base-lib/scss/_thematic.scss */
 .wp-caption.alignright {
   margin: 5px 0 5px 10px; }
 
-/* line 129, scss/_thematic.scss */
+/* line 129, bower_components/foundation-base-lib/scss/_thematic.scss */
 img.aligncenter {
   margin: 5px auto; }
-/* line 132, scss/_thematic.scss */
+/* line 132, bower_components/foundation-base-lib/scss/_thematic.scss */
 img.alignnone {
   margin: 5px 0; }
 
-/* line 137, scss/_thematic.scss */
+/* line 137, bower_components/foundation-base-lib/scss/_thematic.scss */
 .wp-caption .wp-caption-text, .entry-caption, .gallery-caption {
   color: #666;
   font-size: 1.125rem;
@@ -7759,7 +7759,7 @@ img.alignnone {
   max-width: 96%;
   */ }
 
-/* line 149, scss/_thematic.scss */
+/* line 149, bower_components/foundation-base-lib/scss/_thematic.scss */
 img.wp-smiley, .rsswidget img {
   border: 0;
   border-radius: 0;
@@ -7768,7 +7768,7 @@ img.wp-smiley, .rsswidget img {
   margin-top: 0;
   padding: 0; }
 
-/* line 159, scss/_thematic.scss */
+/* line 159, bower_components/foundation-base-lib/scss/_thematic.scss */
 .wp-caption.alignleft + ul, .wp-caption.alignleft + ol {
   list-style-position: inside; }
 
@@ -7805,22 +7805,22 @@ img.wp-smiley, .rsswidget img {
  * 4.1 Site Header
  * ----------------------------------------------------------------------------
  */
-/* line 203, scss/_thematic.scss */
+/* line 203, bower_components/foundation-base-lib/scss/_thematic.scss */
 .site-title {
   text-rendering: optimizeLegibility;
   font-size: 2.75rem;
   line-height: 2.5rem;
   margin-top: 2.75rem;
   /* @todo check site-title still looks ok */ }
-  /* line 209, scss/_thematic.scss */
+  /* line 209, bower_components/foundation-base-lib/scss/_thematic.scss */
   .site-title a {
     color: #008CBA;
     text-decoration: none; }
-    /* line 212, scss/_thematic.scss */
+    /* line 212, bower_components/foundation-base-lib/scss/_thematic.scss */
     .site-title a:active, .site-title a:hover {
       color: #007095; }
 
-/* line 218, scss/_thematic.scss */
+/* line 218, bower_components/foundation-base-lib/scss/_thematic.scss */
 .tagline, h1.tagline {
   text-rendering: optimizeLegibility;
   font-size: 1.125rem;
@@ -7833,7 +7833,7 @@ img.wp-smiley, .rsswidget img {
  * 5.0 Content
  * ----------------------------------------------------------------------------
  */
-/* line 233, scss/_thematic.scss */
+/* line 233, bower_components/foundation-base-lib/scss/_thematic.scss */
 .site-main {
   padding-top: 2.75rem; }
 
@@ -8014,7 +8014,7 @@ img.wp-smiley, .rsswidget img {
  * 5.5 Galleries
  * ----------------------------------------------------------------------------
  */
-/* line 414, scss/_thematic.scss */
+/* line 414, bower_components/foundation-base-lib/scss/_thematic.scss */
 .gallery {
   display: block;
   clear: both;
@@ -8022,14 +8022,14 @@ img.wp-smiley, .rsswidget img {
   margin: 0 auto;
   padding: 0 0 24px 0; }
 
-/* line 422, scss/_thematic.scss */
+/* line 422, bower_components/foundation-base-lib/scss/_thematic.scss */
 .gallery-row {
   display: block;
   clear: both;
   overflow: hidden;
   margin: 0; }
 
-/* line 429, scss/_thematic.scss */
+/* line 429, bower_components/foundation-base-lib/scss/_thematic.scss */
 .gallery-item {
   overflow: hidden;
   float: left;
@@ -8037,24 +8037,24 @@ img.wp-smiley, .rsswidget img {
   text-align: center;
   list-style: none; }
 
-/* line 437, scss/_thematic.scss */
+/* line 437, bower_components/foundation-base-lib/scss/_thematic.scss */
 .gallery-icon {
   margin: 0 5px; }
 
-/* line 441, scss/_thematic.scss */
+/* line 441, bower_components/foundation-base-lib/scss/_thematic.scss */
 .site-content .gallery img {
   border: 1px solid #ccc;
   margin: 0;
   padding: 6px; }
 
-/* line 447, scss/_thematic.scss */
+/* line 447, bower_components/foundation-base-lib/scss/_thematic.scss */
 .gallery-item img {
   margin: 0 auto; }
-  /* line 449, scss/_thematic.scss */
+  /* line 449, bower_components/foundation-base-lib/scss/_thematic.scss */
   .gallery-item img.thumbnail {
     margin: 0 auto; }
 
-/* line 454, scss/_thematic.scss */
+/* line 454, bower_components/foundation-base-lib/scss/_thematic.scss */
 .gallery-caption {
   padding: 6px 6px 0; }
 
@@ -8062,20 +8062,20 @@ img.wp-smiley, .rsswidget img {
  * 5.6 Attachments
  * ----------------------------------------------------------------------------
  */
-/* line 463, scss/_thematic.scss */
+/* line 463, bower_components/foundation-base-lib/scss/_thematic.scss */
 .attachment-jpeg #container, .attachment-png #container {
   width: 100%; }
 
-/* line 467, scss/_thematic.scss */
+/* line 467, bower_components/foundation-base-lib/scss/_thematic.scss */
 .attachment-jpeg .site-content, .attachment-png .site-content {
   max-width: 100%; }
 
-/* line 471, scss/_thematic.scss */
+/* line 471, bower_components/foundation-base-lib/scss/_thematic.scss */
 .attachment-jpeg #comments, .attachment-png #comments {
   max-width: 40em;
   overflow: hidden; }
 
-/* line 476, scss/_thematic.scss */
+/* line 476, bower_components/foundation-base-lib/scss/_thematic.scss */
 .attachment-jpeg .main-aside, .attachment-png .main-aside {
   display: none; }
 
@@ -8541,7 +8541,7 @@ img.wp-smiley, .rsswidget img {
   }
 }
 */
-/* line 946, scss/_thematic.scss */
+/* line 946, bower_components/foundation-base-lib/scss/_thematic.scss */
 input[type="reset"], input[type="submit"] {
   border-style: solid;
   border-width: 0;
@@ -8573,25 +8573,25 @@ input[type="reset"], input[type="submit"] {
   input[type="reset"]:hover, input[type="reset"]:focus, input[type="submit"]:hover, input[type="submit"]:focus {
     color: #FFFFFF; }
 
-/* line 952, scss/_thematic.scss */
+/* line 952, bower_components/foundation-base-lib/scss/_thematic.scss */
 .form-label label {
   display: inline-block; }
-/* line 955, scss/_thematic.scss */
+/* line 955, bower_components/foundation-base-lib/scss/_thematic.scss */
 .form-label .required {
   color: #f04124; }
 
-/* line 960, scss/_thematic.scss */
+/* line 960, bower_components/foundation-base-lib/scss/_thematic.scss */
 #form-allowed-tags p {
   font-size: 80%; }
 
-/* line 965, scss/_thematic.scss */
+/* line 965, bower_components/foundation-base-lib/scss/_thematic.scss */
 #content ul {
   margin-left: 1.125rem; }
-/* line 969, scss/_thematic.scss */
+/* line 969, bower_components/foundation-base-lib/scss/_thematic.scss */
 #content ol {
   margin-left: 1.4375rem; }
 
-/* line 975, scss/_thematic.scss */
+/* line 975, bower_components/foundation-base-lib/scss/_thematic.scss */
 .top-bar .name {
   height: 2.8125rem;
   margin: 0;
@@ -8599,30 +8599,30 @@ input[type="reset"], input[type="submit"] {
   line-height: 2.8125rem;
   font-size: 1.0625rem;
   margin: 0; }
-  /* line 983, scss/_thematic.scss */
+  /* line 983, bower_components/foundation-base-lib/scss/_thematic.scss */
   .top-bar .name a {
     font-weight: normal;
     color: #FFFFFF;
     display: block;
     padding: 0 0.9375rem; }
 
-/* line 992, scss/_thematic.scss */
+/* line 992, bower_components/foundation-base-lib/scss/_thematic.scss */
 .wp-caption .wp-caption-text {
   font-size: 80%; }
 
-/* line 996, scss/_thematic.scss */
+/* line 996, bower_components/foundation-base-lib/scss/_thematic.scss */
 .entry-meta, .entry-content, .entry-utility, #nav-below {
   margin-bottom: 1.25rem; }
 
-/* line 1000, scss/_thematic.scss */
+/* line 1000, bower_components/foundation-base-lib/scss/_thematic.scss */
 .nav-next {
   float: right; }
 
-/* line 1004, scss/_thematic.scss */
+/* line 1004, bower_components/foundation-base-lib/scss/_thematic.scss */
 .nav-previous {
   float: left; }
 
-/* line 1008, scss/_thematic.scss */
+/* line 1008, bower_components/foundation-base-lib/scss/_thematic.scss */
 .entry-header h1 {
   line-height: 1; }
 
@@ -8634,7 +8634,7 @@ input[type="reset"], input[type="submit"] {
 .navigation:after {
   clear: both; }
 
-/* line 1016, scss/_thematic.scss */
+/* line 1016, bower_components/foundation-base-lib/scss/_thematic.scss */
 .widgetcontainer h1 {
   font-size: 1.4375rem;
   font-weight: bold; }
