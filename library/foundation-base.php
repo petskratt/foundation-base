@@ -9,24 +9,28 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 require_once "common-functions.php";		// functions always used in our WP implementations
 require_once "foundation-shortcodes.php";	// shortcodes for Foundation elements (todo: switch to code from https://wordpress.org/plugins/easy-foundation-shortcodes/ )
 
+if (!defined('GOOGLE_JQUERY_VERSION') ) define('GOOGLE_JQUERY_VERSION', '2.1.3');
+if (!defined('GOOGLE_JQUERY_VERSION_IE8') ) define('GOOGLE_JQUERY_VERSION_IE8', '1.11.2');
 
 // use jQuery from Google Hosted Libraries and de-register jQuery for IE8 support
 
 add_action('init', 'krt_google_jquery');
 
 function krt_google_jquery() {
-	if (!is_admin() && !in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php')) ) {
-		wp_deregister_script('jquery-migrate');
-		wp_deregister_script('jquery');
 
-        // jQuery is loaded in footer using IE conditionals
-		if ( !IE8_F5_SUPPORT ) {
-			wp_register_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js', false, '2.1.3', true);
-			// wp_register_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js', false, '1.11.2', true);
-			wp_enqueue_script('jquery');
-		} else {
-    		wp_register_script('jquery', '', false, false, true);
-		}
+    if (!defined('GOOGLE_JQUERY') || GOOGLE_JQUERY === true ) {
+    	if (!is_admin() && !in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php')) ) {
+    		wp_deregister_script('jquery-migrate');
+    		wp_deregister_script('jquery');
+
+            // jQuery is loaded in footer using IE conditionals
+    		if ( !IE8_F5_SUPPORT ) {
+    			wp_register_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/'.GOOGLE_JQUERY_VERSION.'/jquery.min.js', false, GOOGLE_JQUERY_VERSION, true);
+    			wp_enqueue_script('jquery');
+    		} else {
+        		wp_register_script('jquery', '', false, false, true);
+    		}
+    	}
 	}
 }
 
@@ -98,14 +102,16 @@ if ( !IE8_F5_SUPPORT ) {
 <?php
 	}
 
-	add_action('wp_footer', 'krt_ie8_conditional_footer_abovescripts', 1);
+    if (!defined('GOOGLE_JQUERY') || GOOGLE_JQUERY === true ) {
+    	add_action('wp_footer', 'krt_ie8_conditional_footer_abovescripts', 1);
+    }
 
 	function krt_ie8_conditional_footer_abovescripts () {
 	?>
 <!--[if lt IE 9]>
-	<script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js?ver=1.11.2'></script>
+	<script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/<?= GOOGLE_JQUERY_VERSION_IE8 ?>/jquery.min.js?ver=<?= GOOGLE_JQUERY_VERSION_IE8 ?>'></script>
 <![endif]-->
-<!--[if gte IE 9]><!--> <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js?ver=2.1.3'></script> <!--<![endif]-->
+<!--[if gte IE 9]><!--> <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/<?= GOOGLE_JQUERY_VERSION ?>/jquery.min.js?ver=<?= GOOGLE_JQUERY_VERSION ?>'></script> <!--<![endif]-->
 <?php
 	}
 

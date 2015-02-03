@@ -10,7 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 // IE8 support uses solutions from http://foundation.zurb.com/forum/posts/241-foundation-5-and-ie8
 // and reference implementation from http://www.kycosoftware.com/blog/article/getting-foundation-5-to-work-in-ie8
 // with updated shims that are assembled into ie8-head.min.js
-define( 'IE8_F5_SUPPORT', true ) ;
+define( 'IE8_F5_SUPPORT', true );
+define( 'GOOGLE_JQUERY', true );
 
 require_once "library/foundation-base.php";
 require_once "library/foundation-top-bar.php";
