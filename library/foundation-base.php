@@ -1,5 +1,7 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /* ======================================
 	Adapting Thematic HTML to Foundation
    ====================================== */
@@ -13,15 +15,42 @@ require_once "foundation-shortcodes.php";	// shortcodes for Foundation elements 
 add_action('init', 'krt_google_jquery');
 
 function krt_google_jquery() {
-	if (!is_admin()) {
+	if (!is_admin() && !in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php')) ) {
 		wp_deregister_script('jquery-migrate');
 		wp_deregister_script('jquery');
+
+        // jQuery is loaded in footer using IE conditionals
 		if ( !IE8_F5_SUPPORT ) {
 			wp_register_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js', false, '2.1.3', true);
 			// wp_register_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js', false, '1.11.2', true);
 			wp_enqueue_script('jquery');
+		} else {
+    		wp_register_script('jquery', '', false, false, true);
 		}
 	}
+}
+
+
+// script manager template for registering and enqueuing files
+
+add_action('wp_enqueue_scripts', 'foundationbase_script_manager');
+
+function foundationbase_script_manager() {
+
+    if (!is_admin() && !in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php')) ) {
+    	// wp_register_script template ( $handle, $src, $deps, $ver, $in_footer );
+
+    	// registers modernizr script, stylesheet local path, no dependency, no version, loads in header
+    	wp_register_script('modernizr-js', get_stylesheet_directory_uri() . '/js/modernizr.js', false, false, false);
+        wp_register_script('app-js', get_stylesheet_directory_uri() . '/js/app.min.js', array('jquery'), false, true);
+
+    	// enqueue the scripts for use in theme
+    	wp_enqueue_script ('modernizr-js');
+
+    	//always enqueue this last, helps with conflicts
+    	wp_enqueue_script ('app-js');
+	}
+
 }
 
 // header modifications with and without IE8 support
@@ -99,29 +128,7 @@ function childtheme_override_head_scripts() {
 	// silence
 }
 
-// script manager template for registering and enqueuing files
 
-function childtheme_script_manager() {
-	// wp_register_script template ( $handle, $src, $deps, $ver, $in_footer );
-
-	// registers modernizr script, stylesheet local path, no dependency, no version, loads in header
-	wp_register_script('modernizr-js', get_stylesheet_directory_uri() . '/js/modernizr.js', false, false, false);
-
-	if ( !IE8_F5_SUPPORT ) {
-		// registers app script, local stylesheet path, yes dependency is jquery, no version, loads in footer
-		wp_register_script('app-js', get_stylesheet_directory_uri() . '/js/app.min.js', array('jquery'), false, true);
-	} else {
-		wp_register_script('app-js', get_stylesheet_directory_uri() . '/js/app.min.js', false, false, true);
-	}
-
-	// enqueue the scripts for use in theme
-	wp_enqueue_script ('modernizr-js');
-
-	//always enqueue this last, helps with conflicts
-	wp_enqueue_script ('app-js');
-
-}
-add_action('wp_enqueue_scripts', 'childtheme_script_manager');
 
 
 // add favicon to site, add 16x16 "favicon.ico" image to child themes main folder
