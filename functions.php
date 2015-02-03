@@ -1,5 +1,7 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 //
 //  Child Theme Functions - customize your theme here,
 //  all Foundation Base code kept in foundation-base.php for easy upgrades

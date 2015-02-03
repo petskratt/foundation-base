@@ -1,5 +1,7 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /* ==============================================
 	Main menu using top-bar (from menu or pages)
    ============================================== */

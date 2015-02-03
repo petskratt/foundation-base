@@ -1,5 +1,7 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 // this partial contains functions that are always used in our WordPress implementation, but not related to Thematic or Foundation
 
 

@@ -1,5 +1,7 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /* =================================================
 	Shortcodes for Foundation grid and enhancements
    ================================================= */

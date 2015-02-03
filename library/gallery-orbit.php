@@ -1,4 +1,7 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /**
 NextGEN Gallery Template Page for Zurb's Orbit gallery
 
