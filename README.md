@@ -32,6 +32,13 @@ Changelog
 
 2015-02-02
 
+* move all bower-updatable foundation-base components to foundation-base-lib
+* introduce .bowerrc, use /lib instead of bower_components
+* start gitignoring foundation components that are not needed during runtime (as everything needed is in vendor anyway)
+* default scss processing to libsass, compressed, with sourcemaps
+
+2015-02-02
+
 * remove umlauts + cyrillic from filenames, also lowercase all filenames on upload
 * possibility to switch off using Google jQuery (new constant, not mandatory)
 * possibility to tell which version of jQuery to use from Google (new constants, not mandatory)

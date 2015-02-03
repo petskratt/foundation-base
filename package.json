@@ -1,5 +1,5 @@
 {
-  "name": "foundation-libsass-template",
+  "name": "foundation-base-libsass-template",
   "version": "0.0.1",
   "devDependencies": {
     "node-sass": "~0.9.3",

@@ -5,12 +5,12 @@ Description: A child theme for Thematic 2.0 based on Zurb Foundation 5.5.1
 Author: Peeter Marvet
 Author URI: http://tehnokratt.net/
 Template: thematic
-Version: 0.5.5.1.1
+Version: 0.5.5.1.3
 Tags: flexible-width, two-columns, left-sidebar, translation-ready
 */
 
 @import "settings";
-@import "foundation";
+@import "../lib/foundation/scss/foundation";
 
 // Or selectively include components
 // @import
@@ -52,8 +52,8 @@ Tags: flexible-width, two-columns, left-sidebar, translation-ready
 
 /* === import Thematic-specific SCSS (from Responsive Base) */
 
-@import "../bower_components/foundation-base-lib/scss/_thematic";
-@import "_side-nav";
+@import "../lib/foundation-base-lib/scss/thematic";
+@import "side-nav";
 
 /* === use Foundation mixins on Thematic IDs/classes to produce desired layout === */
 
@@ -107,4 +107,3 @@ Tags: flexible-width, two-columns, left-sidebar, translation-ready
 		display: none;
 	}
 }
-
