@@ -21,8 +21,20 @@ Features:
 pets@tehnokratt.net / skype: petskratt
 
 More Info
--------------
+---------
 
 http://thematictheme.com/
 
 http://foundation.zurb.com/
+
+Changelog
+---------
+
+2015-02-02
+
+* remove umlauts + cyrillic from filenames, also lowercase all filenames on upload
+* possibility to switch off using Google jQuery (new constant, not mandatory)
+* possibility to tell which version of jQuery to use from Google (new constants, not mandatory)
+* "dummy" jquery registered for IE8 case - to avoid problems with plugins dependent on jquery (as IE8 fix adds jQuery not through official means but IE conditional in footer)
+* all php files have now if ( ! defined( 'ABSPATH' ) ) exit; at the beginning to avoid direct execution attempts
+* Foundation & dependencies upgrade to 5.5.1
