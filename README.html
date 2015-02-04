@@ -33,6 +33,40 @@
 
 <h2>Changelog</h2>
 
+<p>2015-02-03</p>
+
+<ul>
+<li>things that were in bower_components are now in /lib - please note, that hidden file .bowerrc is required for that to work (you might miss it if you just download/expand ZIP)</li>
+<li>if any included components are referenced from scss or php - these point to something in /lib now</li>
+<li>/lib/foundation-base-lib is separate GIT submodule now (no need to worry, unless you plan to contribute)</li>
+<li>all php files are required from functions.php (previously some were included from foundation-base.php)</li>
+<li>this means, that if you change some part in /lib - move it to your foundation-base folder first and change require</li>
+<li>codekit project now defaults to compiling with libsass (faaaaaaaast) + creating map file for scss (and css is compressed by default)</li>
+<li>config.codekit.template includes these changes, overwrite your config.codekit with that</li>
+<li>@print styles, include at the very end of styles.scss</li>
+<li>editor styles</li>
+</ul>
+
+
+<p>Updating foundation and foundation-base-lib is simple: go to the childtheme base folder and type:
+<code>bower update</code></p>
+
+<p>This updates both foundation and foundation-base-lib (and creates some additional components in /lib &hellip; that should not be needed in web, so you can safely remove everything, except foundation and foundation-base-lib, of course)</p>
+
+<p>What are needed changes in existing projects, should you decide to bring them up to today&rsquo;s changes?</p>
+
+<ul>
+<li>download a copy of new foundation-base</li>
+<li>take requires from the start of functions.php, use in your current functions.php</li>
+<li>same for items at the beginning of style.scss and _settings.scss - foundation and thematic rows are important</li>
+<li>copy hidden .bowwerrc, not-hidden bower.json, codekit.config</li>
+<li>delete current /bower_components and /library (unless you have made local changes there), from scss _thematic.scss (that is now in lib)</li>
+<li>do <code>bower update</code> to have new /lib created</li>
+</ul>
+
+
+<p>sorry for the mess, I hope that next upates will be way easier :-)</p>
+
 <p>2015-02-02</p>
 
 <ul>

@@ -1,0 +1,22 @@
+@media print {
+
+    #top-bar, #access, #footer, #searchbox, #langmenu, #primary, #secondary, a.more, #comments { display:none!important }
+    .edit-link, .navigation, .entry-utility { display:none!important; }
+    #container { margin: 0!important; float:left!important; width:100%!important;left:0!important;right:0!important }
+    #primary { left:0!important;right:0!important }
+    #header { width:100%!important;display:block!important; }
+    #main { margin-top:15px!important;padding-top:0px!important; }
+    #branding { margin-top:15px!important; }
+
+    h1, h2, h3, h4, h5, h6, img { page-break-after:avoid!important; page-break-inside:avoid!important; }
+
+    a[href]:after{content:""!important;}
+    abbr[title]:after{content:""!important;}
+
+    blockquote, table, pre { page-break-inside:avoid }
+    ul, ol, dl  { page-break-before:avoid }
+
+    body { font-size:10pt!important; }
+    #content a { font-weight:bold; color:#000066; text-decoration:underline; }
+
+}

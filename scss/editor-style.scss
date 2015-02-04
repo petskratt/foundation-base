@@ -1,0 +1,79 @@
+/*
+Theme Name: Foundation Base
+Description: Used to style the TinyMCE editor.
+*/
+
+
+// You custom settings file to override Foundation defaults
+@import "settings";
+
+@import
+// when (un)commenting - active elements must be separated with comma, last one terminated with ;
+//   "../lib/foundation/scss/foundation/components/accordion",
+//   "../lib/foundation/scss/foundation/components/alert-boxes",
+//   "../lib/foundation/scss/foundation/components/block-grid",
+//   "../lib/foundation/scss/foundation/components/breadcrumbs",
+//   "../lib/foundation/scss/foundation/components/button-groups",
+//   "../lib/foundation/scss/foundation/components/buttons",
+//   "../lib/foundation/scss/foundation/components/clearing",
+//   "../lib/foundation/scss/foundation/components/dropdown",
+//   "../lib/foundation/scss/foundation/components/dropdown-buttons",
+//   "../lib/foundation/scss/foundation/components/flex-video",
+//   "../lib/foundation/scss/foundation/components/forms",
+//   "../lib/foundation/scss/foundation/components/grid",
+//   "../lib/foundation/scss/foundation/components/inline-lists",
+//   "../lib/foundation/scss/foundation/components/joyride",
+//   "../lib/foundation/scss/foundation/components/keystrokes",
+//   "../lib/foundation/scss/foundation/components/labels",
+//   "../lib/foundation/scss/foundation/components/magellan",
+//   "../lib/foundation/scss/foundation/components/orbit",
+//   "../lib/foundation/scss/foundation/components/pagination",
+//   "../lib/foundation/scss/foundation/components/panels",
+//   "../lib/foundation/scss/foundation/components/pricing-tables",
+//   "../lib/foundation/scss/foundation/components/progress-bars",
+//   "../lib/foundation/scss/foundation/components/reveal",
+//   "../lib/foundation/scss/foundation/components/side-nav",
+//   "../lib/foundation/scss/foundation/components/split-buttons",
+//   "../lib/foundation/scss/foundation/components/sub-nav",
+//   "../lib/foundation/scss/foundation/components/switch",
+   "../lib/foundation/scss/foundation/components/tables",
+//   "../lib/foundation/scss/foundation/components/tabs",
+//   "../lib/foundation/scss/foundation/components/thumbs",
+//   "../lib/foundation/scss/foundation/components/tooltips",
+//   "../lib/foundation/scss/foundation/components/top-bar",
+   "../lib/foundation/scss/foundation/components/type";
+//   "../lib/foundation/scss/foundation/components/offcanvas",
+//   "../lib/foundation/scss/foundation/components/visibility";
+
+
+/* fix editor scaling issue */
+
+html, body {
+  height: auto;
+}
+
+
+/* WordPress styles */
+body {
+	margin: 10px;
+	min-height: 100%;
+}
+
+.wp-caption {
+	border: none;
+	text-align: center;
+	background: none;
+	padding-top: 4px;
+	margin: 10px 0;
+}
+
+.wp-caption-dd {
+	font-size: ms(0);
+	line-height: 1.6;
+	padding: 0 4px 5px;
+	margin: 0;
+}
+
+ul, ol, dl  {
+	margin-left: 20px;
+}

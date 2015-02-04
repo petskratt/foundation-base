@@ -30,6 +30,34 @@ http://foundation.zurb.com/
 Changelog
 ---------
 
+2015-02-03
+
+* things that were in bower_components are now in /lib - please note, that hidden file .bowerrc is required for that to work (you might miss it if you just download/expand ZIP)
+* if any included components are referenced from scss or php - these point to something in /lib now
+* /lib/foundation-base-lib is separate GIT submodule now (no need to worry, unless you plan to contribute)
+* all php files are required from functions.php (previously some were included from foundation-base.php)
+* this means, that if you change some part in /lib - move it to your foundation-base folder first and change require
+* codekit project now defaults to compiling with libsass (faaaaaaaast) + creating map file for scss (and css is compressed by default)
+* config.codekit.template includes these changes, overwrite your config.codekit with that
+* @print styles, include at the very end of styles.scss
+* editor styles
+
+Updating foundation and foundation-base-lib is simple: go to the childtheme base folder and type:
+`bower update`
+
+This updates both foundation and foundation-base-lib (and creates some additional components in /lib ... that should not be needed in web, so you can safely remove everything, except foundation and foundation-base-lib, of course)
+
+What are needed changes in existing projects, should you decide to bring them up to today's changes?
+
+* download a copy of new foundation-base
+* take requires from the start of functions.php, use in your current functions.php
+* same for items at the beginning of style.scss and _settings.scss - foundation and thematic rows are important
+* copy hidden .bowwerrc, not-hidden bower.json, codekit.config
+* delete current /bower_components and /library (unless you have made local changes there), from scss _thematic.scss (that is now in lib)
+* do `bower update` to have new /lib created
+
+sorry for the mess, I hope that next upates will be way easier :-)
+
 2015-02-02
 
 * move all bower-updatable foundation-base components to foundation-base-lib
