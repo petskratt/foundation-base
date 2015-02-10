@@ -18,6 +18,7 @@ require_once "lib/foundation-base-lib/foundation-top-bar.php";     // main menu 
 require_once "lib/foundation-base-lib/foundation-sidenav.php";     // simple second-level navigation in sidebar widget
 require_once "lib/foundation-base-lib/common-functions.php";		// functions always used in our WP implementations
 require_once "lib/foundation-base-lib/foundation-shortcodes.php";	// shortcodes for Foundation elements
+require_once "lib/foundation-base-lib/foundation-clearing-gallery.php";	// replaces gallery shortcode with Clearing
 // (todo? switch shortcodes to code from https://wordpress.org/plugins/easy-foundation-shortcodes/)
 
 // main menu (top bar) settings
@@ -36,7 +37,38 @@ function krt_foundationbase_topbar_args ( $args ) {
 // set_post_thumbnail_size( 82, 82, true ); // Normal post thumbnails
 // add_image_size( 'something-thumb', 250, 250, true );
 
-// add_theme_support( 'html5', array( 'search-form' ) );
+function foundationbase_theme_setup() {
+    // add_theme_support( 'post-thumbnails', array( 'post', 'page', 'somecustomposttype' ) );
+/*
+	add_theme_support( 'custom-background', array(
+                        	'default-color'          => '',
+                        	'default-image'          => '',
+                        	'wp-head-callback'       => '_custom_background_cb',
+                        	'admin-head-callback'    => '',
+                        	'admin-preview-callback' => ''
+                        	) );
+*/
+/*
+	add_theme_support( 'custom-header', array(
+                        	'default-image'          => '',
+                        	'random-default'         => false,
+                        	'width'                  => 0,
+                        	'height'                 => 0,
+                        	'flex-height'            => false,
+                        	'flex-width'             => false,
+                        	'default-text-color'     => '',
+                        	'header-text'            => true,
+                        	'uploads'                => true,
+                        	'wp-head-callback'       => '',
+                        	'admin-head-callback'    => '',
+                        	'admin-preview-callback' => '',
+                        ) );
+*/
+
+    add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
+
+}
+add_action( 'after_setup_theme', 'foundationbase_theme_setup' );
 
 // add_filter('widget_text', 'do_shortcode');
 
