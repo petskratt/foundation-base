@@ -37,12 +37,14 @@ function krt_foundationbase_topbar_args ( $args ) {
 // set_post_thumbnail_size( 82, 82, true ); // Normal post thumbnails
 // add_image_size( 'something-thumb', 250, 250, true );
 
+add_action( 'after_setup_theme', 'foundationbase_theme_setup' );
+
 function foundationbase_theme_setup() {
     // add_theme_support( 'post-thumbnails', array( 'post', 'page', 'somecustomposttype' ) );
 /*
 	add_theme_support( 'custom-background', array(
                         	'default-color'          => '',
-                        	'default-image'          => '',
+                        	'default-image'          => get_bloginfo( 'stylesheet_directory' ).'/images/bg.jpg',
                         	'wp-head-callback'       => '_custom_background_cb',
                         	'admin-head-callback'    => '',
                         	'admin-preview-callback' => ''
@@ -68,7 +70,11 @@ function foundationbase_theme_setup() {
     add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
 
 }
-add_action( 'after_setup_theme', 'foundationbase_theme_setup' );
+
+if ( ! isset( $content_width ) ) {
+	$content_width = 637;
+}
+
 
 // add_filter('widget_text', 'do_shortcode');
 
